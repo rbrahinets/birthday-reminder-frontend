@@ -1,1 +1,1 @@
-# birthday-reminder-frontend
+# Birthday Reminder
