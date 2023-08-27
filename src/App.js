@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import SignUp from './pages/SignUp';
 
 const App = () => {
-    const [data, setData] = useState(null);
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const result = await axios.get(
-                    `https://api-birthday-reminder-5xlo.onrender.com`
-                );
-                setData(result.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
     return (
-        <React.Fragment>
-            <h1>Birthday Reminder</h1>
-            <div>{data ? data.title : 'Wait...'}</div>
-        </React.Fragment>
+        <Router>
+            <Routes>
+                <Route path="/sign-up" element={<SignUp />} />
+            </Routes>
+        </Router>
     );
 };
 
