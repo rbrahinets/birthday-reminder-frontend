@@ -81,7 +81,7 @@ const SingUp = () => {
         return email.includes('@') && email.endsWith('.com');
     };
 
-    const handleSingUpClick = async (event) => {
+    const handleSingUpClick = (event) => {
         event.preventDefault();
 
         let { firstName, lastName, email, password, confirmPassword } =
@@ -127,7 +127,7 @@ const SingUp = () => {
 
         if (isValidInputtedData) {
             try {
-                await userService.save({
+                userService.save({
                     firstName: firstName.value,
                     lastName: lastName.value,
                     email: email.value,
