@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
 
+const url = '/birthday-reminder-frontend';
+
 const SignIn = () => {
     const navigate = useNavigate();
     const [errorMessages, setErrorMessages] = useState({});
@@ -80,7 +82,7 @@ const SignIn = () => {
                 });
                 const token = response.data.accessToken;
                 localStorage.setItem('token', token);
-                navigate('/');
+                navigate(`${url}/`);
             } catch (error) {
                 console.error('Sign-In Failed', error);
             }
@@ -88,7 +90,7 @@ const SignIn = () => {
     };
 
     const handleSingUpClick = () => {
-        navigate('/sign-up');
+        navigate(`${url}/sign-up`);
     };
 
     return (

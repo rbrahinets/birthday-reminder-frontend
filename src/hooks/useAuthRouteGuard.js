@@ -1,12 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 
+const url = '/birthday-reminder-frontend';
+
 const useAuthRouteGuard = () => {
     const navigate = useNavigate();
 
     const checkAuth = () => {
         const token = localStorage.getItem('token');
         if (!token) {
-            navigate('/sign-in');
+            navigate(`${url}/sign-in`);
         }
     };
 

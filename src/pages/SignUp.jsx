@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
 
+const url = '/birthday-reminder-frontend';
+
 const SingUp = () => {
     const navigate = useNavigate();
     const [errorMessages, setErrorMessages] = useState({});
@@ -133,7 +135,7 @@ const SingUp = () => {
                     email: email.value,
                     password: password.value,
                 });
-                navigate('/sign-in');
+                navigate(`${url}/sign-in`);
             } catch (error) {
                 console.error('Sign-Up Failed', error);
             }
@@ -141,7 +143,7 @@ const SingUp = () => {
     };
 
     const handleSingInClick = () => {
-        navigate('/sign-in');
+        navigate(`${url}/sign-in`);
     };
 
     return (
