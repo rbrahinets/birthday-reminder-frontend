@@ -17,45 +17,43 @@ const SingUp = () => {
         );
 
     const renderForm = (
-        <div className={'form'}>
-            <form className={'form'}>
-                <Input
-                    type={'text'}
-                    name={'firstName'}
-                    id={'firstName'}
-                    placeholder={'First Name'}
-                    error={renderErrorMessage('firstName')}
-                />
-                <Input
-                    type={'text'}
-                    name={'lastName'}
-                    id={'lastName'}
-                    placeholder={'Last Name'}
-                    error={renderErrorMessage('lastName')}
-                />
-                <Input
-                    type={'text'}
-                    name={'email'}
-                    id={'email'}
-                    placeholder={'Email'}
-                    error={renderErrorMessage('email')}
-                />
-                <Input
-                    type={'password'}
-                    name={'password'}
-                    id={'password'}
-                    placeholder={'Password'}
-                    error={renderErrorMessage('password')}
-                />
-                <Input
-                    type={'password'}
-                    name={'confirmPassword'}
-                    id={'confirmPassword'}
-                    placeholder={'Confirm Password'}
-                    error={renderErrorMessage('confirmPassword')}
-                />
-            </form>
-        </div>
+        <form>
+            <Input
+                type={'text'}
+                name={'firstName'}
+                id={'firstName'}
+                placeholder={'First Name'}
+                error={renderErrorMessage('firstName')}
+            />
+            <Input
+                type={'text'}
+                name={'lastName'}
+                id={'lastName'}
+                placeholder={'Last Name'}
+                error={renderErrorMessage('lastName')}
+            />
+            <Input
+                type={'text'}
+                name={'email'}
+                id={'email'}
+                placeholder={'Email'}
+                error={renderErrorMessage('email')}
+            />
+            <Input
+                type={'password'}
+                name={'password'}
+                id={'password'}
+                placeholder={'Password'}
+                error={renderErrorMessage('password')}
+            />
+            <Input
+                type={'password'}
+                name={'confirmPassword'}
+                id={'confirmPassword'}
+                placeholder={'Confirm Password'}
+                error={renderErrorMessage('confirmPassword')}
+            />
+        </form>
     );
 
     const errors = {
