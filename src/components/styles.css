@@ -1,0 +1,11 @@
+.formcontrol {
+    margin: 20px auto;
+}
+
+.formcontrol input {
+    width: 100%;
+    height: 40%;
+    padding: 5px 10px;
+    font-size: 17px;
+    text-align: center;
+}
