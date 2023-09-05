@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
+import { baseUrl } from '../constants';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
-
-const url = '/birthday-reminder-frontend';
 
 const SingUp = () => {
     const navigate = useNavigate();
@@ -121,7 +120,7 @@ const SingUp = () => {
                     email: email.value,
                     password: password.value,
                 });
-                navigate(`${url}/sign-in`);
+                navigate(`${baseUrl}/sign-in`);
             } catch (error) {
                 console.error('Sign-Up Failed', error);
             }
