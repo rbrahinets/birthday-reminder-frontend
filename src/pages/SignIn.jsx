@@ -13,12 +13,12 @@ const SignIn = () => {
 
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
+            <div className={'error'}>{errorMessages.message}</div>
         );
 
     const renderForm = (
-        <div className="form">
-            <form className="form">
+        <div className={'form'}>
+            <form className={'form'}>
                 <Input
                     type={'text'}
                     name={'email'}
@@ -91,7 +91,7 @@ const SignIn = () => {
 
     return (
         <>
-            <div className="center">
+            <div className={'center'}>
                 <h1>Sign In</h1>
                 {renderForm}
                 <Button text={'Sign In'} onClick={handleSingInClick} />
