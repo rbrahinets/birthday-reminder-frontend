@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
+import Input from '../components/Input';
 
 const url = '/birthday-reminder-frontend';
 
@@ -17,26 +18,20 @@ const SignIn = () => {
     const renderForm = (
         <div className="form">
             <form className="form">
-                <div className="formcontrol">
-                    <input
-                        type="text"
-                        name="email"
-                        id="email"
-                        placeholder="Email"
-                        required
-                    />
-                    {renderErrorMessage('email')}
-                </div>
-                <div className="formcontrol">
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Password"
-                        required
-                    />
-                    {renderErrorMessage('password')}
-                </div>
+                <Input
+                    type={'text'}
+                    name={'email'}
+                    id={'email'}
+                    placeholder={'Email'}
+                    error={renderErrorMessage('email')}
+                />
+                <Input
+                    type={'password'}
+                    name={'password'}
+                    id={'password'}
+                    placeholder={'Password'}
+                    error={renderErrorMessage('password')}
+                />
             </form>
         </div>
     );
