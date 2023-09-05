@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import Button from './Button';
-
-const url = '/birthday-reminder-frontend';
+import { baseUrl } from '../constants';
 
 const Header = () => {
     const navigate = useNavigate();
@@ -11,16 +10,16 @@ const Header = () => {
     const currentPage = window.location.href.split('/').reverse()[0];
 
     const handleSingInClick = () => {
-        navigate(`${url}/sign-in`);
+        navigate(`${baseUrl}/sign-in`);
     };
 
     const handleSingUpClick = () => {
-        navigate(`${url}/sign-up`);
+        navigate(`${baseUrl}/sign-up`);
     };
 
     const handleSingOutClick = () => {
         localStorage.removeItem('token');
-        navigate(`${url}/sign-in`);
+        navigate(`${baseUrl}/sign-in`);
     };
 
     useEffect(() => {
