@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 const url = '/birthday-reminder-frontend';
 
@@ -93,13 +94,9 @@ const SignIn = () => {
             <div className="center">
                 <h1>Sign In</h1>
                 {renderForm}
-                <button className="button" onClick={handleSingInClick}>
-                    Sign In
-                </button>
+                <Button text={'Sign In'} onClick={handleSingInClick} />
                 <br />
-                <button className="button" onClick={handleSingUpClick}>
-                    Sign Up
-                </button>
+                <Button text={'Sign Up'} onClick={handleSingUpClick} />
             </div>
         </>
     );
