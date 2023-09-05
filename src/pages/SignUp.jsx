@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
+import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
 
@@ -127,18 +128,13 @@ const SingUp = () => {
         }
     };
 
-    const handleSingInClick = () => {
-        navigate(`${url}/sign-in`);
-    };
-
     return (
         <>
+            <Header />
             <div className={'center'}>
                 <h1>Sign Up</h1>
                 {renderForm}
                 <Button text={'Sign Up'} onClick={handleSingUpClick} />
-                <br />
-                <Button text={'Sign In'} onClick={handleSingInClick} />
             </div>
         </>
     );
