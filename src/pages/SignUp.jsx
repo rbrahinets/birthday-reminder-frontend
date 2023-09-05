@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import userService from '../services/UserService';
+import Input from '../components/Input';
 
 const url = '/birthday-reminder-frontend';
 
@@ -17,56 +18,41 @@ const SingUp = () => {
     const renderForm = (
         <div className="form">
             <form className="form">
-                <div className="formcontrol">
-                    <input
-                        type="text"
-                        name="firstName"
-                        id="firstName"
-                        placeholder="First Name"
-                        required
-                    />
-                    {renderErrorMessage('firstName')}
-                </div>
-                <div className="formcontrol">
-                    <input
-                        type="text"
-                        name="lastName"
-                        id="lastName"
-                        placeholder="Last Name"
-                        required
-                    />
-                    {renderErrorMessage('lastName')}
-                </div>
-                <div className="formcontrol">
-                    <input
-                        type="text"
-                        name="email"
-                        id="email"
-                        placeholder="Email"
-                        required
-                    />
-                    {renderErrorMessage('email')}
-                </div>
-                <div className="formcontrol">
-                    <input
-                        type="password"
-                        name="password"
-                        id="password"
-                        placeholder="Password"
-                        required
-                    />
-                    {renderErrorMessage('password')}
-                </div>
-                <div className="formcontrol">
-                    <input
-                        type="password"
-                        name="confirmPassword"
-                        id="confirmPassword"
-                        placeholder="Confirm Password"
-                        required
-                    />
-                    {renderErrorMessage('confirmPassword')}
-                </div>
+                <Input
+                    type={'text'}
+                    name={'firstName'}
+                    id={'firstName'}
+                    placeholder={'First Name'}
+                    error={renderErrorMessage('firstName')}
+                />
+                <Input
+                    type={'text'}
+                    name={'lastName'}
+                    id={'lastName'}
+                    placeholder={'Last Name'}
+                    error={renderErrorMessage('lastName')}
+                />
+                <Input
+                    type={'text'}
+                    name={'email'}
+                    id={'email'}
+                    placeholder={'Email'}
+                    error={renderErrorMessage('email')}
+                />
+                <Input
+                    type={'password'}
+                    name={'password'}
+                    id={'password'}
+                    placeholder={'Password'}
+                    error={renderErrorMessage('password')}
+                />
+                <Input
+                    type={'password'}
+                    name={'confirmPassword'}
+                    id={'confirmPassword'}
+                    placeholder={'Confirm Password'}
+                    error={renderErrorMessage('confirmPassword')}
+                />
             </form>
         </div>
     );
