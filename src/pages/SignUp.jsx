@@ -17,8 +17,8 @@ const SingUp = () => {
         );
 
     const renderForm = (
-        <div className="form">
-            <form className="form">
+        <div className={'form'}>
+            <form className={'form'}>
                 <Input
                     type={'text'}
                     name={'firstName'}
@@ -135,7 +135,7 @@ const SingUp = () => {
 
     return (
         <>
-            <div className="center">
+            <div className={'center'}>
                 <h1>Sign Up</h1>
                 {renderForm}
                 <Button text={'Sign Up'} onClick={handleSingUpClick} />
