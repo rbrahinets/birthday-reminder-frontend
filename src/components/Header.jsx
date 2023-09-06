@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import './styles.css';
 import { baseUrl } from '../constants';
 
 const Header = () => {
+    const navigation = useNavigate();
     const currentPage = window.location.href.split('/').reverse()[0];
 
     const getToken = () => {
@@ -30,11 +31,8 @@ const Header = () => {
     const renderHeaderForAuthenticatedUser = () => {
         return (
             <>
-                <Link to={`${baseUrl}/`} className={'link'}>
-                    Main
-                </Link>
                 <Link
-                    to={`${baseUrl}/sign-in`}
+                    to={`${baseUrl}/`}
                     onClick={handleSingOutClick}
                     className={'link'}
                 >
@@ -44,13 +42,19 @@ const Header = () => {
         );
     };
 
+    const handleMainClick = () => {
+        navigation(`${baseUrl}/`);
+    };
+
     const handleSingOutClick = () => {
         localStorage.removeItem('token');
     };
 
     return (
         <header>
-            <h1>Birthday Reminder</h1>
+            <h1 className={'main-link'} onClick={handleMainClick}>
+                Birthday Reminder
+            </h1>
             {!getToken() && renderHeaderForUnauthenticatedUser()}
             {getToken() && renderHeaderForAuthenticatedUser()}
         </header>
