@@ -1,47 +1,58 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom';
 import './styles.css';
-import Button from './Button';
 import { baseUrl } from '../constants';
 
 const Header = () => {
-    const navigate = useNavigate();
-    const [isLogged, setLogged] = useState(false);
     const currentPage = window.location.href.split('/').reverse()[0];
 
-    const handleSingInClick = () => {
-        navigate(`${baseUrl}/sign-in`);
+    const getToken = () => {
+        return localStorage.getItem('token');
     };
 
-    const handleSingUpClick = () => {
-        navigate(`${baseUrl}/sign-up`);
+    const renderHeaderForUnauthenticatedUser = () => {
+        return (
+            <>
+                {currentPage !== 'sign-in' && (
+                    <Link to={`${baseUrl}/sign-in`} className={'link'}>
+                        Sign In
+                    </Link>
+                )}
+                {currentPage !== 'sign-up' && (
+                    <Link to={`${baseUrl}/sign-up`} className={'link'}>
+                        Sign Up
+                    </Link>
+                )}
+            </>
+        );
+    };
+
+    const renderHeaderForAuthenticatedUser = () => {
+        return (
+            <>
+                <Link to={`${baseUrl}/`} className={'link'}>
+                    Main
+                </Link>
+                <Link
+                    to={`${baseUrl}/sign-in`}
+                    onClick={handleSingOutClick}
+                    className={'link'}
+                >
+                    Sign Out
+                </Link>
+            </>
+        );
     };
 
     const handleSingOutClick = () => {
         localStorage.removeItem('token');
-        navigate(`${baseUrl}/sign-in`);
     };
-
-    useEffect(() => {
-        setLogged(localStorage.getItem('token') ? true : false);
-    }, [setLogged]);
 
     return (
         <header>
             <h1>Birthday Reminder</h1>
-            {!isLogged && (
-                <>
-                    {currentPage !== 'sign-in' && (
-                        <Button text={'Sign In'} onClick={handleSingInClick} />
-                    )}
-                    {currentPage !== 'sign-up' && (
-                        <Button text={'Sign Up'} onClick={handleSingUpClick} />
-                    )}
-                </>
-            )}
-            {isLogged && (
-                <Button text={'Sign Out'} onClick={handleSingOutClick} />
-            )}
+            {!getToken() && renderHeaderForUnauthenticatedUser()}
+            {getToken() && renderHeaderForAuthenticatedUser()}
         </header>
     );
 };
