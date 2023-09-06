@@ -86,11 +86,13 @@ const SignIn = () => {
 
     return (
         <>
-            <center>
+            <center className={'content'}>
                 <Header />
-                <h1>Sign In</h1>
-                {renderForm}
-                <Button text={'Sign In'} onClick={handleSingInClick} />
+                <main>
+                    <h1>Sign In</h1>
+                    {renderForm}
+                    <Button text={'Sign In'} onClick={handleSingInClick} />
+                </main>
                 <Footer />
             </center>
         </>

@@ -14,10 +14,12 @@ const Main = () => {
 
     return (
         <>
-            <center>
+            <center className={'content'}>
                 <Header />
-                {isLoading && <h1>Loading...</h1>}
-                {!isLoading && <h1>hello friend</h1>}
+                <main>
+                    {isLoading && <h1>Loading...</h1>}
+                    {!isLoading && <h1>hello friend</h1>}
+                </main>
                 <Footer className={'footer'} />
             </center>
         </>

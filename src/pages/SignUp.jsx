@@ -130,11 +130,13 @@ const SingUp = () => {
 
     return (
         <>
-            <center>
+            <center className={'content'}>
                 <Header />
-                <h1>Sign Up</h1>
-                {renderForm}
-                <Button text={'Sign Up'} onClick={handleSingUpClick} />
+                <main>
+                    <h1>Sign Up</h1>
+                    {renderForm}
+                    <Button text={'Sign Up'} onClick={handleSingUpClick} />
+                </main>
                 <Footer />
             </center>
         </>
