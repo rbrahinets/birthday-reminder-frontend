@@ -32,3 +32,15 @@ button {
     font-family: 'Plus Jakarta Sans', sans-serif;
     border-radius: 5px;
 }
+
+.link {
+    background-color: #0000ff;
+    color: white;
+    border: none;
+    text-decoration: none;
+    font-size: 18pt;
+    margin: 27px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    border-radius: 5px;
+}
