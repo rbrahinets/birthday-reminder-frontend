@@ -1,25 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import './styles.css';
-import Button from './Button';
 import { baseUrl } from '../constants';
 
 const Header = () => {
-    const navigate = useNavigate();
     const [isLogged, setLogged] = useState(false);
     const currentPage = window.location.href.split('/').reverse()[0];
 
-    const handleSingInClick = () => {
-        navigate(`${baseUrl}/sign-in`);
-    };
-
-    const handleSingUpClick = () => {
-        navigate(`${baseUrl}/sign-up`);
-    };
-
     const handleSingOutClick = () => {
         localStorage.removeItem('token');
-        navigate(`${baseUrl}/sign-in`);
     };
 
     useEffect(() => {
@@ -32,15 +21,25 @@ const Header = () => {
             {!isLogged && (
                 <>
                     {currentPage !== 'sign-in' && (
-                        <Button text={'Sign In'} onClick={handleSingInClick} />
+                        <Link to={`${baseUrl}/sign-in`} className={'link'}>
+                            Sign In
+                        </Link>
                     )}
                     {currentPage !== 'sign-up' && (
-                        <Button text={'Sign Up'} onClick={handleSingUpClick} />
+                        <Link to={`${baseUrl}/sign-up`} className={'link'}>
+                            Sign Up
+                        </Link>
                     )}
                 </>
             )}
             {isLogged && (
-                <Button text={'Sign Out'} onClick={handleSingOutClick} />
+                <Link
+                    to={`${baseUrl}/sign-in`}
+                    onClick={handleSingOutClick}
+                    className={'link'}
+                >
+                    Sign Out
+                </Link>
             )}
         </header>
     );
