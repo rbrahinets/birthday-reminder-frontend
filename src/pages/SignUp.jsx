@@ -6,6 +6,7 @@ import { baseUrl } from '../constants';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 
 const SingUp = () => {
     const navigate = useNavigate();
@@ -13,7 +14,7 @@ const SingUp = () => {
 
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
-            <div className="error">{errorMessages.message}</div>
+            <div className={'error'}>{errorMessages.message}</div>
         );
 
     const renderForm = (
@@ -129,12 +130,13 @@ const SingUp = () => {
 
     return (
         <>
-            <Header />
-            <div className={'center'}>
+            <center>
+                <Header />
                 <h1>Sign Up</h1>
                 {renderForm}
                 <Button text={'Sign Up'} onClick={handleSingUpClick} />
-            </div>
+                <Footer />
+            </center>
         </>
     );
 };
