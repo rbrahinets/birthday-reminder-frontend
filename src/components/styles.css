@@ -34,6 +34,11 @@ button {
     border-radius: 5px;
 }
 
+.main-link {
+    cursor: pointer;
+    width: 20%;
+}
+
 .link {
     background-color: #0000ff;
     color: white;
