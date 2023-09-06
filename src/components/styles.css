@@ -3,6 +3,7 @@ header {
     justify-content: center;
     padding: 20px;
     border-bottom: solid #000000;
+    background-color: aquamarine;
 }
 
 .formcontrol {
