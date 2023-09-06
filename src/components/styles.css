@@ -3,7 +3,7 @@ header {
     justify-content: center;
     padding: 20px;
     border-bottom: solid #000000;
-    background-color: aquamarine;
+    background-color: #7fffd4;
 }
 
 .formcontrol {
@@ -44,4 +44,16 @@ button {
     cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
     border-radius: 5px;
+}
+
+footer {
+    position: fixed;
+    padding: 10px;
+    bottom: 0;
+    width: 100%;
+    background-color: #00ffff;
+}
+
+.bold {
+    font-weight: bold;
 }

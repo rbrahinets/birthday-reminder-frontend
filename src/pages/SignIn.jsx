@@ -6,6 +6,7 @@ import { baseUrl } from '../constants';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import Footer from '../components/Footer';
 
 const SignIn = () => {
     const navigate = useNavigate();
@@ -85,12 +86,13 @@ const SignIn = () => {
 
     return (
         <>
-            <Header />
-            <div className={'center'}>
+            <center>
+                <Header />
                 <h1>Sign In</h1>
                 {renderForm}
                 <Button text={'Sign In'} onClick={handleSingInClick} />
-            </div>
+                <Footer />
+            </center>
         </>
     );
 };
