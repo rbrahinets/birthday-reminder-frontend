@@ -1,24 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import './styles.css';
 import { baseUrl } from '../constants';
 
 const Header = () => {
-    const [isLogged, setLogged] = useState(false);
     const currentPage = window.location.href.split('/').reverse()[0];
 
     const handleSingOutClick = () => {
         localStorage.removeItem('token');
     };
 
-    useEffect(() => {
-        setLogged(localStorage.getItem('token') ? true : false);
-    }, [setLogged]);
+    const getToken = () => {
+        return localStorage.getItem('token');
+    };
 
     return (
         <header>
             <h1>Birthday Reminder</h1>
-            {!isLogged && (
+            {!getToken() && (
                 <>
                     {currentPage !== 'sign-in' && (
                         <Link to={`${baseUrl}/sign-in`} className={'link'}>
@@ -32,7 +31,7 @@ const Header = () => {
                     )}
                 </>
             )}
-            {isLogged && (
+            {getToken() && (
                 <>
                     <Link to={`${baseUrl}/`} className={'link'}>
                         Main
