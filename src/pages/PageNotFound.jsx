@@ -14,11 +14,13 @@ const PageNotFound = () => {
 
     return (
         <>
-            <center>
+            <center className={'content'}>
                 <Header />
-                <h1>Oops...</h1>
-                <h2>Page Not Found</h2>
-                <Button text={'Main'} onClick={handleMainClick} />
+                <main>
+                    <h1>Oops...</h1>
+                    <h2>Page Not Found</h2>
+                    <Button text={'Main'} onClick={handleMainClick} />
+                </main>
                 <Footer />
             </center>
         </>
