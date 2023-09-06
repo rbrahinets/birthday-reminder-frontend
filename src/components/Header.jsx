@@ -33,13 +33,18 @@ const Header = () => {
                 </>
             )}
             {isLogged && (
-                <Link
-                    to={`${baseUrl}/sign-in`}
-                    onClick={handleSingOutClick}
-                    className={'link'}
-                >
-                    Sign Out
-                </Link>
+                <>
+                    <Link to={`${baseUrl}/`} className={'link'}>
+                        Main
+                    </Link>
+                    <Link
+                        to={`${baseUrl}/sign-in`}
+                        onClick={handleSingOutClick}
+                        className={'link'}
+                    >
+                        Sign Out
+                    </Link>
+                </>
             )}
         </header>
     );
