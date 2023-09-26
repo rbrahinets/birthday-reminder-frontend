@@ -22,6 +22,8 @@
         "predeploy": "npm run build",
         "deploy": "gh-pages -d build"
     },
+    "author": "Rostyslav Brahinets",
+    "license": "MIT",
     "eslintConfig": {
         "extends": [
             "react-app",
