@@ -1,15 +1,11 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './styles.css';
+import React, {useState} from 'react';
+import {Modal} from 'react-bootstrap';
+import Button from './Button';
+import Input from './Input';
 import userService from '../services/UserService';
-import { baseUrl } from '../constants';
-import Header from '../components/Header';
-import Input from '../components/Input';
-import Button from '../components/Button';
-import Footer from '../components/Footer';
 
-const SingUp = () => {
-    const navigate = useNavigate();
+
+const SignUpModal = ({show, onHide}) => {
     const [errorMessages, setErrorMessages] = useState({});
 
     const renderErrorMessage = (name) =>
@@ -69,10 +65,10 @@ const SingUp = () => {
         return email.includes('@') && email.endsWith('.com');
     };
 
-    const handleSingUpClick = (event) => {
+    const handleSignUp = async (event) => {
         event.preventDefault();
 
-        let { firstName, lastName, email, password, confirmPassword } =
+        let {firstName, lastName, email, password, confirmPassword} =
             document.forms[0];
         let isValidInputtedData = false;
 
@@ -115,32 +111,62 @@ const SingUp = () => {
 
         if (isValidInputtedData) {
             try {
-                userService.save({
+                alert('Please Wait...');
+                await userService.save({
                     firstName: firstName.value,
                     lastName: lastName.value,
                     email: email.value,
                     password: password.value,
                 });
-                navigate(`${baseUrl}/sign-in`);
+                onHide();
+                alert('You are successfully registered! Please Sign In!')
             } catch (error) {
                 console.error('Sign-Up Failed', error);
+                alert('Sign-Up Failed');
             }
         }
     };
 
+    const handleClose = () => {
+        onHide();
+    }
+
+    const handleSignIn = () => {
+
+    }
+
     return (
         <>
-            <center className={'content'}>
-                <Header />
-                <main>
-                    <h1>Sign Up</h1>
-                    {renderForm}
-                    <Button text={'Sign Up'} onClick={handleSingUpClick} />
-                </main>
-                <Footer />
-            </center>
+            <Modal
+                show={show}
+                onHide={onHide}
+            >
+                <div className={'modal-front'}>
+                    <div
+                        onClick={handleClose}
+                        className={'close'}
+                    >
+                        X
+                    </div>
+                    <center>
+                        <h1>Sign Up</h1>
+                        {renderForm}
+                        <Button
+                            text={'Sign Up'}
+                            onClick={handleSignUp}
+                        />
+                        <hr/>
+                        <div
+                            onClick={handleSignIn}
+                            className={'modal-link'}
+                        >
+                            Sign In
+                        </div>
+                    </center>
+                </div>
+            </Modal>
         </>
     );
 };
 
-export default SingUp;
+export default SignUpModal;

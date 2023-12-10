@@ -2,10 +2,12 @@ import React, {useState} from 'react';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import SignInModal from '../components/SignInModal';
+import SignUpModal from '../components/SignUpModal';
 import Footer from '../components/Footer';
 
 const Main = () => {
     const [showSignInModal, setShowSignInModal] = useState(false);
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
 
     const getToken = () => {
         return localStorage.getItem('token');
@@ -19,6 +21,14 @@ const Main = () => {
         setShowSignInModal(false);
     };
 
+    const handleShowSignUpModal = () => {
+        setShowSignUpModal(true);
+    };
+
+    const handleHideSignUpModal = () => {
+        setShowSignUpModal(false);
+    };
+
     const renderHeaderForUnauthenticatedUser = () => {
         return (
             <>
@@ -29,6 +39,15 @@ const Main = () => {
                 <SignInModal
                     show={showSignInModal}
                     onHide={handleHideSignInModal}
+                />
+                <br/>
+                <Button
+                    text={'Sign Up'}
+                    onClick={handleShowSignUpModal}
+                />
+                <SignUpModal
+                    show={showSignUpModal}
+                    onHide={handleHideSignUpModal}
                 />
             </>
         )
