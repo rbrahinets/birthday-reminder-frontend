@@ -7,6 +7,10 @@ import Footer from '../components/Footer';
 const Main = () => {
     const [showSignInModal, setShowSignInModal] = useState(false);
 
+    const getToken = () => {
+        return localStorage.getItem('token');
+    };
+
     const handleShowSignInModal = () => {
         setShowSignInModal(true);
     };
@@ -15,20 +19,28 @@ const Main = () => {
         setShowSignInModal(false);
     };
 
+    const renderHeaderForUnauthenticatedUser = () => {
+        return (
+            <>
+                <Button
+                    text={'Sign In'}
+                    onClick={handleShowSignInModal}
+                />
+                <SignInModal
+                    show={showSignInModal}
+                    onHide={handleHideSignInModal}
+                />
+            </>
+        )
+    }
+
     return (
         <>
             <center className={'content'}>
                 <Header/>
                 <main>
                     <h1>hello friend</h1>
-                    <Button
-                        text={'Sign In'}
-                        onClick={handleShowSignInModal}
-                    />
-                    <SignInModal
-                        show={showSignInModal}
-                        onHide={handleHideSignInModal}
-                    />
+                    {!getToken() && renderHeaderForUnauthenticatedUser()}
                 </main>
                 <Footer className={'footer'}/>
             </center>
