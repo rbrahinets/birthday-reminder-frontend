@@ -42,6 +42,8 @@ const SignInModal = ({show, onHide}) => {
     };
 
     const handleSignIn = async (event) => {
+        alert('Please Wait...');
+
         event.preventDefault();
 
         let {email, password} = document.forms[0];
