@@ -42,8 +42,6 @@ const SignInModal = ({show, onHide}) => {
     };
 
     const handleSignIn = async (event) => {
-        alert('Please Wait...');
-
         event.preventDefault();
 
         let {email, password} = document.forms[0];
@@ -69,6 +67,7 @@ const SignInModal = ({show, onHide}) => {
 
         if (isValidInputtedData) {
             try {
+                alert('Please Wait...');
                 const response = await userService.signIn({
                     email: email.value,
                     password: password.value,
@@ -85,6 +84,10 @@ const SignInModal = ({show, onHide}) => {
 
     const handleClose = () => {
         onHide();
+    }
+
+    const handleSignUp = () => {
+
     }
 
     return (
@@ -107,6 +110,13 @@ const SignInModal = ({show, onHide}) => {
                             text={'Sign In'}
                             onClick={handleSignIn}
                         />
+                        <hr/>
+                        <div
+                            onClick={handleSignUp}
+                            className={'modal-link'}
+                        >
+                            Sign Up
+                        </div>
                     </center>
                 </div>
             </Modal>
