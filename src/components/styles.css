@@ -27,6 +27,11 @@ form {
     align-items: center;
 }
 
+hr {
+    border-color: #000000;
+    margin-top: 40px;
+}
+
 footer {
     padding: 10px;
     margin-top: 30px;
@@ -111,4 +116,9 @@ footer {
     margin-right: -30px;
     cursor: pointer;
     text-align: center;
+}
+
+.error {
+    color: #ff0000;
+    font-size: 12px;
 }
