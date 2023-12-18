@@ -61,7 +61,6 @@ footer {
     font-weight: bold;
 }
 
-
 .modal {
     display: none;
     position: fixed;
@@ -73,7 +72,7 @@ footer {
     backdrop-filter: blur(2px);
 }
 
-.modal-content {
+.modal-sign-in, .modal-sign-up {
     position: fixed;
     width: 332px;
     top: 50%;
@@ -84,7 +83,7 @@ footer {
     border: #000000 2px solid;
 }
 
-.modal-front {
+.modal-content-front {
     width: 222px;
     background-color: #ff9900;
     padding: 20px 60px 30px 60px;
