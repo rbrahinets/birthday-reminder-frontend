@@ -15,7 +15,7 @@ const Header = () => {
             <>
                 <Link
                     to={`${baseUrl}/`}
-                    onClick={handleSingOutClick}
+                    onClick={handleSingOut}
                     className={'link'}
                 >
                     Sign Out
@@ -24,17 +24,20 @@ const Header = () => {
         );
     };
 
-    const handleMainClick = () => {
+    const handleMain = () => {
         navigation(`${baseUrl}/`);
     };
 
-    const handleSingOutClick = () => {
+    const handleSingOut = () => {
         localStorage.removeItem('token');
     };
 
     return (
         <header>
-            <h1 className={'main-link'} onClick={handleMainClick}>
+            <h1
+                onClick={handleMain}
+                className={'main-link'}
+            >
                 Birthday Reminder
             </h1>
             {getToken() && renderHeaderForAuthenticatedUser()}
