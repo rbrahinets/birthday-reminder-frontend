@@ -94,6 +94,21 @@ footer {
     cursor: pointer;
 }
 
+.modal-wait {
+    display: flex;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-wait-content {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 100px;
+    backdrop-filter: blur(2px);
+    text-align: center;
+}
+
 .formcontrol {
     margin: 5px 0;
 }
