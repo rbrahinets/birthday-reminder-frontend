@@ -4,8 +4,7 @@ import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
 
-
-const SignInModal = ({show, onHide}) => {
+const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSignUpModal}) => {
     const [errorMessages, setErrorMessages] = useState({});
 
     const renderErrorMessage = (name) =>
@@ -67,17 +66,19 @@ const SignInModal = ({show, onHide}) => {
 
         if (isValidInputtedData) {
             try {
-                alert('Please Wait...');
+                onHide();
+                onShowWaitModal();
                 const response = await userService.signIn({
                     email: email.value,
                     password: password.value,
                 });
                 const token = response.data.accessToken;
                 localStorage.setItem('token', token);
-                onHide();
             } catch (error) {
                 console.error('Sign-In Failed', error);
-                alert('Sign-In Failed! The e-mail address or password you entered was incorrect.');
+                alert('Sign In Failed! The e-mail address or password you entered was incorrect.');
+            } finally {
+                onHideWaitModal();
             }
         }
     };
@@ -87,40 +88,40 @@ const SignInModal = ({show, onHide}) => {
     }
 
     const handleSignUp = () => {
-
+        onHide();
+        onShowSignUpModal();
     }
 
     return (
-        <>
-            <Modal
-                show={show}
-                onHide={onHide}
-            >
-                <div className={'modal-front'}>
-                    <div
-                        onClick={handleClose}
-                        className={'close'}
-                    >
-                        X
-                    </div>
-                    <center>
-                        <h1>Sign In</h1>
-                        {renderForm}
-                        <Button
-                            text={'Sign In'}
-                            onClick={handleSignIn}
-                        />
-                        <hr/>
-                        <div
-                            onClick={handleSignUp}
-                            className={'modal-link'}
-                        >
-                            Sign Up
-                        </div>
-                    </center>
+        <Modal
+            show={show}
+            onHide={onHide}
+            dialogClassName={'modal-sign-in'}
+        >
+            <div className={'modal-content-front'}>
+                <div
+                    onClick={handleClose}
+                    className={'close'}
+                >
+                    X
                 </div>
-            </Modal>
-        </>
+                <center>
+                    <h1>Sign In</h1>
+                    {renderForm}
+                    <Button
+                        text={'Sign In'}
+                        onClick={handleSignIn}
+                    />
+                    <hr/>
+                    <div
+                        onClick={handleSignUp}
+                        className={'modal-link'}
+                    >
+                        Sign Up
+                    </div>
+                </center>
+            </div>
+        </Modal>
     );
 };
 
