@@ -14,7 +14,7 @@ const Header = () => {
             </div>
             <div
                 onClick={handleSignIn}
-                className={'link profile-icon-container'}
+                className={'link icon-container'}
             >
                 <span>My profile</span>
                 <CgProfile className={'profile-icon'}/>
@@ -32,7 +32,7 @@ const Header = () => {
             </Link>
             <Link
                 to={`${baseUrl}/profile`}
-                className={'link profile-icon-container'}
+                className={'link icon-container'}
             >
                 <span>My profile</span>
                 <CgProfile className={'profile-icon'}/>
