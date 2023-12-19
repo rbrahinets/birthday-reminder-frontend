@@ -48,7 +48,11 @@ const Header = () => {
                         to={`${baseUrl}`}
                         className={'link'}
                     >
-                        Birthday Reminder
+                        <img
+                            src={process.env.PUBLIC_URL + '/logo.png'}
+                            alt={'logo'}
+                            className={'logo'}
+                        />
                     </Link>
                 </div>
                 <div className={'link-container'}>
