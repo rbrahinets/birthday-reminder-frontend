@@ -36,6 +36,10 @@ const Header = () => {
         return !!localStorage.getItem('token');
     }
 
+    const handleSignIn = () => {
+        alert('Please Sing In');
+    }
+
     return (
         <header>
             {renderHeader()}
