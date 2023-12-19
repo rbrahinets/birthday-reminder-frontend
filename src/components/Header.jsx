@@ -3,36 +3,42 @@ import {Link} from 'react-router-dom';
 import {baseUrl} from '../constants';
 
 const Header = () => {
+    const renderLinksForAuthenticatedUser = () => (
+        <>
+            <Link
+                to={`${baseUrl}/birthdays`}
+                className={'link'}
+            >
+                Birthdays
+            </Link>
+            <Link
+                to={`${baseUrl}/profile`}
+                className={'link profile-icon-container'}
+            >
+                <span>My profile</span>
+            </Link>
+        </>
+    );
+
     const renderHeader = () => {
         return (
             <>
-                <Link
-                    to={`${baseUrl}`}
-                    className={'link'}
-                >
-                    Birthday Reminder
-                </Link>
-                {isTokenExist() &&
-                    <>
-                        <Link
-                            to={`${baseUrl}/birthdays`}
-                            className={'link'}
-                        >
-                            Birthdays
-                        </Link>
-                        <Link
-                            to={`${baseUrl}/profile`}
-                            className={'link'}
-                        >
-                            My profile
-                        </Link>
-                    </>
-                }
+                <div>
+                    <Link
+                        to={`${baseUrl}`}
+                        className={'link'}
+                    >
+                        Birthday Reminder
+                    </Link>
+                </div>
+                <div className={'link-container'}>
+                    {isAuthenticated() && renderLinksForAuthenticatedUser()}
+                </div>
             </>
         );
     }
 
-    const isTokenExist = () => {
+    const isAuthenticated = () => {
         return !!localStorage.getItem('token');
     }
 
