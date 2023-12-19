@@ -1,9 +1,11 @@
 header {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     padding: 20px;
-    border-bottom: solid #000000;
-    background-color: #7fffd4;
+}
+
+footer {
+    padding: 20px;
 }
 
 button {
@@ -39,12 +41,11 @@ footer {
 }
 
 .link {
-    background-color: #0000ff;
-    color: white;
-    border: none;
+    display: flex;
+    color: #0d20c9;
     text-decoration: none;
     font-size: 18pt;
-    margin: 27px;
+    margin: 20px;
     cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
     border-radius: 5px;
