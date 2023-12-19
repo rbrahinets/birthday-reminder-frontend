@@ -46,8 +46,14 @@ hr {
     margin: 20px;
     cursor: pointer;
     font-family: 'Plus Jakarta Sans', sans-serif;
-    border-radius: 5px;
-    height: 30px;
+}
+
+.profile-icon-container {
+    display: flex;
+}
+
+.profile-icon {
+    margin-left: 5px;
 }
 
 .bold {
