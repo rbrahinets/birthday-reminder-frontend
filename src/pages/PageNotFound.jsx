@@ -13,7 +13,7 @@ const PageNotFound = () => {
     }
 
     return (
-        <center className={'content'}>
+        <center className={'container'}>
             <Header/>
             <main>
                 <h1>Oops...</h1>

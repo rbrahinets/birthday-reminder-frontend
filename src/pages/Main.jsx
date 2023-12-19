@@ -91,7 +91,7 @@ const Main = () => {
     }, []);
 
     return (
-        <center className={'content'}>
+        <center className={'container'}>
             <Header/>
             <main>
                 <h1>hello friend</h1>
@@ -101,7 +101,7 @@ const Main = () => {
                         : renderMainForUnauthenticatedUser()
                 }
             </main>
-            <Footer className={'footer'}/>
+            <Footer/>
         </center>
     );
 }

@@ -26,7 +26,7 @@ const PageNotFound = () => {
     }
 
     return (
-        <center>
+        <center className={'container'}>
             <Header/>
             <main>
                 {renderProfile()}
