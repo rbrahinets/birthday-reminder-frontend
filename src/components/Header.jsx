@@ -1,5 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {CgProfile} from 'react-icons/cg';
 import {baseUrl} from '../constants';
 
 const Header = () => {
@@ -16,6 +17,7 @@ const Header = () => {
                 className={'link profile-icon-container'}
             >
                 <span>My profile</span>
+                <CgProfile className={'profile-icon'}/>
             </Link>
         </>
     );
