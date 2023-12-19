@@ -4,7 +4,14 @@ import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
 
-const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSignUpModal}) => {
+const SignInModal = ({
+                         show,
+                         onHide,
+                         onShowWaitModal,
+                         onHideWaitModal,
+                         onShowSignUpModal,
+                         onSignInSuccess
+                     }) => {
     const [errorMessages, setErrorMessages] = useState({});
 
     const renderErrorMessage = (name) =>
@@ -74,6 +81,7 @@ const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
                 });
                 const token = response.data.accessToken;
                 localStorage.setItem('token', token);
+                onSignInSuccess(isTokenExist());
             } catch (error) {
                 console.error('Sign-In Failed', error);
                 alert('Sign In Failed! The e-mail address or password you entered was incorrect.');
@@ -90,6 +98,10 @@ const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
     const handleSignUp = () => {
         onHide();
         onShowSignUpModal();
+    }
+
+    const isTokenExist = () => {
+        return !!localStorage.getItem('token');
     }
 
     return (
