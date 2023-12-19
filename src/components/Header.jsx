@@ -57,6 +57,12 @@ const Header = () => {
                             ? renderLinksForAuthenticatedUser()
                             : renderLinksForUnauthenticatedUser()
                     }
+                    <a
+                        href={'#footer'}
+                        className={'link'}
+                    >
+                        Authors
+                    </a>
                 </div>
             </>
         );
