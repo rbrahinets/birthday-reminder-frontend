@@ -4,6 +4,24 @@ import {CgProfile} from 'react-icons/cg';
 import {baseUrl} from '../constants';
 
 const Header = () => {
+    const renderLinksForUnauthenticatedUser = () => (
+        <>
+            <div
+                onClick={handleSignIn}
+                className={'link'}
+            >
+                Birthdays
+            </div>
+            <div
+                onClick={handleSignIn}
+                className={'link profile-icon-container'}
+            >
+                <span>My profile</span>
+                <CgProfile className={'profile-icon'}/>
+            </div>
+        </>
+    );
+
     const renderLinksForAuthenticatedUser = () => (
         <>
             <Link
@@ -34,7 +52,11 @@ const Header = () => {
                     </Link>
                 </div>
                 <div className={'link-container'}>
-                    {isAuthenticated() && renderLinksForAuthenticatedUser()}
+                    {
+                        isAuthenticated()
+                            ? renderLinksForAuthenticatedUser()
+                            : renderLinksForUnauthenticatedUser()
+                    }
                 </div>
             </>
         );
