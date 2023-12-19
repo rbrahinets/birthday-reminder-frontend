@@ -34,11 +34,11 @@ const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
     const errors = {
         email: 'Invalid Email',
         password: 'Invalid Password',
-    };
+    }
 
     const isValidEmail = (email) => {
         return email.includes('@') && email.endsWith('.com');
-    };
+    }
 
     const handleSignIn = async (event) => {
         event.preventDefault();
@@ -81,7 +81,7 @@ const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
                 onHideWaitModal();
             }
         }
-    };
+    }
 
     const handleClose = () => {
         onHide();
@@ -123,6 +123,6 @@ const SignInModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
             </div>
         </Modal>
     );
-};
+}
 
 export default SignInModal;

@@ -12,6 +12,6 @@ const Main = () => {
             <Footer className={'footer'}/>
         </center>
     );
-};
+}
 
 export default Main;

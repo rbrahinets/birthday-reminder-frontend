@@ -10,9 +10,9 @@ const useAuthRouteGuard = () => {
         if (!token) {
             navigate(`${url}/sign-in`);
         }
-    };
+    }
 
     return checkAuth;
-};
+}
 
 export default useAuthRouteGuard;

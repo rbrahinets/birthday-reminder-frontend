@@ -10,21 +10,19 @@ const PageNotFound = () => {
 
     const handleMainClick = () => {
         navigate(`${baseUrl}/`);
-    };
+    }
 
     return (
-        <>
-            <center className={'content'}>
-                <Header />
-                <main>
-                    <h1>Oops...</h1>
-                    <h2>Page Not Found</h2>
-                    <Button text={'Main'} onClick={handleMainClick} />
-                </main>
-                <Footer />
-            </center>
-        </>
+        <center className={'content'}>
+            <Header/>
+            <main>
+                <h1>Oops...</h1>
+                <h2>Page Not Found</h2>
+                <Button text={'Main'} onClick={handleMainClick}/>
+            </main>
+            <Footer/>
+        </center>
     );
-};
+}
 
 export default PageNotFound;

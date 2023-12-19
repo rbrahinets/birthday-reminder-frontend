@@ -4,7 +4,13 @@ import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
 
-const SignUpModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSignInModal}) => {
+const SignUpModal = ({
+                         show,
+                         onHide,
+                         onShowWaitModal,
+                         onHideWaitModal,
+                         onShowSignInModal
+                     }) => {
     const [errorMessages, setErrorMessages] = useState({});
 
     const renderErrorMessage = (name) =>
@@ -58,11 +64,11 @@ const SignUpModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
         email: 'Invalid Email',
         password: 'Invalid Password',
         confirmPassword: 'Invalid Confirm Password',
-    };
+    }
 
     const isValidEmail = (email) => {
         return email.includes('@') && email.endsWith('.com');
-    };
+    }
 
     const handleSignUp = async (event) => {
         event.preventDefault();
@@ -118,7 +124,6 @@ const SignUpModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
                     email: email.value,
                     password: password.value,
                 });
-                alert('You are successfully registered! Please Sign In!')
                 onShowSignInModal();
             } catch (error) {
                 console.error('Sign-Up Failed', error);
@@ -127,7 +132,7 @@ const SignUpModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
                 onHideWaitModal();
             }
         }
-    };
+    }
 
     const handleClose = () => {
         onHide();
@@ -169,6 +174,6 @@ const SignUpModal = ({show, onHide, onShowWaitModal, onHideWaitModal, onShowSign
             </div>
         </Modal>
     );
-};
+}
 
 export default SignUpModal;

@@ -83,7 +83,7 @@ const Header = () => {
                 </Link>
             </>
         );
-    };
+    }
 
     const handleMain = () => {
         navigation(`${baseUrl}/`);
@@ -105,6 +105,6 @@ const Header = () => {
             {getToken() && renderHeaderForAuthenticatedUser()}
         </header>
     );
-};
+}
 
 export default Header;
