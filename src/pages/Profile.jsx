@@ -1,12 +1,22 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {baseUrl} from '../constants';
+import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 
 const PageNotFound = () => {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+    const {setIsAuthenticated} = bindActionCreators(
+        actionCreators,
+        dispatch
+    );
 
     const renderProfile = () => {
         return (
@@ -22,6 +32,7 @@ const PageNotFound = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
+        setIsAuthenticated(!isAuthenticated)
         navigate(`${baseUrl}/`);
     }
 
