@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Modal} from 'react-bootstrap';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../state';
 import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
+import {useDispatch, useSelector} from "react-redux";
 
 const SignUpModal = ({
                          show,
@@ -11,7 +14,14 @@ const SignUpModal = ({
                          onHideWaitModal,
                          onShowSignInModal
                      }) => {
-    const [errorMessages, setErrorMessages] = useState({});
+    const dispatch = useDispatch();
+
+    const {errorMessages} = useSelector((state) => state.errorMessages);
+
+    const {setErrorMessages} = bindActionCreators(
+        actionCreators,
+        dispatch
+    );
 
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
