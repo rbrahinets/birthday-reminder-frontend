@@ -4,6 +4,7 @@ import isAuthenticatedReducer from './isAuthenticatedReducer'
 
 const reducers = combineReducers({
     isVisibleSignInModal: isVisibleSignInModalReducer,
+    isVisibleSignUpModal: isVisibleSignUpModalReducer,
     isAuthenticated: isAuthenticatedReducer,
 });
 

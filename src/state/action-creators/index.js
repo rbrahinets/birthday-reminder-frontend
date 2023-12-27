@@ -9,6 +9,15 @@ export const setIsVisibleSignInModal = (isVisibleSignInModal) => {
     };
 };
 
+export const setIsVisibleSignUpModal = (isVisibleSignUpModal) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_IS_VISIBLE_SIGN_UP_MODAL,
+            payload: isVisibleSignUpModal,
+        });
+    };
+};
+
 export const setIsAuthenticated = (isAuthenticated) => {
     return (dispatch) => {
         dispatch({
