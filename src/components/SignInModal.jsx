@@ -81,7 +81,7 @@ const SignInModal = ({
                 });
                 const token = response.data.accessToken;
                 localStorage.setItem('token', token);
-                onSignInSuccess(isTokenExist());
+                onSignInSuccess();
             } catch (error) {
                 console.error('Sign-In Failed', error);
                 alert('Sign In Failed! The e-mail address or password you entered was incorrect.');
@@ -98,10 +98,6 @@ const SignInModal = ({
     const handleSignUp = () => {
         onHide();
         onShowSignUpModal();
-    }
-
-    const isTokenExist = () => {
-        return !!localStorage.getItem('token');
     }
 
     return (
