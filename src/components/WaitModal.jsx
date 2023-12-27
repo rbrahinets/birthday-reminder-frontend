@@ -7,9 +7,10 @@ const WaitModal = ({show}) => {
             show={show}
             dialogClassName={'modal-wait'}
         >
-            <div className={'modal-wait-content'}>
-                <h1>Wait for a moment...</h1>
-            </div>
+            <img
+                src={process.env.PUBLIC_URL + '/loading.gif'}
+                alt={'loading'}
+            />
         </Modal>
     );
 }
