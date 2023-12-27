@@ -1,47 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
+import {useSelector} from 'react-redux';
 import Header from '../components/Header';
-import Button from '../components/Button';
-import SignInModal from '../components/SignInModal';
-import SignUpModal from '../components/SignUpModal';
-import WaitModal from '../components/WaitModal';
+import Authentication from '../components/Authentication';
 import Footer from '../components/Footer';
 
 const Main = () => {
-    const [showSignInModal, setShowSignInModal] = useState(false);
-    const [showSignUpModal, setShowSignUpModal] = useState(false);
-    const [showWaitModal, setShowWaitModal] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
 
     const renderMainForUnauthenticatedUser = () => {
         return (
             <>
-                <Button
-                    text={'Sign In'}
-                    onClick={handleShowSignInModal}
-                />
-                <br/>
-                <Button
-                    text={'Sign Up'}
-                    onClick={handleShowSignUpModal}
-                />
-                <SignInModal
-                    show={showSignInModal}
-                    onHide={handleHideSignInModal}
-                    onShowWaitModal={handleShowWaitModal}
-                    onHideWaitModal={handleHideWaitModal}
-                    onShowSignUpModal={handleShowSignUpModal}
-                    onSignInSuccess={handleSignInSuccess}
-                />
-                <SignUpModal
-                    show={showSignUpModal}
-                    onHide={handleHideSignUpModal}
-                    onShowWaitModal={handleShowWaitModal}
-                    onHideWaitModal={handleHideWaitModal}
-                    onShowSignInModal={handleShowSignInModal}
-                />
-                <WaitModal
-                    show={showWaitModal}
-                />
+                <Authentication/>
             </>
         );
     }
@@ -53,42 +22,6 @@ const Main = () => {
             </>
         );
     }
-
-    const handleShowSignInModal = () => {
-        setShowSignInModal(true);
-    }
-
-    const handleHideSignInModal = () => {
-        setShowSignInModal(false);
-    }
-
-    const handleSignInSuccess = (isSignInSuccess) => {
-        setIsAuthenticated(isSignInSuccess);
-    }
-
-    const handleShowSignUpModal = () => {
-        setShowSignUpModal(true);
-    }
-
-    const handleHideSignUpModal = () => {
-        setShowSignUpModal(false);
-    }
-
-    const handleShowWaitModal = () => {
-        setShowWaitModal(true);
-    }
-
-    const handleHideWaitModal = () => {
-        setShowWaitModal(false);
-    }
-
-    const isTokenExist = () => {
-        return !!localStorage.getItem('token');
-    }
-
-    useEffect(() => {
-        setIsAuthenticated(isTokenExist);
-    }, []);
 
     return (
         <center className={'container'}>
