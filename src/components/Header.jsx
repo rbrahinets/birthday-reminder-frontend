@@ -1,19 +1,31 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../state';
 import {CgProfile} from 'react-icons/cg';
 import {baseUrl} from '../constants';
 
 const Header = () => {
+    const dispatch = useDispatch();
+
+    const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+
+    const {setIsVisibleSignInModal} = bindActionCreators(
+        actionCreators,
+        dispatch
+    );
+
     const renderLinksForUnauthenticatedUser = () => (
         <>
             <div
-                onClick={handleSignIn}
+                onClick={() => setIsVisibleSignInModal(true)}
                 className={'link'}
             >
                 Birthdays
             </div>
             <div
-                onClick={handleSignIn}
+                onClick={() => setIsVisibleSignInModal(true)}
                 className={'link icon-container'}
             >
                 <span>My profile</span>
@@ -57,7 +69,7 @@ const Header = () => {
                 </div>
                 <div className={'link-container'}>
                     {
-                        isAuthenticated()
+                        isAuthenticated
                             ? renderLinksForAuthenticatedUser()
                             : renderLinksForUnauthenticatedUser()
                     }
@@ -70,14 +82,6 @@ const Header = () => {
                 </div>
             </>
         );
-    }
-
-    const isAuthenticated = () => {
-        return !!localStorage.getItem('token');
-    }
-
-    const handleSignIn = () => {
-        alert('Please Sing In');
     }
 
     return (
