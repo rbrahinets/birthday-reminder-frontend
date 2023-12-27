@@ -27,6 +27,15 @@ export const setIsVisibleWaitModal = (isVisibleWaitModal) => {
     };
 };
 
+export const setErrorMessages = (errorMessages) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_SET_ERROR_MESSAGES,
+            payload: errorMessages,
+        });
+    };
+};
+
 export const setIsAuthenticated = (isAuthenticated) => {
     return (dispatch) => {
         dispatch({
