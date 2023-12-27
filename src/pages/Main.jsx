@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import Button from '../components/Button';
 import Authentication from '../components/Authentication';
 import Footer from '../components/Footer';
 
@@ -22,6 +23,15 @@ const Main = () => {
     const renderMainForUnauthenticatedUser = () => {
         return (
             <>
+                <Button
+                    text={'Sign In'}
+                    onClick={() => setIsVisibleSignInModal(true)}
+                />
+                <br/>
+                <Button
+                    text={'Sign Up'}
+                    onClick={() => setIsVisibleSignUpModal(true)}
+                />
                 <Authentication/>
             </>
         );
