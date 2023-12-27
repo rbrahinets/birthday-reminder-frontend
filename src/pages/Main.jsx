@@ -1,11 +1,23 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Authentication from '../components/Authentication';
 import Footer from '../components/Footer';
 
 const Main = () => {
+    const dispatch = useDispatch();
+
     const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+
+    const {
+        setIsVisibleSignInModal,
+        setIsVisibleSignUpModal,
+    } = bindActionCreators(
+        actionCreators,
+        dispatch
+    );
 
     const renderMainForUnauthenticatedUser = () => {
         return (
