@@ -1,7 +1,6 @@
 import React from 'react';
-import './styles.css';
 
-const Input = ({ type, name, id, placeholder, error }) => (
+const Input = ({type, name, id, placeholder, error}) => (
     <div className={'formcontrol'}>
         <input
             type={type}
