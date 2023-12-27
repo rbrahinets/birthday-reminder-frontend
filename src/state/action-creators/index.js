@@ -18,6 +18,15 @@ export const setIsVisibleSignUpModal = (isVisibleSignUpModal) => {
     };
 };
 
+export const setIsVisibleWaitModal = (isVisibleWaitModal) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_IS_VISIBLE_WAIT_MODAL,
+            payload: isVisibleWaitModal,
+        });
+    };
+};
+
 export const setIsAuthenticated = (isAuthenticated) => {
     return (dispatch) => {
         dispatch({
