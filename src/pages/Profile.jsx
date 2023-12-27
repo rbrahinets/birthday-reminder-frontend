@@ -13,6 +13,7 @@ const PageNotFound = () => {
     const dispatch = useDispatch();
 
     const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+
     const {setIsAuthenticated} = bindActionCreators(
         actionCreators,
         dispatch
