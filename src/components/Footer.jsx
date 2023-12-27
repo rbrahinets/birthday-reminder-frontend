@@ -23,7 +23,7 @@ const Footer = () => (
                     alt={'linkedin'}
                     className={'footer-link-logo'}
                 />
-                <span>LinkedIn: Rostyslav Brahinets</span>
+                <span>Rostyslav Brahinets</span>
             </Link>
             <br/>
             <Link
@@ -36,7 +36,7 @@ const Footer = () => (
                     alt={'linkedin'}
                     className={'footer-link-logo'}
                 />
-                <span>LinkedIn: Yana Tkalych</span>
+                <span>Яна Ткалич</span>
             </Link>
         </div>
         <div>
@@ -51,7 +51,7 @@ const Footer = () => (
                     alt={'github'}
                     className={'footer-link-logo'}
                 />
-                <span>GitHub Front-end</span>
+                <span>Front-end</span>
             </Link>
             <br/>
             <Link
@@ -64,7 +64,7 @@ const Footer = () => (
                     alt={'github'}
                     className={'footer-link-logo'}
                 />
-                <span>GitHub Back-end</span>
+                <span>Back-end</span>
             </Link>
         </div>
         <div>
