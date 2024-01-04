@@ -116,29 +116,27 @@ const SignInModal = ({
             onHide={onHide}
             dialogClassName={'modal-sign-in'}
         >
-            <div className={'modal-content-front'}>
-                <div
-                    onClick={handleClose}
-                    className={'close'}
-                >
-                    X
-                </div>
-                <center>
-                    <h1>Sign In</h1>
-                    {renderForm}
-                    <Button
-                        text={'Sign In'}
-                        onClick={handleSignIn}
-                    />
-                    <hr/>
-                    <div
-                        onClick={handleSignUp}
-                        className={'modal-link'}
-                    >
-                        Sign Up
-                    </div>
-                </center>
+            <div
+                onClick={handleClose}
+                className={'close'}
+            >
+                X
             </div>
+            <center>
+                <h1>Log in</h1>
+                {renderForm}
+                <Button
+                    text={'Log in'}
+                    onClick={handleSignIn}
+                />
+                <hr/>
+                <div
+                    onClick={handleSignUp}
+                    className={'modal-link'}
+                >
+                    Sign Up
+                </div>
+            </center>
         </Modal>
     );
 }
