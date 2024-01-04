@@ -53,6 +53,7 @@ const Main = () => {
                 <img
                     src={process.env.PUBLIC_URL + '/main_authenticated.png'}
                     alt={'main-authenticated'}
+                    className={'main-authenticated'}
                 />
             </>
         );
@@ -69,6 +70,11 @@ const Main = () => {
 
     useEffect(() => {
         const image = document.querySelector('.main-unauthenticated');
+
+        if (!image) {
+            return;
+        }
+
         const imageWidth = image.width;
         const imageHeight = image.height;
 
