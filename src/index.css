@@ -28,6 +28,7 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 20px;
+    margin-bottom: -50px;
 }
 
 footer {
@@ -40,9 +41,9 @@ footer {
 button {
     width: 290px;
     height: 50px;
-    background-color: #ffffff;
-    color: #000000;
-    border: #000000 2px solid;
+    background-color: #0d20c9;
+    color: #ffffff;
+    border: none;
     text-align: center;
     text-decoration: none;
     font-size: 16px;
@@ -63,7 +64,7 @@ form {
 }
 
 hr {
-    border-color: #000000;
+    border-color: #0d20c9;
     margin-top: 40px;
 }
 
@@ -106,24 +107,18 @@ hr {
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 0.7));
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 1));
     backdrop-filter: blur(2px);
 }
 
 .modal-sign-in, .modal-sign-up {
     position: fixed;
-    width: 332px;
+    width: 222px;
     top: 50%;
     right: 0;
     transform: translate(-40%, -50%);
-    background-color: #ffffff;
-    padding: 17px 26px 15px 15px;
-    border: #000000 2px solid;
-}
-
-.modal-content-front {
-    width: 222px;
-    background-color: #ff9900;
+    background-color: #ff71ff;
+    color: #0d20c9;
     padding: 20px 60px 30px 60px;
 }
 
@@ -151,7 +146,7 @@ hr {
     padding: 5px 10px;
     font-size: 22px;
     text-align: center;
-    background-color: #ffe8cd;
+    color: #0d20c9;
     border: none;
 }
 
