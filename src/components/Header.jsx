@@ -77,7 +77,7 @@ const Header = () => {
                         href={'#footer'}
                         className={'link'}
                     >
-                        Authors
+                        Contacts
                     </a>
                 </div>
             </>
