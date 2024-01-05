@@ -151,6 +151,10 @@ hr {
     border: none;
 }
 
+.form input {
+    border: #000000 1px solid;
+}
+
 .close {
     width: 20px;
     margin-left: auto;
