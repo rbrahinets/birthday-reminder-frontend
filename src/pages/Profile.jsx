@@ -8,7 +8,7 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 
-const PageNotFound = () => {
+const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -48,4 +48,4 @@ const PageNotFound = () => {
     );
 }
 
-export default PageNotFound;
+export default Profile;
