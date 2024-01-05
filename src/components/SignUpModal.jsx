@@ -137,7 +137,7 @@ const SignUpModal = ({
                 onShowSignInModal();
             } catch (error) {
                 console.error('Sign-Up Failed', error);
-                alert('Sign Up Failed. The e-mail you entered already exist!.');
+                alert('Sign Up Failed. The e-mail you entered already exist!');
             } finally {
                 onHideWaitModal();
             }
