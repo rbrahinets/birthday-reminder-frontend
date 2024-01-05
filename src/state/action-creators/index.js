@@ -44,3 +44,12 @@ export const setIsAuthenticated = (isAuthenticated) => {
         });
     };
 };
+
+export const setFriends = (friends) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_FRIENDS,
+            payload: friends,
+        });
+    };
+};
