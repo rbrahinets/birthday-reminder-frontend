@@ -1,11 +1,11 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
+import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
-import {useDispatch, useSelector} from "react-redux";
 
 const SignUpModal = ({
                          show,
