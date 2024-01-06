@@ -12,13 +12,21 @@ const Birthdays = () => {
     const dispatch = useDispatch();
 
     const {friends} = useSelector((state) => state.friends);
+    const {loading} = useSelector((state) => state.loading);
 
-    const {setFriends} = bindActionCreators(
+    const {
+        setFriends,
+        setLoading,
+    } = bindActionCreators(
         actionCreators,
         dispatch
     );
 
     const getFriends = () => {
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+
         return friends.length > 0 ? (
             <div>
                 {friends.map((friend) => (
@@ -48,14 +56,17 @@ const Birthdays = () => {
     }
 
     useEffect(() => {
+        setLoading(true);
+
         const fetchFriendsData = async (email) => {
             try {
                 const response = await friendService.getFriendsForUserByEmail(email);
                 setFriends(response.data);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching friends data:', error);
             }
-        };
+        }
 
         fetchFriendsData(localStorage.getItem('currentUserEmail'));
     }, []);
