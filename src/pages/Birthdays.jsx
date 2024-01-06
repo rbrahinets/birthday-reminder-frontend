@@ -48,16 +48,16 @@ const Birthdays = () => {
     }
 
     useEffect(() => {
-        const fetchFriendsData = async () => {
+        const fetchFriendsData = async (email) => {
             try {
-                const response = await friendService.getAll();
+                const response = await friendService.getFriendsForUserByEmail(email);
                 setFriends(response.data);
             } catch (error) {
                 console.error('Error fetching friends data:', error);
             }
         };
 
-        fetchFriendsData();
+        fetchFriendsData(localStorage.getItem('currentUserEmail'));
     }, []);
 
     return (
