@@ -169,7 +169,7 @@ const SignUpModal = ({
                 <h1>Sign up</h1>
                 {renderForm}
                 <Button
-                    text={'Create account'}
+                    text={'Sign up'}
                     onClick={handleSignUp}
                 />
                 <hr/>
@@ -177,7 +177,7 @@ const SignUpModal = ({
                     onClick={handleSignIn}
                     className={'modal-link'}
                 >
-                    Log in
+                    Sign in
                 </div>
             </center>
         </Modal>

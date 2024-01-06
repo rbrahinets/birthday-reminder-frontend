@@ -124,10 +124,10 @@ const SignInModal = ({
                 X
             </div>
             <center>
-                <h1>Log in</h1>
+                <h1>Sign in</h1>
                 {renderForm}
                 <Button
-                    text={'Log in'}
+                    text={'Sign in'}
                     onClick={handleSignIn}
                 />
                 <hr/>
