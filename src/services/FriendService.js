@@ -24,6 +24,10 @@ class FriendService {
     async delete(id) {
         return await API.delete(`/${id}`);
     }
+
+    async getFriendsForUserByEmail(email) {
+        return await API.get(`/emails/${email}`);
+    }
 }
 
 const friendService = new FriendService();
