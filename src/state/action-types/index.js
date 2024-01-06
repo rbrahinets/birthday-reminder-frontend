@@ -5,4 +5,5 @@ export const ActionType = {
     SET_SET_ERROR_MESSAGES: 'setErrorMessages',
     SET_IS_AUTHENTICATED: 'setIsAuthenticated',
     SET_FRIENDS: 'setFriends',
+    SET_LOADING: 'setLoading',
 }

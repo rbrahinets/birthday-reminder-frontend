@@ -53,3 +53,12 @@ export const setFriends = (friends) => {
         });
     };
 };
+
+export const setLoading = (loading) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_LOADING,
+            payload: loading,
+        });
+    };
+};
