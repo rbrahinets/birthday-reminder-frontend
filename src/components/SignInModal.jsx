@@ -91,6 +91,7 @@ const SignInModal = ({
                 });
                 const token = response.data.accessToken;
                 localStorage.setItem('token', token);
+                localStorage.setItem('currentUserEmail', email.value);
                 onSignInSuccess();
             } catch (error) {
                 console.error('Sign-In Failed', error);
