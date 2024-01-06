@@ -124,11 +124,14 @@ const NewFriend = () => {
 
         if (isValidInputtedData) {
             try {
+                const emailOfUser = localStorage.getItem('currentUserEmail');
+
                 await friendService.save({
                     firstName: firstName.value,
                     lastName: lastName.value,
                     email: email.value,
                     dateOfBirth: dateOfBirth.value,
+                    emailOfUser: emailOfUser,
                 });
                 navigate(`${baseUrl}/birthdays`);
             } catch (error) {
