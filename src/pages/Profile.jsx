@@ -53,6 +53,10 @@ const Profile = () => {
         );
     }
 
+    const handleEdit = () => {
+        navigate(`${baseUrl}/profile/edit`)
+    }
+
     const handleSignOut = () => {
         localStorage.removeItem('token');
         setIsAuthenticated(!isAuthenticated)
