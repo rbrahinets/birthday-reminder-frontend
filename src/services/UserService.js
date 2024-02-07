@@ -17,12 +17,12 @@ class UserService {
         return await API.get(`/email/${email}`);
     }
 
-    async save(admin) {
-        return await API.post('/', admin);
+    async save(user) {
+        return await API.post('/', user);
     }
 
-    async update(id, admin) {
-        return await API.put(`/${id}`, admin);
+    async update(id, user) {
+        return await API.put(`/${id}`, user);
     }
 
     async delete(id) {
