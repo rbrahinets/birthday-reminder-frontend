@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import Birthdays from './pages/Birthdays';
 import NewFriend from './pages/NewFriend';
 import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
 import PageNotFound from './pages/PageNotFound';
 
 const url = '/birthday-reminder-frontend';
@@ -16,6 +17,7 @@ const App = () => {
                 <Route path={`${url}/birthdays`} element={<Birthdays/>}/>
                 <Route path={`${url}/new-friend`} element={<NewFriend/>}/>
                 <Route path={`${url}/profile`} element={<Profile/>}/>
+                <Route path={`${url}/profile/edit`} element={<EditProfile/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
             </Routes>
         </Router>
