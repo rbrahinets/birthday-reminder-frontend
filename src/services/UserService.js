@@ -13,6 +13,10 @@ class UserService {
         return await API.get(`/${id}`);
     }
 
+    async findByEmail(email) {
+        return await API.get(`/email/${email}`);
+    }
+
     async save(admin) {
         return await API.post('/', admin);
     }
