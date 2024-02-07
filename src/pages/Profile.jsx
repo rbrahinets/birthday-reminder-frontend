@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -25,13 +25,17 @@ const Profile = () => {
     );
 
     const setInfoAboutCurrentUser = async () => {
-        const response = await userService.findByEmail(localStorage.getItem('currentUserEmail'));
-        setCurrentUser(response.data);
+        try {
+            const response = await userService.findByEmail(
+                localStorage.getItem('currentUserEmail')
+            );
+            setCurrentUser(response.data);
+        } catch (error) {
+            console.error('Error fetching current user data:', error);
+        }
     }
 
     const renderProfile = () => {
-        setInfoAboutCurrentUser().then();
-
         return (
             <>
                 <h1>Profile</h1>
@@ -62,6 +66,10 @@ const Profile = () => {
         setIsAuthenticated(!isAuthenticated)
         navigate(`${baseUrl}/`);
     }
+
+    useEffect(() => {
+        setInfoAboutCurrentUser().then();
+    }, []);
 
     return (
         <center className={'container'}>
