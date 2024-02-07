@@ -7,22 +7,44 @@ import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
+import userService from '../services/UserService';
 
 const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+    const {currentUser} = useSelector((state) => state.currentUser);
 
-    const {setIsAuthenticated} = bindActionCreators(
+    const {
+        setIsAuthenticated,
+        setCurrentUser
+    } = bindActionCreators(
         actionCreators,
         dispatch
     );
 
+    const setInfoAboutCurrentUser = async () => {
+        const response = await userService.findByEmail(localStorage.getItem('currentUserEmail'));
+        setCurrentUser(response.data);
+    }
+
     const renderProfile = () => {
+        setInfoAboutCurrentUser().then();
+
         return (
             <>
                 <h1>Profile</h1>
+                <div className={'profile-info'}>
+                    <div>{currentUser.firstName} {currentUser.lastName}</div>
+                    <div>{currentUser.email}</div>
+                </div>
+                <br/>
+                <Button
+                    text={'Edit'}
+                    onClick={handleEdit}
+                />
+                <hr/>
                 <Button
                     text={'Sign Out'}
                     onClick={handleSignOut}
