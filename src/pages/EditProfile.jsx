@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
@@ -24,6 +24,17 @@ const EditProfile = () => {
         actionCreators,
         dispatch
     );
+
+    const setInfoAboutCurrentUser = async () => {
+        try {
+            const response = await userService.findByEmail(
+                localStorage.getItem('currentUserEmail')
+            );
+            setCurrentUser(response.data);
+        } catch (error) {
+            console.error('Error fetching current user data:', error);
+        }
+    }
 
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
@@ -116,6 +127,10 @@ const EditProfile = () => {
     const handleCancel = async () => {
         navigate(`${baseUrl}/profile`);
     }
+
+    useEffect(() => {
+        setInfoAboutCurrentUser().then();
+    }, []);
 
     return (
         <center className={'container'}>
