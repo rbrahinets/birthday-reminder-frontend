@@ -15,10 +15,12 @@ const Profile = () => {
 
     const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
     const {currentUser} = useSelector((state) => state.currentUser);
+    const {loading} = useSelector((state) => state.loading);
 
     const {
         setIsAuthenticated,
-        setCurrentUser
+        setCurrentUser,
+        setLoading,
     } = bindActionCreators(
         actionCreators,
         dispatch
@@ -30,19 +32,30 @@ const Profile = () => {
                 localStorage.getItem('currentUserEmail')
             );
             setCurrentUser(response.data);
+            setLoading(false);
         } catch (error) {
             console.error('Error fetching current user data:', error);
         }
+    }
+
+    const getProfileInfo = () => {
+        if (loading) {
+            return <div>Loading...</div>;
+        }
+
+        return (
+            <div className={'profile-info'}>
+                <div>{currentUser.firstName} {currentUser.lastName}</div>
+                <div>{currentUser.email}</div>
+            </div>
+        )
     }
 
     const renderProfile = () => {
         return (
             <>
                 <h1>Profile</h1>
-                <div className={'profile-info'}>
-                    <div>{currentUser.firstName} {currentUser.lastName}</div>
-                    <div>{currentUser.email}</div>
-                </div>
+                {getProfileInfo()}
                 <br/>
                 <Button
                     text={'Edit'}
@@ -68,6 +81,7 @@ const Profile = () => {
     }
 
     useEffect(() => {
+        setLoading(true);
         setInfoAboutCurrentUser().then();
     }, []);
 
