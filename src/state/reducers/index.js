@@ -6,6 +6,7 @@ import errorMessagesReducer from './errorMessagesReducer'
 import isAuthenticatedReducer from './isAuthenticatedReducer'
 import friendsReducer from './friendsReducer'
 import loadingReducer from './loadingReducer';
+import currentUserReducer from './currentUserReducer';
 
 const reducers = combineReducers({
     isVisibleSignInModal: isVisibleSignInModalReducer,
@@ -15,6 +16,7 @@ const reducers = combineReducers({
     isAuthenticated: isAuthenticatedReducer,
     friends: friendsReducer,
     loading: loadingReducer,
+    currentUser: currentUserReducer,
 });
 
 export default reducers;

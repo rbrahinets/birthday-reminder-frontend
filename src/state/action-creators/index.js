@@ -62,3 +62,12 @@ export const setLoading = (loading) => {
         });
     };
 };
+
+export const setCurrentUser = (currentUser) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_CURRENT_USER,
+            payload: currentUser,
+        });
+    };
+};

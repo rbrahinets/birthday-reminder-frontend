@@ -6,4 +6,5 @@ export const ActionType = {
     SET_IS_AUTHENTICATED: 'setIsAuthenticated',
     SET_FRIENDS: 'setFriends',
     SET_LOADING: 'setLoading',
+    SET_CURRENT_USER: 'setCurrentUser',
 }
