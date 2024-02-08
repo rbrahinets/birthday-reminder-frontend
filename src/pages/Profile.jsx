@@ -32,7 +32,6 @@ const Profile = () => {
                 localStorage.getItem('currentUserEmail')
             );
             setCurrentUser(response.data);
-            setLoading(false);
         } catch (error) {
             console.error('Error fetching current user data:', error);
         }
@@ -82,7 +81,7 @@ const Profile = () => {
 
     useEffect(() => {
         setLoading(true);
-        setInfoAboutCurrentUser().then();
+        setInfoAboutCurrentUser().then(() => setLoading(false));
     }, []);
 
     return (
