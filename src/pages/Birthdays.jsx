@@ -31,7 +31,11 @@ const Birthdays = () => {
             <div>
                 {friends.map((friend) => (
                     <div key={friend._id}>
-                        {friend.firstName} {friend.lastName}
+                        <Link
+                            to={`${baseUrl}/birthdays/friend?friendId=${friend._id}`}
+                        >
+                            {friend.firstName} {friend.lastName}
+                        </Link>
                     </div>
                 ))}
             </div>
