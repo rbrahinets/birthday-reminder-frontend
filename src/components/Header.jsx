@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -11,7 +11,10 @@ const Header = () => {
 
     const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
 
-    const {setIsVisibleSignInModal} = bindActionCreators(
+    const {
+        setIsVisibleSignInModal,
+        setIsAuthenticated,
+    } = bindActionCreators(
         actionCreators,
         dispatch
     );
@@ -83,6 +86,10 @@ const Header = () => {
             </>
         );
     }
+
+    useEffect(() => {
+        setIsAuthenticated(!!localStorage.getItem('token'));
+    }, []);
 
     return (
         <header>

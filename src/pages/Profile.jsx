@@ -13,7 +13,6 @@ const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
     const {currentUser} = useSelector((state) => state.currentUser);
     const {loading} = useSelector((state) => state.loading);
 
@@ -75,7 +74,8 @@ const Profile = () => {
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
-        setIsAuthenticated(!isAuthenticated)
+        localStorage.removeItem('currentUserEmail');
+        setIsAuthenticated(false);
         navigate(`${baseUrl}/`);
     }
 

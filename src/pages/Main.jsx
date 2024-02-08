@@ -14,6 +14,7 @@ const Main = () => {
     const {
         setIsVisibleSignInModal,
         setIsVisibleSignUpModal,
+        setIsAuthenticated,
     } = bindActionCreators(
         actionCreators,
         dispatch
@@ -82,6 +83,7 @@ const Main = () => {
         const signUpArea = document.querySelector('#sign-up-area');
 
         const updateCoordinates = () => {
+            setIsAuthenticated(!!localStorage.getItem('token'));
             const screenWidth = window.innerWidth;
             const screenHeight = window.innerHeight;
 
