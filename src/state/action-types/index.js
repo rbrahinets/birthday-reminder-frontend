@@ -7,4 +7,5 @@ export const ActionType = {
     SET_FRIENDS: 'setFriends',
     SET_LOADING: 'setLoading',
     SET_CURRENT_USER: 'setCurrentUser',
+    SET_FRIEND: 'setFriend',
 }

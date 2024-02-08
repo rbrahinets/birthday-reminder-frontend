@@ -71,3 +71,12 @@ export const setCurrentUser = (currentUser) => {
         });
     };
 };
+
+export const setFriend = (friend) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_FRIEND,
+            payload: friend,
+        });
+    };
+};
