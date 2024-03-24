@@ -7,6 +7,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import {baseUrl} from '../constants';
 import friendService from '../services/FriendService';
+import './Birthdays.css';
 
 const Birthdays = () => {
     const dispatch = useDispatch();

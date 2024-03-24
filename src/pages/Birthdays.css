@@ -1,0 +1,13 @@
+img {
+    width: 200px;
+}
+
+.birthdays-list {
+    display: flex;
+    flex-direction: row;
+}
+
+.birthday-link {
+    display: flex;
+    flex-direction: column;
+}
