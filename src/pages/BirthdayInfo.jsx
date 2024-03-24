@@ -50,6 +50,11 @@ const BirthdayInfo = () => {
 
         return (
             <div className={'birthday-info'}>
+                <img
+                    src={process.env.PUBLIC_URL + '/add-profile-image.png'}
+                    alt={'add-profile'}
+                    className={'add-profile-image'}
+                />
                 <div>{friend.firstName} {friend.lastName}</div>
                 <div>{friend.email}</div>
                 <div>{formattedDate}</div>
