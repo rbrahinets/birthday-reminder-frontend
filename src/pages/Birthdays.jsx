@@ -50,13 +50,22 @@ const Birthdays = () => {
         return (
             <>
                 <h1>Birthdays</h1>
-                {getFriends()}
-                <hr/>
-                <Link
-                    to={`${baseUrl}/new-friend`}
-                >
-                    Add New Friend
-                </Link>
+                {loading && <div>Loading...</div>}
+                {!loading &&
+                    <div className={'birthdays-list'}>
+                        {getFriends()}
+                        <Link
+                            to={`${baseUrl}/new-friend`}
+                            className={'add-new-birthday'}
+                        >
+                            <img
+                                src={process.env.PUBLIC_URL + '/add-new-birthday.png'}
+                                alt={'add-new-birthday'}
+                                className={'add-new-birthday'}
+                            />
+                        </Link>
+                    </div>
+                }
             </>
         );
     }
