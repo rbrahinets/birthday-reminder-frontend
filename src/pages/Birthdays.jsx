@@ -24,24 +24,25 @@ const Birthdays = () => {
     );
 
     const getFriends = () => {
-        if (loading) {
-            return <div>Loading...</div>;
-        }
-
-        return friends.length > 0 ? (
-            <div>
+        return (
+            <>
                 {friends.map((friend) => (
-                    <div key={friend._id}>
-                        <Link
-                            to={`${baseUrl}/birthdays/friend?friendId=${friend._id}`}
-                        >
-                            {friend.firstName} {friend.lastName}
-                        </Link>
-                    </div>
-                ))}
-            </div>
-        ) : (
-            <div>No Friends Found</div>
+                        <div key={friend._id}>
+                            <Link
+                                to={`${baseUrl}/birthdays/friend?friendId=${friend._id}`}
+                                className={'birthday-link'}
+                            >
+                                <img
+                                    src={process.env.PUBLIC_URL + '/homer-simpson.png'}
+                                    alt={'birthday'}
+                                    className={'birthday-image'}
+                                />
+                                {friend.firstName} {friend.lastName}
+                            </Link>
+                        </div>
+                    )
+                )}
+            </>
         )
     }
 
