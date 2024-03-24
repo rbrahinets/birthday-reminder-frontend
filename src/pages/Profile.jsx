@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
+import './Profile.css';
 
 const Profile = () => {
     const navigate = useNavigate();
