@@ -46,6 +46,10 @@ const Birthdays = () => {
         )
     }
 
+    const getRandomNumber = () => {
+        return Math.floor(Math.random() * 4) + 1;
+    }
+
     const renderBirthdays = () => {
         return (
             <>
@@ -59,7 +63,7 @@ const Birthdays = () => {
                             className={'add-new-birthday'}
                         >
                             <img
-                                src={process.env.PUBLIC_URL + '/add-new-birthday.png'}
+                                src={`${process.env.PUBLIC_URL}/add-new-birthday-${(getRandomNumber())}.png`}
                                 alt={'add-new-birthday'}
                                 className={'add-new-birthday'}
                             />
