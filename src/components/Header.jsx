@@ -51,7 +51,11 @@ const Header = () => {
                 className={'link icon-container'}
             >
                 <span>My profile</span>
-                <CgProfile className={'profile-icon'}/>
+                <img
+                    src={process.env.PUBLIC_URL + '/profile-icon.png'}
+                    alt={'profile-icon'}
+                    className={'profile-icon'}
+                />
             </Link>
         </>
     );
