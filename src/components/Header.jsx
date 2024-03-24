@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import {CgProfile} from 'react-icons/cg';
 import {baseUrl} from '../constants';
+import './Header.css';
 
 const Header = () => {
     const dispatch = useDispatch();
