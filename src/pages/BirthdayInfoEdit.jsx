@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import {baseUrl} from '../constants';
+import '../components/Input.css';
 
 const BirthdayInfoEdit = () => {
     const dispatch = useDispatch();

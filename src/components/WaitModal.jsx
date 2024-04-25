@@ -1,5 +1,6 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
+import './Modal.css';
 
 const WaitModal = ({show}) => {
     return (
@@ -8,6 +9,7 @@ const WaitModal = ({show}) => {
             dialogClassName={'modal-wait'}
         >
             <img
+                className={'loading'}
                 src={process.env.PUBLIC_URL + '/loading.gif'}
                 alt={'loading'}
             />

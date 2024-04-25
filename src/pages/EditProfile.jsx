@@ -9,6 +9,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
+import '../components/Input.css';
 
 const EditProfile = () => {
     const dispatch = useDispatch();

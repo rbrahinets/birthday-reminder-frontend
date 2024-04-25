@@ -1,4 +1,30 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin-bottom: -50px;
+}
+
+.link {
+    display: flex;
+    color: #0d20c9;
+    text-decoration: none;
+    font-size: 18pt;
+    margin: 20px;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+.link-container {
+    display: flex;
+}
+
+.logo {
+    margin-top: -25px;
+}
+
 .profile-icon {
     width: 32px;
     height: 32px;
+    margin-left: 5px;
 }
