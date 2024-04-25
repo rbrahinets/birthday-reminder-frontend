@@ -63,7 +63,7 @@ const Birthdays = () => {
                             className={'add-new-birthday'}
                         >
                             <img
-                                src={`${process.env.PUBLIC_URL}/add-new-birthday-${(getRandomNumber())}.png`}
+                                src={`${process.env.PUBLIC_URL}/add-new-birthday-${getRandomNumber()}.png`}
                                 alt={'add-new-birthday'}
                                 className={'add-new-birthday'}
                             />
@@ -74,20 +74,18 @@ const Birthdays = () => {
         );
     }
 
+    const fetchFriendsData = async (email) => {
+        try {
+            const response = await friendService.getFriendsForUserByEmail(email);
+            setFriends(response.data);
+        } catch (error) {
+            console.error('Error fetching friends data:', error);
+        }
+    }
+
     useEffect(() => {
         setLoading(true);
-
-        const fetchFriendsData = async (email) => {
-            try {
-                const response = await friendService.getFriendsForUserByEmail(email);
-                setFriends(response.data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching friends data:', error);
-            }
-        }
-
-        fetchFriendsData(localStorage.getItem('currentUserEmail'));
+        fetchFriendsData(localStorage.getItem('currentUserEmail')).then(() => setLoading(false));
     }, []);
 
     return (

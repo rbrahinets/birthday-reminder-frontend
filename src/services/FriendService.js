@@ -26,7 +26,7 @@ class FriendService {
     }
 
     async getFriendsForUserByEmail(email) {
-        return await API.get(`/emails/${email}`);
+        return await API.get(`/email/${email}`);
     }
 }
 
