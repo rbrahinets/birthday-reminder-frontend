@@ -1,0 +1,25 @@
+footer {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    padding: 35px;
+}
+
+.footer-logo {
+    width: 30%;
+}
+
+.footer-link {
+    color: #000000;
+    text-decoration: none;
+    cursor: pointer;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    margin-bottom: -15px;
+}
+
+.footer-link-logo {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    margin-top: -2px;
+}

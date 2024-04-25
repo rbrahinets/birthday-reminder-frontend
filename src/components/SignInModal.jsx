@@ -6,6 +6,7 @@ import {actionCreators} from '../state';
 import Button from './Button';
 import Input from './Input';
 import userService from '../services/UserService';
+import './Modal.css';
 
 const SignInModal = ({
                          show,

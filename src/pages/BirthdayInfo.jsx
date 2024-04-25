@@ -9,6 +9,7 @@ import Button from '../components/Button';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import './BirthdayInfo.css';
+import '../components/Input.css';
 
 const BirthdayInfo = () => {
     const dispatch = useDispatch();

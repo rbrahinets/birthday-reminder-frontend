@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Authentication from '../components/Authentication';
+import './Main.css';
 
 const Main = () => {
     return (
