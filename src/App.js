@@ -1,5 +1,5 @@
 import React from 'react';
-import {HashRouter as Router, Route, Routes} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import Main from './pages/Main';
 import Birthdays from './pages/Birthdays';
 import BirthdayInfo from './pages/BirthdayInfo';
@@ -13,7 +13,7 @@ const url = '/birthday-reminder-frontend';
 
 const App = () => {
     return (
-        <Router>
+        <Router basename={url}>
             <Routes>
                 <Route path={`${url}/`} element={<Main/>}/>
                 <Route path={`${url}/birthdays`} element={<Birthdays/>}/>
