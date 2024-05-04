@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import {baseUrl} from '../constants';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Input from '../components/Input';
@@ -118,7 +117,7 @@ const EditProfile = () => {
                         lastName: lastName.value,
                     }
                 );
-                navigate(`${baseUrl}/profile`);
+                navigate(`/profile`);
             } catch (error) {
                 console.error('Updating Profile Failed', error);
             }
@@ -126,7 +125,7 @@ const EditProfile = () => {
     }
 
     const handleCancel = async () => {
-        navigate(`${baseUrl}/profile`);
+        navigate(`/profile`);
     }
 
     useEffect(() => {

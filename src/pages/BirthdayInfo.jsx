@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
-import {baseUrl} from '../constants';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
@@ -83,11 +82,11 @@ const BirthdayInfo = () => {
     }
 
     const handleEdit = () => {
-        navigate(`${baseUrl}/birthdays/friend/edit?friendId=${friendId}`);
+        navigate(`/birthdays/friend/edit?friendId=${friendId}`);
     }
 
     const handleDelete = () => {
-        friendService.delete(friendId).then(() => navigate(`${baseUrl}/birthdays`));
+        friendService.delete(friendId).then(() => navigate(`/birthdays`));
     }
 
     useEffect(() => {

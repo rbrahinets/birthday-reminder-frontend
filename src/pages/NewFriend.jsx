@@ -8,7 +8,6 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
-import {baseUrl} from '../constants';
 import '../components/Input.css';
 
 const NewFriend = () => {
@@ -134,7 +133,7 @@ const NewFriend = () => {
                     dateOfBirth: dateOfBirth.value,
                     emailOfUser: emailOfUser,
                 });
-                navigate(`${baseUrl}/birthdays`);
+                navigate(`/birthdays`);
             } catch (error) {
                 console.error('Adding New Friend Failed', error);
                 alert('Adding New Friend Failed. The e-mail you entered already exist!');
@@ -147,7 +146,7 @@ const NewFriend = () => {
     }
 
     const handleCancel = async () => {
-        navigate(`${baseUrl}/birthdays`);
+        navigate(`/birthdays`);
     }
 
     return (

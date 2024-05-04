@@ -5,7 +5,6 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import {baseUrl} from '../constants';
 import friendService from '../services/FriendService';
 import './Birthdays.css';
 
@@ -29,7 +28,7 @@ const Birthdays = () => {
                 {friends.map((friend) => (
                         <div key={friend._id}>
                             <Link
-                                to={`${baseUrl}/birthdays/friend?friendId=${friend._id}`}
+                                to={`/birthdays/friend?friendId=${friend._id}`}
                                 className={'birthday-link'}
                             >
                                 <img
@@ -59,7 +58,7 @@ const Birthdays = () => {
                     <div className={'birthdays-list'}>
                         {getFriends()}
                         <Link
-                            to={`${baseUrl}/new-friend`}
+                            to={`/new-friend`}
                             className={'add-new-birthday'}
                         >
                             <img

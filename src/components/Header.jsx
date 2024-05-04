@@ -4,7 +4,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import {CgProfile} from 'react-icons/cg';
-import {baseUrl} from '../constants';
 import './Header.css';
 
 const Header = () => {
@@ -41,13 +40,13 @@ const Header = () => {
     const renderLinksForAuthenticatedUser = () => (
         <>
             <Link
-                to={`${baseUrl}/birthdays`}
+                to={`/birthdays`}
                 className={'link'}
             >
                 Birthdays
             </Link>
             <Link
-                to={`${baseUrl}/profile`}
+                to={`/profile`}
                 className={'link icon-container'}
             >
                 <span>My profile</span>
@@ -65,7 +64,7 @@ const Header = () => {
             <>
                 <div>
                     <Link
-                        to={`${baseUrl}`}
+                        to={`/`}
                         className={'link'}
                     >
                         <img

@@ -8,7 +8,6 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
-import {baseUrl} from '../constants';
 import '../components/Input.css';
 
 const BirthdayInfoEdit = () => {
@@ -161,7 +160,7 @@ const BirthdayInfoEdit = () => {
                     }
                 );
 
-                navigate(`${baseUrl}/birthdays/friend?friendId=${friendId}`);
+                navigate(`/birthdays/friend?friendId=${friendId}`);
             } catch (error) {
                 console.error('Updating Birthday Info Failed', error);
                 alert('Updating Birthday Info Failed.');
@@ -174,7 +173,7 @@ const BirthdayInfoEdit = () => {
     }
 
     const handleCancel = async () => {
-        navigate(`${baseUrl}/birthdays/friend?friendId=${friendId}`);
+        navigate(`/birthdays/friend?friendId=${friendId}`);
     }
 
     useEffect(() => {

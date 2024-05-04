@@ -2,7 +2,6 @@ import React, {useEffect, useRef} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {baseUrl} from '../constants';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
@@ -158,14 +157,14 @@ const Profile = () => {
     }
 
     const handleEdit = () => {
-        navigate(`${baseUrl}/profile/edit`)
+        navigate(`/profile/edit`)
     }
 
     const handleSignOut = () => {
         localStorage.removeItem('token');
         localStorage.removeItem('currentUserEmail');
         setIsAuthenticated(false);
-        navigate(`${baseUrl}/`);
+        navigate(`/`);
     }
 
     useEffect(() => {

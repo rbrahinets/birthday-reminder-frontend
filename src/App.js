@@ -15,13 +15,13 @@ const App = () => {
     return (
         <Router basename={url}>
             <Routes>
-                <Route path={`${url}/`} element={<Main/>}/>
-                <Route path={`${url}/birthdays`} element={<Birthdays/>}/>
-                <Route path={`${url}/birthdays/friend`} element={<BirthdayInfo/>}/>
-                <Route path={`${url}/birthdays/friend/edit`} element={<BirthdayInfoEdit/>}/>
-                <Route path={`${url}/new-friend`} element={<NewFriend/>}/>
-                <Route path={`${url}/profile`} element={<Profile/>}/>
-                <Route path={`${url}/profile/edit`} element={<EditProfile/>}/>
+                <Route path={`/`} element={<Main/>}/>
+                <Route path={`/birthdays`} element={<Birthdays/>}/>
+                <Route path={`/birthdays/friend`} element={<BirthdayInfo/>}/>
+                <Route path={`/birthdays/friend/edit`} element={<BirthdayInfoEdit/>}/>
+                <Route path={`/new-friend`} element={<NewFriend/>}/>
+                <Route path={`/profile`} element={<Profile/>}/>
+                <Route path={`/profile/edit`} element={<EditProfile/>}/>
                 <Route path="*" element={<PageNotFound/>}/>
             </Routes>
         </Router>

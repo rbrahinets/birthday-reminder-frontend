@@ -1,6 +1,5 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { baseUrl } from '../constants';
+import {useNavigate} from 'react-router-dom';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
@@ -9,7 +8,7 @@ const PageNotFound = () => {
     const navigate = useNavigate();
 
     const handleMainClick = () => {
-        navigate(`${baseUrl}/`);
+        navigate(`/`);
     }
 
     return (
