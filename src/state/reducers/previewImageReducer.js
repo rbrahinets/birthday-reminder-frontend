@@ -11,7 +11,7 @@ const reducer = (
     if (action.type === ActionType.SET_PREVIEW_IMAGE) {
         return {
             ...state,
-            friend: action.payload
+            previewImage: action.payload
         };
     } else {
         return state;

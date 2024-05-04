@@ -11,7 +11,7 @@ const reducer = (
     if (action.type === ActionType.SET_PROFILE_IMAGE) {
         return {
             ...state,
-            friend: action.payload
+            profileImage: action.payload
         };
     } else {
         return state;
