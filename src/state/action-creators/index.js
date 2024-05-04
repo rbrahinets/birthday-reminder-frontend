@@ -80,3 +80,21 @@ export const setFriend = (friend) => {
         });
     };
 };
+
+export const setProfileImage = (profileImage) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_PROFILE_IMAGE,
+            payload: profileImage,
+        });
+    };
+};
+
+export const setPreviewImage = (previewImage) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_PREVIEW_IMAGE,
+            payload: previewImage,
+        });
+    };
+};

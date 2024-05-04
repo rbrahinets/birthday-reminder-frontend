@@ -8,4 +8,6 @@ export const ActionType = {
     SET_LOADING: 'setLoading',
     SET_CURRENT_USER: 'setCurrentUser',
     SET_FRIEND: 'setFriend',
+    SET_PROFILE_IMAGE: 'setProfileImage',
+    SET_PREVIEW_IMAGE: 'setPreviewImage',
 }
