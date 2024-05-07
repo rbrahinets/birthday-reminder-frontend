@@ -6,6 +6,7 @@ import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
+import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import '../components/Input.css';
@@ -44,11 +45,14 @@ const BirthdayInfoEdit = () => {
 
     const renderBirthdayInfoEdit = () => {
         if (!friend) {
-            return <h1>Loading...</h1>;
+            return;
         }
 
         return (
             <>
+                <WaitModal
+                    show={!friend}
+                />
                 <h1>Edit Birthday Info</h1>
                 <form className={'form'}>
                     <Input

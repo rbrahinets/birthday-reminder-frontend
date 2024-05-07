@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import './BirthdayInfo.css';
@@ -38,8 +39,8 @@ const BirthdayInfo = () => {
     }
 
     const getBirthdayInfo = () => {
-        if (loading || !friend) {
-            return <div>Loading...</div>;
+        if (!friend) {
+            return;
         }
 
         const originalDate = new Date(friend.dateOfBirth);
@@ -50,6 +51,9 @@ const BirthdayInfo = () => {
 
         return (
             <div className={'birthday-info'}>
+                <WaitModal
+                    show={loading}
+                />
                 <img
                     src={process.env.PUBLIC_URL + '/add-profile-image.png'}
                     alt={'add-profile'}
@@ -59,7 +63,7 @@ const BirthdayInfo = () => {
                 <div>{friend.email}</div>
                 <div>{formattedDate}</div>
             </div>
-        )
+        );
     }
 
     const renderBirthdayInfo = () => {

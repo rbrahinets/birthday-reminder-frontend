@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import {convertToBase64} from '../hooks/useConverter';
 import imageService from '../services/ImageService';
@@ -55,12 +56,11 @@ const Profile = () => {
     }
 
     const getProfileInfo = () => {
-        if (loading) {
-            return <div>Loading...</div>;
-        }
-
         return (
             <div className={'profile-info'}>
+                <WaitModal
+                    show={loading}
+                />
                 <img
                     src={previewImage || profileImage}
                     alt={'add-profile-image'}

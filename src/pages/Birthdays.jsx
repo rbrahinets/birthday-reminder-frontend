@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import './Birthdays.css';
@@ -11,8 +12,8 @@ import './Birthdays.css';
 const Birthdays = () => {
     const dispatch = useDispatch();
 
-    const {friends} = useSelector((state) => state.friends);
     const {loading} = useSelector((state) => state.loading);
+    const {friends} = useSelector((state) => state.friends);
 
     const {
         setFriends,
@@ -53,22 +54,22 @@ const Birthdays = () => {
         return (
             <>
                 <h1>Birthdays</h1>
-                {loading && <div>Loading...</div>}
-                {!loading &&
-                    <div className={'birthdays-list'}>
-                        {getFriends()}
-                        <Link
-                            to={`/new-friend`}
+                <WaitModal
+                    show={loading}
+                />
+                <div className={'birthdays-list'}>
+                    {getFriends()}
+                    <Link
+                        to={`/new-friend`}
+                        className={'add-new-birthday'}
+                    >
+                        <img
+                            src={`${process.env.PUBLIC_URL}/add-new-birthday-${getRandomNumber()}.png`}
+                            alt={'add-new-birthday'}
                             className={'add-new-birthday'}
-                        >
-                            <img
-                                src={`${process.env.PUBLIC_URL}/add-new-birthday-${getRandomNumber()}.png`}
-                                alt={'add-new-birthday'}
-                                className={'add-new-birthday'}
-                            />
-                        </Link>
-                    </div>
-                }
+                        />
+                    </Link>
+                </div>
             </>
         );
     }
