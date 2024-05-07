@@ -16,6 +16,7 @@ code {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
 
 .center {
     text-align: center;
@@ -27,5 +28,9 @@ code {
 
 .error {
     color: #ff0000;
-    font-size: 12px;
+    font-size: 12pt;
+}
+
+main button {
+    width: 25%;
 }
