@@ -29,7 +29,7 @@ const BirthdayInfo = () => {
         dispatch
     );
 
-    const setInfoAboutFriend = async () => {
+    const fetchFriendData = async () => {
         try {
             const response = await friendService.findById(friendId);
             setFriend(response.data);
@@ -95,7 +95,7 @@ const BirthdayInfo = () => {
 
     useEffect(() => {
         setLoading(true);
-        setInfoAboutFriend().then(() => setLoading(false));
+        fetchFriendData().then(() => setLoading(false));
     }, []);
 
     return (
