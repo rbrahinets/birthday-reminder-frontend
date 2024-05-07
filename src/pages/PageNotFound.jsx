@@ -12,7 +12,7 @@ const PageNotFound = () => {
     }
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 <h1>Oops...</h1>
@@ -20,7 +20,7 @@ const PageNotFound = () => {
                 <Button text={'Main'} onClick={handleMainClick}/>
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

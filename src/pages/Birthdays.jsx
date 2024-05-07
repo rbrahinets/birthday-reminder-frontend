@@ -88,13 +88,13 @@ const Birthdays = () => {
     }, []);
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderBirthdays()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

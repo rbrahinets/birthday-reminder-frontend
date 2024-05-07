@@ -95,13 +95,13 @@ const BirthdayInfo = () => {
     }, []);
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderBirthdayInfo()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

@@ -6,7 +6,7 @@ import './Main.css';
 
 const Main = () => {
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 <img
@@ -17,7 +17,7 @@ const Main = () => {
                 <Authentication/>
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

@@ -133,13 +133,13 @@ const EditProfile = () => {
     }, []);
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderEditProfile()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

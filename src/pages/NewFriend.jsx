@@ -150,13 +150,13 @@ const NewFriend = () => {
     }
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderNewFriend()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

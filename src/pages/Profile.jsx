@@ -173,13 +173,13 @@ const Profile = () => {
     }, []);
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderProfile()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

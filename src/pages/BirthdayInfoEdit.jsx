@@ -181,13 +181,13 @@ const BirthdayInfoEdit = () => {
     }, []);
 
     return (
-        <center className={'container'}>
+        <div className={'container center'}>
             <Header/>
             <main>
                 {renderBirthdayInfoEdit()}
             </main>
             <Footer/>
-        </center>
+        </div>
     );
 }
 

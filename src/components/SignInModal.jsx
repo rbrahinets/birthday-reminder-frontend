@@ -124,7 +124,7 @@ const SignInModal = ({
             >
                 X
             </div>
-            <center>
+            <div className={'center'}>
                 <h1>Sign in</h1>
                 {renderForm}
                 <Button
@@ -138,7 +138,7 @@ const SignInModal = ({
                 >
                     Sign Up
                 </div>
-            </center>
+            </div>
         </Modal>
     );
 }

@@ -17,6 +17,8 @@ code {
     flex-direction: column;
     min-height: 100vh;
 
+.center {
+    text-align: center;
 }
 
 .icon-container {
