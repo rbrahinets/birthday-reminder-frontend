@@ -43,7 +43,7 @@ const Profile = () => {
 
             if (
                 response.data.imageId &&
-                response.data.imageId.trim().length >= 0
+                response.data.imageId.trim().length > 0
             ) {
                 const imageData = (await imageService.findById(response.data.imageId)).data;
                 setProfileImage(imageData.data);
@@ -76,10 +76,16 @@ const Profile = () => {
                 />
                 <br/>
                 {profileImage && !profileImage.includes('/add-profile-image.png') && !previewImage && (
-                    <button onClick={handleDeleteImage}>Delete Image</button>
+                    <Button
+                        text={'Delete Image'}
+                        onClick={handleDeleteImage}
+                    />
                 )}
                 {previewImage && (
-                    <button onClick={handleSave}>Save</button>
+                    <Button
+                        text={'Save'}
+                        onClick={handleSave}
+                    />
                 )}
                 <div>{currentUser.firstName} {currentUser.lastName}</div>
                 <div>{currentUser.email}</div>
