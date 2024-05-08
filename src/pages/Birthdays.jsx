@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import Photo from '../components/Photo';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
@@ -32,10 +33,9 @@ const Birthdays = () => {
                                 to={`/birthdays/friend?friendId=${friend._id}`}
                                 className={'birthday-link'}
                             >
-                                <img
-                                    src={process.env.PUBLIC_URL + '/homer-simpson.png'}
+                                <Photo
+                                    src={getSourceOfPhoto(friend.imageUrl)}
                                     alt={'birthday'}
-                                    className={'birthday-image'}
                                 />
                                 {friend.firstName} {friend.lastName}
                             </Link>
@@ -63,10 +63,9 @@ const Birthdays = () => {
                         to={`/new-friend`}
                         className={'add-new-birthday'}
                     >
-                        <img
-                            src={`${process.env.PUBLIC_URL}/add-new-birthday-${getRandomNumber()}.png`}
+                        <Photo
+                            src={`${process.env.PUBLIC_URL}/add.png`}
                             alt={'add-new-birthday'}
-                            className={'add-new-birthday'}
                         />
                     </Link>
                 </div>
