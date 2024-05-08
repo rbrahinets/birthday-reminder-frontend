@@ -1,28 +1,30 @@
-import React, {useEffect, useRef} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {deleteObject, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
+import {v4} from 'uuid';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import Photo from '../components/Photo';
 import Footer from '../components/Footer';
-import {convertToBase64} from '../hooks/useConverter';
-import imageService from '../services/ImageService';
 import userService from '../services/UserService';
+import {firebaseStorage} from '../configs/firebase';
 import './Profile.css';
 
 const Profile = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const fileInputRef = useRef(null);
 
     const {currentUser} = useSelector((state) => state.currentUser);
     const {loading} = useSelector((state) => state.loading);
     const {profileImage} = useSelector((state) => state.profileImage);
     const {previewImage} = useSelector((state) => state.previewImage);
 
-    const fileInputRef = useRef(null);
+    const [imageFile, setImageFile] = useState(null);
 
     const {
         setIsAuthenticated,
@@ -35,7 +37,7 @@ const Profile = () => {
         dispatch
     );
 
-    const setInfoAboutCurrentUser = async () => {
+    const fetchCurrentUserData = async () => {
         try {
             const response = await userService.findByEmail(
                 localStorage.getItem('currentUserEmail')
@@ -43,13 +45,12 @@ const Profile = () => {
             setCurrentUser(response.data);
 
             if (
-                response.data.imageId &&
-                response.data.imageId.trim().length > 0
+                response.data.imageUrl &&
+                response.data.imageUrl.trim().length > 0
             ) {
-                const imageData = (await imageService.findById(response.data.imageId)).data;
-                setProfileImage(imageData.data);
+                setProfileImage(response.data.imageUrl);
             } else {
-                setProfileImage(process.env.PUBLIC_URL + '/add-profile-image.png');
+                setProfileImage(process.env.PUBLIC_URL + '/add.png');
             }
         } catch (error) {
             console.error('Error fetching current user data:', error);
@@ -72,7 +73,7 @@ const Profile = () => {
                     onChange={handleFileChange}
                 />
                 <br/>
-                {profileImage && !profileImage.includes('/add-profile-image.png') && !previewImage && (
+                {profileImage && !previewImage && !profileImage.includes('/add.png') && (
                     <Button
                         text={'Delete Image'}
                         onClick={handleDeleteImage}
@@ -110,21 +111,34 @@ const Profile = () => {
     }
 
     const handleDeleteImage = async () => {
-        setProfileImage(process.env.PUBLIC_URL + '/add-profile-image.png');
+        setLoading(true);
+
+        setProfileImage(process.env.PUBLIC_URL + '/add.png');
+
+        let oldImage = null;
+
+        if (
+            currentUser.imageUrl &&
+            currentUser.imageUrl.trim().length > 0
+        ) {
+            oldImage = ref(firebaseStorage, currentUser.imageUrl);
+        }
 
         const updatedUser = {
             ...currentUser,
-            imageId: "",
+            imageUrl: "",
         }
 
         await userService.update(updatedUser._id, updatedUser);
 
-        if (currentUser.imageId) {
-            await imageService.delete(currentUser.imageId);
+        if (oldImage) {
+            deleteObject(oldImage).then();
         }
+
+        setLoading(false);
     }
 
-    const handlePhotoClick = () => {
+    const handleImageClick = () => {
         if (fileInputRef.current) {
             fileInputRef.current.click();
         }
@@ -134,29 +148,48 @@ const Profile = () => {
         e.preventDefault();
 
         const file = e.target.files[0];
+
         if (file) {
             setPreviewImage(URL.createObjectURL(file));
-            setProfileImage(await convertToBase64(file));
+            setImageFile(file);
         }
     }
 
     const handleSave = async () => {
-        if (profileImage) {
+        setLoading(true);
+
+        if (imageFile) {
             setPreviewImage(null);
         }
 
-        const image = {data: profileImage};
-        const imageData = (await imageService.save(image)).data;
+        let oldImage = null;
+
+        if (
+            currentUser.imageUrl &&
+            currentUser.imageUrl.trim().length > 0
+        ) {
+            oldImage = ref(firebaseStorage, currentUser.imageUrl);
+        }
+
+        const imageRef = ref(firebaseStorage, `images/${v4()}-${imageFile.name}`);
+        const snapshot = await uploadBytes(imageRef, imageFile);
+        const url = await getDownloadURL(snapshot.ref);
+
+        setProfileImage(url);
+        setImageFile(null);
+
         const updatedUser = {
             ...currentUser,
-            imageId: imageData.id,
+            imageUrl: url,
         }
 
         await userService.update(updatedUser._id, updatedUser);
 
-        if (currentUser.imageId) {
-            await imageService.delete(currentUser.imageId);
+        if (oldImage) {
+            deleteObject(oldImage).then();
         }
+
+        setLoading(false);
     }
 
     const handleEdit = () => {
@@ -172,7 +205,7 @@ const Profile = () => {
 
     useEffect(() => {
         setLoading(true);
-        setInfoAboutCurrentUser().then(() => setLoading(false));
+        fetchCurrentUserData().then(() => setLoading(false));
     }, []);
 
     return (
