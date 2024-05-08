@@ -210,6 +210,9 @@ const Profile = () => {
 
     return (
         <div className={'container center'}>
+            <WaitModal
+                show={loading}
+            />
             <Header/>
             <main>
                 {renderProfile()}
