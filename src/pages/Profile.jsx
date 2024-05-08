@@ -6,6 +6,7 @@ import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
+import Photo from '../components/Photo';
 import Footer from '../components/Footer';
 import {convertToBase64} from '../hooks/useConverter';
 import imageService from '../services/ImageService';
@@ -58,14 +59,10 @@ const Profile = () => {
     const getProfileInfo = () => {
         return (
             <div className={'profile-info'}>
-                <WaitModal
-                    show={loading}
-                />
-                <img
+                <Photo
                     src={previewImage || profileImage}
-                    alt={'add-profile-image'}
-                    className={'add-profile-image'}
-                    onClick={handlePhotoClick}
+                    alt={'profile-image'}
+                    onClick={handleImageClick}
                 />
                 <input
                     type={'file'}
