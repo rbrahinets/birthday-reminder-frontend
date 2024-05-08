@@ -6,6 +6,7 @@ import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
+import Photo from '../components/Photo';
 import Footer from '../components/Footer';
 import friendService from '../services/FriendService';
 import './BirthdayInfo.css';
@@ -51,8 +52,10 @@ const BirthdayInfo = () => {
 
         return (
             <div className={'birthday-info'}>
-                <WaitModal
-                    show={loading}
+                <Photo
+                    src={previewFriendImage || friendImage}
+                    alt={'friend-image'}
+                    onClick={handleImageClick}
                 />
                 <img
                     src={process.env.PUBLIC_URL + '/add-profile-image.png'}
