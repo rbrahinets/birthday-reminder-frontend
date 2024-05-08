@@ -54,9 +54,6 @@ const Birthdays = () => {
         return (
             <>
                 <h1>Birthdays</h1>
-                <WaitModal
-                    show={loading}
-                />
                 <div className={'birthdays-list'}>
                     {getFriends()}
                     <Link
@@ -89,6 +86,9 @@ const Birthdays = () => {
 
     return (
         <div className={'container center'}>
+            <WaitModal
+                show={loading}
+            />
             <Header/>
             <main>
                 {renderBirthdays()}
