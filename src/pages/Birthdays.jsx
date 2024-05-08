@@ -46,8 +46,12 @@ const Birthdays = () => {
         )
     }
 
-    const getRandomNumber = () => {
-        return Math.floor(Math.random() * 4) + 1;
+    const getSourceOfPhoto = (url) => {
+        if (url && url.length > 0) {
+            return url;
+        }
+
+        return process.env.PUBLIC_URL + '/homer-simpson.png';
     }
 
     const renderBirthdays = () => {
