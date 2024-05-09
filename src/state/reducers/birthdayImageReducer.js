@@ -1,17 +1,17 @@
 import {ActionType} from '../action-types';
 
 const initialState = {
-    previewImage: null,
+    birthdayImage: null,
 };
 
 const reducer = (
     state = initialState,
     action
 ) => {
-    if (action.type === ActionType.SET_PREVIEW_IMAGE) {
+    if (action.type === ActionType.SET_BIRTHDAY_IMAGE) {
         return {
             ...state,
-            previewImage: action.payload
+            birthdayImage: action.payload
         };
     } else {
         return state;

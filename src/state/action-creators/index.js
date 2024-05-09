@@ -90,11 +90,29 @@ export const setProfileImage = (profileImage) => {
     };
 };
 
-export const setPreviewImage = (previewImage) => {
+export const setPreviewProfileImage = (previewProfileImage) => {
     return (dispatch) => {
         dispatch({
-            type: ActionType.SET_PREVIEW_IMAGE,
-            payload: previewImage,
+            type: ActionType.SET_PREVIEW_PROFILE_IMAGE,
+            payload: previewProfileImage,
+        });
+    };
+};
+
+export const setBirthdayImage = (birthdayImage) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_BIRTHDAY_IMAGE,
+            payload: birthdayImage,
+        });
+    };
+};
+
+export const setPreviewBirthdayImage = (previewBirthdayImage) => {
+    return (dispatch) => {
+        dispatch({
+            type: ActionType.SET_PREVIEW_BIRTHDAY_IMAGE,
+            payload: previewBirthdayImage,
         });
     };
 };

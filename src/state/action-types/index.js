@@ -9,5 +9,7 @@ export const ActionType = {
     SET_CURRENT_USER: 'setCurrentUser',
     SET_FRIEND: 'setFriend',
     SET_PROFILE_IMAGE: 'setProfileImage',
-    SET_PREVIEW_IMAGE: 'setPreviewImage',
+    SET_PREVIEW_PROFILE_IMAGE: 'setPreviewProfileImage',
+    SET_BIRTHDAY_IMAGE: 'setBirthdayImage',
+    SET_PREVIEW_BIRTHDAY_IMAGE: 'setPreviewBirthdayImage',
 }

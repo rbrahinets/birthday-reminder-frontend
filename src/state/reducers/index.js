@@ -10,6 +10,8 @@ import currentUserReducer from './currentUserReducer';
 import friendReducer from './friendReducer';
 import profileImageReducer from './profileImageReducer';
 import previewProfileImageReducer from './previewProfileImageReducer';
+import birthdayImageReducer from './birthdayImageReducer';
+import previewBirthdayImageReducer from './previewBirthdayImageReducer';
 
 const reducers = combineReducers({
     isVisibleSignInModal: isVisibleSignInModalReducer,
@@ -23,6 +25,8 @@ const reducers = combineReducers({
     friend: friendReducer,
     profileImage: profileImageReducer,
     previewProfileImage: previewProfileImageReducer,
+    birthdayImage: birthdayImageReducer,
+    previewBirthdayImage: previewBirthdayImageReducer,
 });
 
 export default reducers;
