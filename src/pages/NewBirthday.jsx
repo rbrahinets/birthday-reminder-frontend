@@ -7,10 +7,10 @@ import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import friendService from '../services/FriendService';
+import birthdayService from '../services/BirthdayService';
 import '../components/Input.css';
 
-const NewFriend = () => {
+const NewBirthday = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -26,10 +26,10 @@ const NewFriend = () => {
             <div className={'error'}>{errorMessages.message}</div>
         );
 
-    const renderNewFriend = () => {
+    const renderNewBirthday = () => {
         return (
             <>
-                <h1>New Friend</h1>
+                <h1>New Birthday</h1>
                 <form className={'form'}>
                     <Input
                         type={'text'}
@@ -126,7 +126,7 @@ const NewFriend = () => {
             try {
                 const emailOfUser = localStorage.getItem('currentUserEmail');
 
-                await friendService.save({
+                await birthdayService.save({
                     firstName: firstName.value,
                     lastName: lastName.value,
                     email: email.value,
@@ -135,8 +135,8 @@ const NewFriend = () => {
                 });
                 navigate(`/birthdays`);
             } catch (error) {
-                console.error('Adding New Friend Failed', error);
-                alert('Adding New Friend Failed. The e-mail you entered already exist!');
+                console.error('Adding New Birthday Failed', error);
+                alert('Adding New Birthday Failed. The e-mail you entered already exist!');
             }
         }
     }
@@ -153,11 +153,11 @@ const NewFriend = () => {
         <div className={'container center'}>
             <Header/>
             <main>
-                {renderNewFriend()}
+                {renderNewBirthday()}
             </main>
             <Footer/>
         </div>
     );
 }
 
-export default NewFriend;
+export default NewBirthday;

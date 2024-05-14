@@ -4,7 +4,7 @@ import Main from './pages/Main';
 import Birthdays from './pages/Birthdays';
 import BirthdayInfo from './pages/BirthdayInfo';
 import BirthdayInfoEdit from './pages/BirthdayInfoEdit';
-import NewFriend from './pages/NewFriend';
+import NewBirthday from './pages/NewBirthday';
 import Profile from './pages/Profile';
 import EditProfile from './pages/EditProfile';
 import PageNotFound from './pages/PageNotFound';
@@ -17,9 +17,9 @@ const App = () => {
             <Routes>
                 <Route path={`/`} element={<Main/>}/>
                 <Route path={`/birthdays`} element={<Birthdays/>}/>
-                <Route path={`/birthdays/friend`} element={<BirthdayInfo/>}/>
-                <Route path={`/birthdays/friend/edit`} element={<BirthdayInfoEdit/>}/>
-                <Route path={`/new-friend`} element={<NewFriend/>}/>
+                <Route path={`/birthdays/birthday`} element={<BirthdayInfo/>}/>
+                <Route path={`/birthdays/birthday/edit`} element={<BirthdayInfoEdit/>}/>
+                <Route path={`/new-birthday`} element={<NewBirthday/>}/>
                 <Route path={`/profile`} element={<Profile/>}/>
                 <Route path={`/profile/edit`} element={<EditProfile/>}/>
                 <Route path="*" element={<PageNotFound/>}/>

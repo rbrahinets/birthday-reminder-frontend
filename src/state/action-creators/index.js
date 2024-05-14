@@ -45,11 +45,11 @@ export const setIsAuthenticated = (isAuthenticated) => {
     };
 };
 
-export const setFriends = (friends) => {
+export const setBirthdays = (birthdays) => {
     return (dispatch) => {
         dispatch({
-            type: ActionType.SET_FRIENDS,
-            payload: friends,
+            type: ActionType.SET_BIRTHDAYS,
+            payload: birthdays,
         });
     };
 };
@@ -72,11 +72,11 @@ export const setCurrentUser = (currentUser) => {
     };
 };
 
-export const setFriend = (friend) => {
+export const setBirthday = (birthday) => {
     return (dispatch) => {
         dispatch({
-            type: ActionType.SET_FRIEND,
-            payload: friend,
+            type: ActionType.SET_BIRTHDAY,
+            payload: birthday,
         });
     };
 };

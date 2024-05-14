@@ -1,17 +1,17 @@
 import {ActionType} from '../action-types';
 
 const initialState = {
-    friends: [],
+    currentUser: {},
 };
 
 const reducer = (
     state = initialState,
     action
 ) => {
-    if (action.type === ActionType.SET_FRIENDS) {
+    if (action.type === ActionType.SET_BIRTHDAY) {
         return {
             ...state,
-            friends: action.payload
+            birthday: action.payload
         };
     } else {
         return state;

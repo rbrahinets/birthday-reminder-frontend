@@ -4,10 +4,10 @@ import isVisibleSignUpModalReducer from './isVisibleSignUpModalReducer';
 import isVisibleWaitModalReducer from './isVisibleWaitModalReducer';
 import errorMessagesReducer from './errorMessagesReducer'
 import isAuthenticatedReducer from './isAuthenticatedReducer'
-import friendsReducer from './friendsReducer'
+import birthdaysReducer from './birthdaysReducer'
 import loadingReducer from './loadingReducer';
 import currentUserReducer from './currentUserReducer';
-import friendReducer from './friendReducer';
+import birthdayReducer from './birthdayReducer';
 import profileImageReducer from './profileImageReducer';
 import previewProfileImageReducer from './previewProfileImageReducer';
 import birthdayImageReducer from './birthdayImageReducer';
@@ -19,10 +19,10 @@ const reducers = combineReducers({
     isVisibleWaitModal: isVisibleWaitModalReducer,
     errorMessages: errorMessagesReducer,
     isAuthenticated: isAuthenticatedReducer,
-    friends: friendsReducer,
+    birthdays: birthdaysReducer,
     loading: loadingReducer,
     currentUser: currentUserReducer,
-    friend: friendReducer,
+    birthday: birthdayReducer,
     profileImage: profileImageReducer,
     previewProfileImage: previewProfileImageReducer,
     birthdayImage: birthdayImageReducer,

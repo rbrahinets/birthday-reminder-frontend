@@ -8,7 +8,7 @@ import Input from '../components/Input';
 import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
-import friendService from '../services/FriendService';
+import birthdayService from '../services/BirthdayService';
 import '../components/Input.css';
 
 const BirthdayInfoEdit = () => {
@@ -16,25 +16,25 @@ const BirthdayInfoEdit = () => {
     const navigate = useNavigate();
     const {search} = useLocation();
     const queryParams = new URLSearchParams(search);
-    const friendId = queryParams.get('friendId');
+    const birthdayId = queryParams.get('birthdayId');
 
-    const {friend} = useSelector((state) => state.friend);
+    const {birthday} = useSelector((state) => state.birthday);
     const {errorMessages} = useSelector((state) => state.errorMessages);
 
     const {
-        setFriend,
+        setBirthday,
         setErrorMessages,
     } = bindActionCreators(
         actionCreators,
         dispatch
     );
 
-    const setInfoAboutFriend = async () => {
+    const setInfoAboutBirthday = async () => {
         try {
-            const response = await friendService.findById(friendId);
-            setFriend(response.data);
+            const response = await birthdayService.findById(birthdayId);
+            setBirthday(response.data);
         } catch (error) {
-            console.error('Error fetching friend data:', error);
+            console.error('Error fetching birthday data:', error);
         }
     }
 
@@ -44,14 +44,14 @@ const BirthdayInfoEdit = () => {
         );
 
     const renderBirthdayInfoEdit = () => {
-        if (!friend) {
+        if (!birthday) {
             return;
         }
 
         return (
             <>
                 <WaitModal
-                    show={!friend}
+                    show={!birthday}
                 />
                 <h1>Edit Birthday Info</h1>
                 <form className={'form'}>
@@ -61,7 +61,7 @@ const BirthdayInfoEdit = () => {
                         id={'firstName'}
                         placeholder={'First Name'}
                         error={renderErrorMessage('firstName')}
-                        defaultValue={friend.firstName}
+                        defaultValue={birthday.firstName}
                     />
                     <Input
                         type={'text'}
@@ -69,7 +69,7 @@ const BirthdayInfoEdit = () => {
                         id={'lastName'}
                         placeholder={'Last Name'}
                         error={renderErrorMessage('lastName')}
-                        defaultValue={friend.lastName}
+                        defaultValue={birthday.lastName}
                     />
                     <Input
                         type={'text'}
@@ -77,7 +77,7 @@ const BirthdayInfoEdit = () => {
                         id={'email'}
                         placeholder={'Email'}
                         error={renderErrorMessage('email')}
-                        defaultValue={friend.email}
+                        defaultValue={birthday.email}
                     />
                     <Input
                         type={'date'}
@@ -153,8 +153,8 @@ const BirthdayInfoEdit = () => {
             try {
                 const emailOfUser = localStorage.getItem('currentUserEmail');
 
-                await friendService.update(
-                    friendId,
+                await birthdayService.update(
+                    birthdayId,
                     {
                         firstName: firstName.value,
                         lastName: lastName.value,
@@ -164,7 +164,7 @@ const BirthdayInfoEdit = () => {
                     }
                 );
 
-                navigate(`/birthdays/friend?friendId=${friendId}`);
+                navigate(`/birthdays/birthday?birthdayId=${birthdayId}`);
             } catch (error) {
                 console.error('Updating Birthday Info Failed', error);
                 alert('Updating Birthday Info Failed.');
@@ -177,11 +177,11 @@ const BirthdayInfoEdit = () => {
     }
 
     const handleCancel = async () => {
-        navigate(`/birthdays/friend?friendId=${friendId}`);
+        navigate(`/birthdays/birthday?birthdayId=${birthdayId}`);
     }
 
     useEffect(() => {
-        setInfoAboutFriend().then();
+        setInfoAboutBirthday().then();
     }, []);
 
     return (

@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
 import Footer from '../components/Footer';
-import friendService from '../services/FriendService';
+import birthdayService from '../services/BirthdayService';
 import '../components/Input.css';
 
 const BirthdayInfo = () => {
@@ -17,16 +17,16 @@ const BirthdayInfo = () => {
     const {search} = useLocation();
 
     const queryParams = new URLSearchParams(search);
-    const friendId = queryParams.get('friendId');
+    const birthdayId = queryParams.get('birthdayId');
 
     const {loading} = useSelector((state) => state.loading);
-    const {friend} = useSelector((state) => state.friend);
+    const {birthday} = useSelector((state) => state.birthday);
     const {birthdayImage} = useSelector((state) => state.birthdayImage);
     const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
 
     const {
         setLoading,
-        setFriend,
+        setBirthday,
         setBirthdayImage,
         setPreviewBirthdayImage,
     } = bindActionCreators(
@@ -34,10 +34,10 @@ const BirthdayInfo = () => {
         dispatch
     );
 
-    const fetchFriendData = async () => {
+    const fetchBirthdayData = async () => {
         try {
-            const response = await friendService.findById(friendId);
-            setFriend(response.data);
+            const response = await birthdayService.findById(birthdayId);
+            setBirthday(response.data);
 
             if (
                 response.data.imageUrl &&
@@ -48,16 +48,16 @@ const BirthdayInfo = () => {
                 setBirthdayImage(process.env.PUBLIC_URL + '/homer-simpson.png');
             }
         } catch (error) {
-            console.error('Error fetching friend data:', error);
+            console.error('Error fetching birthday data:', error);
         }
     }
 
     const getBirthdayInfo = () => {
-        if (!friend) {
+        if (!birthday) {
             return;
         }
 
-        const originalDate = new Date(friend.dateOfBirth);
+        const originalDate = new Date(birthday.dateOfBirth);
         const day = originalDate.getUTCDate().toString().padStart(2, '0');
         const month = (originalDate.getUTCMonth() + 1).toString().padStart(2, '0');
         const year = originalDate.getUTCFullYear();
@@ -67,18 +67,18 @@ const BirthdayInfo = () => {
             <div className={'birthday-info'}>
                 <FirebaseImage
                     defaultImageUrl={`${process.env.PUBLIC_URL}/homer-simpson.png`}
-                    object={friend}
+                    object={birthday}
                     state={{
                         firebaseImage: birthdayImage,
                         previewFirebaseImage: previewBirthdayImage,
                         setFirebaseImage: setBirthdayImage,
                         setPreviewFirebaseImage: setPreviewBirthdayImage,
                     }}
-                    service={friendService}
-                    resetObject={fetchFriendData}
+                    service={birthdayService}
+                    resetObject={fetchBirthdayData}
                 />
-                <div>{friend.firstName} {friend.lastName}</div>
-                <div>{friend.email}</div>
+                <div>{birthday.firstName} {birthday.lastName}</div>
+                <div>{birthday.email}</div>
                 <div>{formattedDate}</div>
             </div>
         );
@@ -104,7 +104,7 @@ const BirthdayInfo = () => {
     }
 
     const handleEdit = () => {
-        navigate(`/birthdays/friend/edit?friendId=${friendId}`);
+        navigate(`/birthdays/birthday/edit?birthdayId=${birthdayId}`);
     }
 
     const handleDelete = () => {
@@ -112,13 +112,13 @@ const BirthdayInfo = () => {
     }
 
     const deleteBirthday = async () => {
-        await deleteOldImage(friend.imageUrl);
-        await friendService.delete(friendId);
+        await deleteOldImage(birthday.imageUrl);
+        await birthdayService.delete(birthdayId);
     }
 
     useEffect(() => {
         setLoading(true);
-        fetchFriendData().then(() => setLoading(false));
+        fetchBirthdayData().then(() => setLoading(false));
     }, []);
 
     return (

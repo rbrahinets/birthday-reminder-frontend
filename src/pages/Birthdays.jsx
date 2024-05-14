@@ -7,37 +7,37 @@ import Header from '../components/Header';
 import Photo from '../components/Photo';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
-import friendService from '../services/FriendService';
+import birthdayService from '../services/BirthdayService';
 import './Birthdays.css';
 
 const Birthdays = () => {
     const dispatch = useDispatch();
 
     const {loading} = useSelector((state) => state.loading);
-    const {friends} = useSelector((state) => state.friends);
+    const {birthdays} = useSelector((state) => state.birthdays);
 
     const {
-        setFriends,
+        setBirthdays,
         setLoading,
     } = bindActionCreators(
         actionCreators,
         dispatch
     );
 
-    const getFriends = () => {
+    const getBirthdays = () => {
         return (
             <>
-                {friends.map((friend) => (
-                        <div key={friend._id}>
+                {birthdays.map((birthday) => (
+                        <div key={birthday._id}>
                             <Link
-                                to={`/birthdays/friend?friendId=${friend._id}`}
+                                to={`/birthdays/birthday?birthdayId=${birthday._id}`}
                                 className={'birthday-link'}
                             >
                                 <Photo
-                                    src={getSourceOfPhoto(friend.imageUrl)}
+                                    src={getSourceOfPhoto(birthday.imageUrl)}
                                     alt={'birthday'}
                                 />
-                                {friend.firstName} {friend.lastName}
+                                {birthday.firstName} {birthday.lastName}
                             </Link>
                         </div>
                     )
@@ -59,9 +59,9 @@ const Birthdays = () => {
             <>
                 <h1>Birthdays</h1>
                 <div className={'birthdays-list'}>
-                    {getFriends()}
+                    {getBirthdays()}
                     <Link
-                        to={`/new-friend`}
+                        to={`/new-birthday`}
                         className={'add-new-birthday'}
                     >
                         <Photo
@@ -74,18 +74,18 @@ const Birthdays = () => {
         );
     }
 
-    const fetchFriendsData = async (email) => {
+    const fetchBirthdaysData = async (email) => {
         try {
-            const response = await friendService.getFriendsForUserByEmail(email);
-            setFriends(response.data);
+            const response = await birthdayService.getBirthdaysForUserByEmail(email);
+            setBirthdays(response.data);
         } catch (error) {
-            console.error('Error fetching friends data:', error);
+            console.error('Error fetching birthdays data:', error);
         }
     }
 
     useEffect(() => {
         setLoading(true);
-        fetchFriendsData(localStorage.getItem('currentUserEmail')).then(() => setLoading(false));
+        fetchBirthdaysData(localStorage.getItem('currentUserEmail')).then(() => setLoading(false));
     }, []);
 
     return (
