@@ -78,7 +78,7 @@ const SignUpModal = ({
     }
 
     const isValidEmail = (email) => {
-        return email.includes('@') && email.endsWith('.com');
+        return email.includes('@') && !email.endsWith('@');
     }
 
     const handleSignUp = async (event) => {

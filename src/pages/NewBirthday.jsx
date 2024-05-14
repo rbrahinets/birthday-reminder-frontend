@@ -142,7 +142,7 @@ const NewBirthday = () => {
     }
 
     const isValidEmail = (email) => {
-        return email.includes('@') && email.endsWith('.com');
+        return email.includes('@') && !email.endsWith('@');
     }
 
     const handleCancel = async () => {
