@@ -33,11 +33,17 @@ const Birthdays = () => {
                                 to={`/birthdays/birthday?birthdayId=${birthday._id}`}
                                 className={'birthday-link'}
                             >
-                                <Photo
-                                    src={getSourceOfPhoto(birthday.imageUrl)}
-                                    alt={'birthday'}
-                                />
-                                {birthday.firstName} {birthday.lastName}
+                                <div className={'birthday-container'}>
+                                    <Photo
+                                        src={getSourceOfPhoto(birthday.imageUrl)}
+                                        alt={'birthday'}
+                                    />
+                                    <div className={'title-container'}>
+                                        {birthday.firstName}
+                                        <br/>
+                                        {birthday.lastName}
+                                    </div>
+                                </div>
                             </Link>
                         </div>
                     )

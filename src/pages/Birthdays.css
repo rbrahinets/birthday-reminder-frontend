@@ -2,12 +2,28 @@ img {
     width: 200px;
 }
 
+.birthday-container {
+    position: relative;
+    display: inline-block;
+}
+
+.birthday-link {
+    position: relative;
+    display: inline-block;
+    flex-direction: column;
+}
+
 .birthdays-list {
     display: flex;
     flex-direction: row;
 }
 
-.birthday-link {
-    display: flex;
-    flex-direction: column;
+.title-container {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: #ffffff;
+    text-align: center;
+    padding: 7px;
+    border: 1px solid #000000;
 }
