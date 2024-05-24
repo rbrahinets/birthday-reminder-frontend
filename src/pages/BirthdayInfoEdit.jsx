@@ -1,14 +1,15 @@
 import React, {useEffect} from 'react';
+import {TfiSave} from 'react-icons/tfi';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
+import '../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayInfoEdit = () => {
@@ -86,10 +87,15 @@ const BirthdayInfoEdit = () => {
                         error={renderErrorMessage('dateOfBirth')}
                     />
                 </form>
-                <Button
-                    text={'Update'}
-                    onClick={handleUpdate}
-                />
+                <div
+                    className={'button-container'}
+                    onClick={handleSave}
+                >
+                    <span className={'title'}>Save</span>
+                    <TfiSave
+                        size={20}
+                    />
+                </div>
                 <br/>
                 <Button
                     text={'Cancel'}
@@ -106,7 +112,7 @@ const BirthdayInfoEdit = () => {
         dateOfBirth: 'Invalid Date Of Birth',
     }
 
-    const handleUpdate = async (event) => {
+    const handleSave = async (event) => {
         event.preventDefault();
 
         let {firstName, lastName, email, dateOfBirth} =
