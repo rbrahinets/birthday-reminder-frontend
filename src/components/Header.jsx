@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
-import {CgProfile} from 'react-icons/cg';
 import './Header.css';
 
 const Header = () => {
@@ -32,7 +31,11 @@ const Header = () => {
                 className={'link icon-container'}
             >
                 <span>My profile</span>
-                <CgProfile className={'profile-icon'}/>
+                <img
+                    src={process.env.PUBLIC_URL + '/profile-icon.png'}
+                    alt={'profile-icon'}
+                    className={'profile-icon'}
+                />
             </div>
         </>
     );
