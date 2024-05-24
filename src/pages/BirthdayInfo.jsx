@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {FaRegEdit} from 'react-icons/fa';
+import {TiUserDelete} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
-import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
 import Footer from '../components/Footer';
@@ -100,10 +100,13 @@ const BirthdayInfo = () => {
                     <FaRegEdit size={25}/>
                 </div>
                 <br/>
-                <Button
-                    text={'Delete'}
+                <div
+                    className={'button-container'}
                     onClick={handleDelete}
-                />
+                >
+                    <span className={'title'}>Delete</span>
+                    <TiUserDelete size={35}/>
+                </div>
             </>
         );
     }
