@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
 import {FaRegEdit} from 'react-icons/fa';
+import {VscSignOut} from 'react-icons/vsc';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
-import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import FirebaseImage from '../components/FirebaseImage';
 import Footer from '../components/Footer';
@@ -90,10 +90,16 @@ const Profile = () => {
                     />
                 </div>
                 <hr/>
-                <Button
-                    text={'Sign Out'}
+                <div
+                    className={'button-container'}
                     onClick={handleSignOut}
-                />
+                >
+                    <span className={'title'}>Sign Out</span>
+                    <VscSignOut
+                        className={'profile-button'}
+                        size={50}
+                    />
+                </div>
             </>
         );
     }
