@@ -79,7 +79,6 @@ const Profile = () => {
             <>
                 <h1>Profile</h1>
                 {getProfileInfo()}
-                <br/>
                 <div
                     className={'button-container'}
                     onClick={handleEdit}
