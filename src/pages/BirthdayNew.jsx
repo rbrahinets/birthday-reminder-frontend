@@ -1,13 +1,14 @@
 import React from 'react';
+import {TiUserAdd} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import Button from '../components/Button';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
+import '../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayNew = () => {
@@ -59,10 +60,15 @@ const BirthdayNew = () => {
                         error={renderErrorMessage('dateOfBirth')}
                     />
                 </form>
-                <Button
-                    text={'Add'}
+                <div
+                    className={'button-container'}
                     onClick={handleAdd}
-                />
+                >
+                    <span className={'title'}>Add</span>
+                    <TiUserAdd
+                        size={35}
+                    />
+                </div>
                 <br/>
                 <Button
                     text={'Cancel'}
