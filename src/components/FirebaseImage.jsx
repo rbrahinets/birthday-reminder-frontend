@@ -1,4 +1,5 @@
 import React, {useRef, useState} from 'react';
+import {MdDelete} from 'react-icons/md';
 import {useDispatch} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {deleteObject, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
@@ -23,25 +24,28 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
     const getImage = () => {
         return (
             <>
-                <Photo
-                    src={state.previewFirebaseImage || state.firebaseImage}
-                    alt={'image'}
-                    onClick={handleImageClick}
-                />
+                <div className={'photo-container'}>
+                    <Photo
+                        src={state.previewFirebaseImage || state.firebaseImage}
+                        alt={'image'}
+                        onClick={handleImageClick}
+                    />
+                    {state.firebaseImage && !state.previewFirebaseImage && !state.firebaseImage.includes(defaultImageUrl) && (
+                        <MdDelete
+                            className={'button-delete'}
+                            size={20}
+                            onClick={handleDeleteImage}
+                        />
+                    )}
+                </div>
                 <input
                     type={'file'}
                     ref={fileInputRef}
                     accept={'image/*'}
-                    style={{display: 'none'}}
+                    className={'invisible'}
                     onChange={handleFileChange}
                 />
                 <br/>
-                {state.firebaseImage && !state.previewFirebaseImage && !state.firebaseImage.includes(defaultImageUrl) && (
-                    <Button
-                        text={'Delete Image'}
-                        onClick={handleDeleteImage}
-                    />
-                )}
                 {state.previewFirebaseImage && (
                     <Button
                         text={'Save'}
