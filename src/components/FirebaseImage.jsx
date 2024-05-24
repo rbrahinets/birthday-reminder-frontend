@@ -1,14 +1,15 @@
 import React, {useRef, useState} from 'react';
 import {MdDelete} from 'react-icons/md';
+import {TfiSave} from 'react-icons/tfi';
 import {useDispatch} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {deleteObject, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid';
 import Photo from './Photo';
-import Button from './Button';
 import {actionCreators} from '../state';
 import {firebaseStorage} from '../configs/firebase';
 import './FirebaseImage.css';
+import './Button.css';
 
 const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) => {
     const dispatch = useDispatch();
@@ -46,12 +47,16 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
                     className={'invisible'}
                     onChange={handleFileChange}
                 />
-                <br/>
                 {state.previewFirebaseImage && (
-                    <Button
-                        text={'Save'}
+                    <div
+                        className={'button-container'}
                         onClick={handleSave}
-                    />
+                    >
+                        <span className={'title'}>Save</span>
+                        <TfiSave
+                            size={20}
+                        />
+                    </div>
                 )}
             </>
         );
