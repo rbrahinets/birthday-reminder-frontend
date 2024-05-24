@@ -173,7 +173,7 @@ const SignUpModal = ({
                     text={'Sign up'}
                     onClick={handleSignUp}
                 />
-                <hr/>
+                <hr className={'separator'}/>
                 <div
                     onClick={handleSignIn}
                     className={'modal-link'}

@@ -4,15 +4,6 @@ form {
     align-items: center;
 }
 
-hr {
-    border-color: #0d20c9;
-    margin-top: 13%;
-}
-
-.center {
-    text-align: center;
-}
-
 .close {
     width: 0;
     margin-left: auto;
@@ -57,4 +48,9 @@ hr {
     align-items: center;
     justify-content: center;
     background-color: #ffffff;
+}
+
+.separator {
+    border-color: #0d20c9;
+    margin-top: 13%;
 }
