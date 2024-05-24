@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {FaRegEdit} from 'react-icons/fa';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -78,10 +79,16 @@ const Profile = () => {
                 <h1>Profile</h1>
                 {getProfileInfo()}
                 <br/>
-                <Button
-                    text={'Edit'}
+                <div
+                    className={'button-container'}
                     onClick={handleEdit}
-                />
+                >
+                    <span className={'title'}>Edit</span>
+                    <FaRegEdit
+                        className={'profile-button'}
+                        size={25}
+                    />
+                </div>
                 <hr/>
                 <Button
                     text={'Sign Out'}
