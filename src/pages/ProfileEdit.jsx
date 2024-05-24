@@ -72,11 +72,12 @@ const ProfileEdit = () => {
                         size={20}
                     />
                 </div>
-                <br/>
-                <Button
-                    text={'Cancel'}
+                <div
+                    className={'button-container'}
                     onClick={handleCancel}
-                />
+                >
+                    Cancel
+                </div>
             </>
         );
     }
