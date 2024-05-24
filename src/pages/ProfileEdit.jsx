@@ -1,11 +1,11 @@
 import React, {useEffect} from 'react';
+import {TfiSave} from 'react-icons/tfi';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Input from '../components/Input';
-import Button from '../components/Button';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import '../components/Input.css';
@@ -63,10 +63,15 @@ const ProfileEdit = () => {
                         defaultValue={currentUser.lastName}
                     />
                 </form>
-                <Button
-                    text={'Update'}
-                    onClick={handleUpdate}
-                />
+                <div
+                    className={'button-container'}
+                    onClick={handleSave}
+                >
+                    <span className={'title'}>Save</span>
+                    <TfiSave
+                        size={20}
+                    />
+                </div>
                 <br/>
                 <Button
                     text={'Cancel'}
@@ -81,7 +86,7 @@ const ProfileEdit = () => {
         lastName: 'Invalid Last Name',
     }
 
-    const handleUpdate = async (event) => {
+    const handleSave = async (event) => {
         event.preventDefault();
 
         let {firstName, lastName} =
