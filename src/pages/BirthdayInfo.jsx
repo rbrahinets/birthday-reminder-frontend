@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {FaRegEdit} from 'react-icons/fa';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
@@ -9,6 +10,7 @@ import WaitModal from '../components/WaitModal';
 import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
+import './../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayInfo = () => {
@@ -90,10 +92,13 @@ const BirthdayInfo = () => {
                 <h1>Birthday Info</h1>
                 {getBirthdayInfo()}
                 <br/>
-                <Button
-                    text={'Edit'}
+                <div
+                    className={'button-container'}
                     onClick={handleEdit}
-                />
+                >
+                    <span className={'title'}>Edit</span>
+                    <FaRegEdit size={25}/>
+                </div>
                 <br/>
                 <Button
                     text={'Delete'}
