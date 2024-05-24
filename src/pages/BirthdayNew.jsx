@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
@@ -7,44 +7,29 @@ import Header from '../components/Header';
 import Input from '../components/Input';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import userService from '../services/UserService';
+import birthdayService from '../services/BirthdayService';
 import '../components/Input.css';
 
-const EditProfile = () => {
+const BirthdayNew = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const {currentUser} = useSelector((state) => state.currentUser);
     const {errorMessages} = useSelector((state) => state.errorMessages);
 
-    const {
-        setCurrentUser,
-        setErrorMessages
-    } = bindActionCreators(
+    const {setErrorMessages} = bindActionCreators(
         actionCreators,
         dispatch
     );
-
-    const setInfoAboutCurrentUser = async () => {
-        try {
-            const response = await userService.findByEmail(
-                localStorage.getItem('currentUserEmail')
-            );
-            setCurrentUser(response.data);
-        } catch (error) {
-            console.error('Error fetching current user data:', error);
-        }
-    }
 
     const renderErrorMessage = (name) =>
         name === errorMessages.name && (
             <div className={'error'}>{errorMessages.message}</div>
         );
 
-    const renderEditProfile = () => {
+    const renderNewBirthday = () => {
         return (
             <>
-                <h1>Edit Profile</h1>
+                <h1>New Birthday</h1>
                 <form className={'form'}>
                     <Input
                         type={'text'}
@@ -52,7 +37,6 @@ const EditProfile = () => {
                         id={'firstName'}
                         placeholder={'First Name'}
                         error={renderErrorMessage('firstName')}
-                        defaultValue={currentUser.firstName}
                     />
                     <Input
                         type={'text'}
@@ -60,12 +44,24 @@ const EditProfile = () => {
                         id={'lastName'}
                         placeholder={'Last Name'}
                         error={renderErrorMessage('lastName')}
-                        defaultValue={currentUser.lastName}
+                    />
+                    <Input
+                        type={'text'}
+                        name={'email'}
+                        id={'email'}
+                        placeholder={'Email'}
+                        error={renderErrorMessage('email')}
+                    />
+                    <Input
+                        type={'date'}
+                        name={'dateOfBirth'}
+                        id={'dateOfBirth'}
+                        error={renderErrorMessage('dateOfBirth')}
                     />
                 </form>
                 <Button
-                    text={'Update'}
-                    onClick={handleUpdate}
+                    text={'Add'}
+                    onClick={handleAdd}
                 />
                 <br/>
                 <Button
@@ -79,12 +75,14 @@ const EditProfile = () => {
     const errors = {
         firstName: 'Invalid First Name',
         lastName: 'Invalid Last Name',
+        email: 'Invalid Email',
+        dateOfBirth: 'Invalid Date Of Birth',
     }
 
-    const handleUpdate = async (event) => {
+    const handleAdd = async (event) => {
         event.preventDefault();
 
-        let {firstName, lastName} =
+        let {firstName, lastName, email, dateOfBirth} =
             document.forms[0];
         let isValidInputtedData = false;
 
@@ -104,43 +102,62 @@ const EditProfile = () => {
                 name: 'lastName',
                 message: errors.lastName,
             });
+        } else if (
+            !email.value ||
+            !email.value.trim().length ||
+            !isValidEmail(email.value)
+        ) {
+            setErrorMessages({
+                name: 'email',
+                message: errors.email,
+            });
+        } else if (
+            !dateOfBirth.value
+        ) {
+            setErrorMessages({
+                name: 'dateOfBirth',
+                message: errors.dateOfBirth,
+            });
         } else {
             isValidInputtedData = true;
         }
 
         if (isValidInputtedData) {
             try {
-                await userService.update(
-                    currentUser._id,
-                    {
-                        firstName: firstName.value,
-                        lastName: lastName.value,
-                    }
-                );
-                navigate(`/profile`);
+                const emailOfUser = localStorage.getItem('currentUserEmail');
+
+                await birthdayService.save({
+                    firstName: firstName.value,
+                    lastName: lastName.value,
+                    email: email.value,
+                    dateOfBirth: dateOfBirth.value,
+                    emailOfUser: emailOfUser,
+                });
+                navigate(`/birthdays`);
             } catch (error) {
-                console.error('Updating Profile Failed', error);
+                console.error('Adding New Birthday Failed', error);
+                alert('Adding New Birthday Failed. The e-mail you entered already exist!');
             }
         }
     }
 
-    const handleCancel = async () => {
-        navigate(`/profile`);
+    const isValidEmail = (email) => {
+        return email.includes('@') && !email.endsWith('@');
     }
 
-    useEffect(() => {
-        setInfoAboutCurrentUser().then();
-    }, []);
+    const handleCancel = async () => {
+        navigate(`/birthdays`);
+    }
 
     return (
         <div className={'container center'}>
             <Header/>
             <main>
-                {renderEditProfile()}
+                {renderNewBirthday()}
             </main>
             <Footer/>
         </div>
     );
 }
 
-export default EditProfile;
+export default BirthdayNew;
