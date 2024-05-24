@@ -8,6 +8,7 @@ import Photo from './Photo';
 import Button from './Button';
 import {actionCreators} from '../state';
 import {firebaseStorage} from '../configs/firebase';
+import './FirebaseImage.css';
 
 const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) => {
     const dispatch = useDispatch();
