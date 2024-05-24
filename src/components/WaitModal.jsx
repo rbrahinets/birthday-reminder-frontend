@@ -7,6 +7,7 @@ const WaitModal = ({show}) => {
         <Modal
             show={show}
             dialogClassName={'modal-wait'}
+            className={'center'}
         >
             <img
                 className={'loading'}
