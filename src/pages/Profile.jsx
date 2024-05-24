@@ -11,6 +11,7 @@ import FirebaseImage from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './Profile.css';
+import './../components/Button.css';
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -85,7 +86,6 @@ const Profile = () => {
                 >
                     <span className={'title'}>Edit</span>
                     <FaRegEdit
-                        className={'profile-button'}
                         size={25}
                     />
                 </div>
@@ -96,7 +96,6 @@ const Profile = () => {
                 >
                     <span className={'title'}>Sign Out</span>
                     <VscSignOut
-                        className={'profile-button'}
                         size={50}
                     />
                 </div>
