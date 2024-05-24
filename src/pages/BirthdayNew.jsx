@@ -69,11 +69,12 @@ const BirthdayNew = () => {
                         size={35}
                     />
                 </div>
-                <br/>
-                <Button
-                    text={'Cancel'}
+                <div
+                    className={'button-container'}
                     onClick={handleCancel}
-                />
+                >
+                    Cancel
+                </div>
             </>
         );
     }
