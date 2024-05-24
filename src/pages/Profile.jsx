@@ -92,7 +92,7 @@ const Profile = () => {
     }
 
     const handleEdit = () => {
-        navigate(`/profile/edit`)
+        navigate(`/profile/edit`);
     }
 
     const handleSignOut = () => {
