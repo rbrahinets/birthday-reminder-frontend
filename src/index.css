@@ -12,6 +12,23 @@ code {
     monospace;
 }
 
+main {
+    flex: 1;
+    padding: 20px;
+}
+
+main::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('./../public/background.jpg');
+    opacity: 0.5;
+    z-index: -1;
+}
+
 .container {
     display: flex;
     flex-direction: column;
