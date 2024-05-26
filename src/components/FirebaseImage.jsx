@@ -5,11 +5,11 @@ import {useDispatch} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {deleteObject, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid';
+import Button from './Button';
 import Photo from './Photo';
 import {actionCreators} from '../state';
 import {firebaseStorage} from '../configs/firebase';
 import './FirebaseImage.css';
-import './Button.css';
 
 const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) => {
     const dispatch = useDispatch();
@@ -47,16 +47,14 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
                     className={'invisible'}
                     onChange={handleFileChange}
                 />
+                <br/>
                 {state.previewFirebaseImage && (
-                    <div
-                        className={'button-container'}
+                    <Button
+                        text={'Save'}
                         onClick={handleSave}
-                    >
-                        <span className={'title'}>Save</span>
-                        <TfiSave
-                            size={20}
-                        />
-                    </div>
+                        IconTag={TfiSave}
+                        sizeIcon={20}
+                    />
                 )}
             </>
         );

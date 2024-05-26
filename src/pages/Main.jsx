@@ -14,6 +14,13 @@ const Main = () => {
                     alt={'main-image'}
                     className={'main-image'}
                 />
+                <br/>
+                <iframe
+                    src={'https://www.youtube.com/embed/6zyA8pT5InY'}
+                    allow={'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
+                    allowFullScreen
+                    title={'Manual'}>
+                </iframe>
                 <Authentication/>
             </main>
             <Footer/>

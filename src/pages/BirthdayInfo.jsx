@@ -7,11 +7,11 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import WaitModal from '../components/WaitModal';
+import Button from '../components/Button';
 import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
 import './BirthdayInfo.css';
-import './../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayInfo = () => {
@@ -92,20 +92,19 @@ const BirthdayInfo = () => {
             <>
                 <h1>Birthday Info</h1>
                 {getBirthdayInfo()}
-                <div
-                    className={'button-container'}
+                <Button
+                    text={'Edit'}
                     onClick={handleEdit}
-                >
-                    <span className={'title'}>Edit</span>
-                    <FaRegEdit size={25}/>
-                </div>
-                <div
-                    className={'button-container'}
+                    IconTag={FaRegEdit}
+                    sizeIcon={25}
+                />
+                <br/>
+                <Button
+                    text={'Delete'}
                     onClick={handleDelete}
-                >
-                    <span className={'title'}>Delete</span>
-                    <TiUserDelete size={35}/>
-                </div>
+                    IconTag={TiUserDelete}
+                    sizeIcon={35}
+                />
             </>
         );
     }

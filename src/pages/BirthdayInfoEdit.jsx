@@ -5,11 +5,11 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import Button from '../components/Button';
 import Input from '../components/Input';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
-import '../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayInfoEdit = () => {
@@ -87,21 +87,17 @@ const BirthdayInfoEdit = () => {
                         error={renderErrorMessage('dateOfBirth')}
                     />
                 </form>
-                <div
-                    className={'button-container'}
+                <Button
+                    text={'Save'}
                     onClick={handleSave}
-                >
-                    <span className={'title'}>Save</span>
-                    <TfiSave
-                        size={20}
-                    />
-                </div>
-                <div
-                    className={'button-container'}
+                    IconTag={TfiSave}
+                    sizeIcon={20}
+                />
+                <br/>
+                <Button
+                    text={'Cancel'}
                     onClick={handleCancel}
-                >
-                    Cancel
-                </div>
+                />
             </>
         );
     }

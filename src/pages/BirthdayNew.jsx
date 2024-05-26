@@ -5,10 +5,10 @@ import {useNavigate} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import Button from '../components/Button';
 import Input from '../components/Input';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
-import '../components/Button.css';
 import '../components/Input.css';
 
 const BirthdayNew = () => {
@@ -60,21 +60,17 @@ const BirthdayNew = () => {
                         error={renderErrorMessage('dateOfBirth')}
                     />
                 </form>
-                <div
-                    className={'button-container'}
+                <Button
+                    text={'Add'}
                     onClick={handleAdd}
-                >
-                    <span className={'title'}>Add</span>
-                    <TiUserAdd
-                        size={35}
-                    />
-                </div>
-                <div
-                    className={'button-container'}
+                    IconTag={TiUserAdd}
+                    sizeIcon={35}
+                />
+                <br/>
+                <Button
+                    text={'Cancel'}
                     onClick={handleCancel}
-                >
-                    Cancel
-                </div>
+                />
             </>
         );
     }
