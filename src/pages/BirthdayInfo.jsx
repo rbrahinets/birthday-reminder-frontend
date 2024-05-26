@@ -11,7 +11,6 @@ import Button from '../components/Button';
 import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
-import './BirthdayInfo.css';
 import '../components/Input.css';
 
 const BirthdayInfo = () => {
@@ -67,7 +66,7 @@ const BirthdayInfo = () => {
         const formattedDate = `${day}/${month}/${year}`;
 
         return (
-            <div className={'birthday-info'}>
+            <div className={'info-container'}>
                 <FirebaseImage
                     defaultImageUrl={`${process.env.PUBLIC_URL}/homer-simpson.png`}
                     object={birthday}

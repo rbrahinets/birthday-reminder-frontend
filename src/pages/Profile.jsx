@@ -6,13 +6,12 @@ import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import FirebaseImage from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
-import './Profile.css';
 import './../components/Button.css';
-import Button from "../components/Button";
 
 const Profile = () => {
     const navigate = useNavigate();
@@ -56,7 +55,7 @@ const Profile = () => {
 
     const getProfileInfo = () => {
         return (
-            <div className={'profile-info'}>
+            <div className={'info-container'}>
                 <FirebaseImage
                     defaultImageUrl={`${process.env.PUBLIC_URL}/add.png`}
                     object={currentUser}

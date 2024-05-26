@@ -31,6 +31,16 @@ code {
     font-size: 12pt;
 }
 
+.info-container {
+    margin: 50px;
+}
+
 main button {
     width: 25%;
+}
+
+.info-container div {
+    margin: 10px;
+    font-size: 20pt;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
