@@ -1,13 +1,13 @@
 import React from 'react';
 import './Button.css';
 
-const Button = ({text, onClick, IconTag, sizeIcon}) => (
+const Button = ({text, onClick, IconTag}) => (
     <button
         onClick={onClick}
     >
         <span>{text}</span>
-        {IconTag && sizeIcon && <IconTag
-            size={sizeIcon}
+        {IconTag && <IconTag
+            size={20}
         />}
     </button>
 );

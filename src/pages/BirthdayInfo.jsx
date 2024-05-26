@@ -95,14 +95,12 @@ const BirthdayInfo = () => {
                     text={'Edit'}
                     onClick={handleEdit}
                     IconTag={FaRegEdit}
-                    sizeIcon={25}
                 />
                 <br/>
                 <Button
                     text={'Delete'}
                     onClick={handleDelete}
                     IconTag={TiUserDelete}
-                    sizeIcon={35}
                 />
             </>
         );

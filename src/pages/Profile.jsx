@@ -83,14 +83,12 @@ const Profile = () => {
                     text={'Edit'}
                     onClick={handleEdit}
                     IconTag={FaRegEdit}
-                    sizeIcon={25}
                 />
                 <hr/>
                 <Button
                     text={'Sign Out'}
                     onClick={handleSignOut}
                     IconTag={VscSignOut}
-                    sizeIcon={35}
                 />
             </>
         );

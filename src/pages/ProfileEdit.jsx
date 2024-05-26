@@ -68,7 +68,6 @@ const ProfileEdit = () => {
                     text={'Save'}
                     onClick={handleSave}
                     IconTag={TfiSave}
-                    sizeIcon={20}
                 />
                 <br/>
                 <Button

@@ -64,7 +64,6 @@ const BirthdayNew = () => {
                     text={'Add'}
                     onClick={handleAdd}
                     IconTag={TiUserAdd}
-                    sizeIcon={35}
                 />
                 <br/>
                 <Button
