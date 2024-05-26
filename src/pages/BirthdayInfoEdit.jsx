@@ -49,6 +49,19 @@ const BirthdayInfoEdit = () => {
             return;
         }
 
+        const currentDate = new Date();
+        const currentYear = currentDate.getUTCFullYear();
+        const currentMonth = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
+        const currentDay = currentDate.getUTCDate().toString().padStart(2, '0');
+        const formattedCurrentDate = `${currentYear}-${currentMonth}-${currentDay}`;
+
+        const dateOfBirth = birthday.dateOfBirth.split('T')[0];
+        const date = dateOfBirth.split('-');
+        const dateOfBirthYear = date[0];
+        const dateOfBirthMonth = date[1];
+        const dateOfBirthDay = date[2];
+        const formattedDateOfBirth = `${dateOfBirthYear}-${dateOfBirthMonth}-${dateOfBirthDay}`;
+
         return (
             <>
                 <WaitModal
@@ -85,6 +98,9 @@ const BirthdayInfoEdit = () => {
                         name={'dateOfBirth'}
                         id={'dateOfBirth'}
                         error={renderErrorMessage('dateOfBirth')}
+                        defaultValue={formattedDateOfBirth}
+                        min={'1900-01-01'}
+                        max={formattedCurrentDate}
                     />
                 </form>
                 <Button

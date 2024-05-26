@@ -28,6 +28,12 @@ const BirthdayNew = () => {
         );
 
     const renderNewBirthday = () => {
+        const currentDate = new Date();
+        const year = currentDate.getUTCFullYear();
+        const month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
+        const day = currentDate.getUTCDate().toString().padStart(2, '0');
+        const formattedDate = `${year}-${month}-${day}`;
+
         return (
             <>
                 <h1>New Birthday</h1>
@@ -58,6 +64,9 @@ const BirthdayNew = () => {
                         name={'dateOfBirth'}
                         id={'dateOfBirth'}
                         error={renderErrorMessage('dateOfBirth')}
+                        defaultValue={formattedDate}
+                        min={'1900-01-01'}
+                        max={formattedDate}
                     />
                 </form>
                 <Button
