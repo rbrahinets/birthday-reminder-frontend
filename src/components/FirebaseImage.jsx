@@ -1,4 +1,5 @@
-import React, {useRef, useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
+import {useLocation} from 'react-router-dom';
 import {MdDelete} from 'react-icons/md';
 import {TfiSave} from 'react-icons/tfi';
 import {useDispatch} from 'react-redux';
@@ -13,6 +14,7 @@ import './FirebaseImage.css';
 
 const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) => {
     const dispatch = useDispatch();
+    const location = useLocation();
     const fileInputRef = useRef(null);
     const [imageFile, setImageFile] = useState(null);
 
@@ -49,12 +51,19 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
                 />
                 <br/>
                 {state.previewFirebaseImage && (
-                    <Button
-                        text={'Save'}
-                        onClick={handleSave}
-                        IconTag={TfiSave}
-                        sizeIcon={20}
-                    />
+                    <>
+                        <Button
+                            text={'Save'}
+                            onClick={handleSave}
+                            IconTag={TfiSave}
+                            sizeIcon={20}
+                        />
+                        <br/>
+                        <Button
+                            text={'Cancel'}
+                            onClick={handleCancel}
+                        />
+                    </>
                 )}
             </>
         );
@@ -114,6 +123,14 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
         await service.update(updatedObject._id, updatedObject);
         await resetObject();
     }
+
+    const handleCancel = async () => {
+        state.setPreviewFirebaseImage(null);
+    }
+
+    useEffect(() => {
+        state.setPreviewFirebaseImage(null);
+    }, [location]);
 
     return (
         <>
