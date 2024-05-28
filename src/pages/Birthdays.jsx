@@ -63,7 +63,7 @@ const Birthdays = () => {
     const renderBirthdays = () => {
         return (
             <>
-                <h1>Birthdays</h1>
+                <h1>Дні народження</h1>
                 <div className={'birthdays-list'}>
                     {getBirthdays()}
                     <Link

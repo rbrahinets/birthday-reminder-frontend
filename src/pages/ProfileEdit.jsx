@@ -45,7 +45,7 @@ const ProfileEdit = () => {
     const renderEditProfile = () => {
         return (
             <>
-                <h1>Edit Profile</h1>
+                <h1>Радагування профілю</h1>
                 <form className={'form'}>
                     <Input
                         type={'text'}
@@ -65,13 +65,13 @@ const ProfileEdit = () => {
                     />
                 </form>
                 <Button
-                    text={'Save'}
+                    text={'ОК'}
                     onClick={handleSave}
                     IconTag={TfiSave}
                 />
                 <br/>
                 <Button
-                    text={'Cancel'}
+                    text={'Відмінити'}
                     onClick={handleCancel}
                 />
             </>
@@ -79,8 +79,8 @@ const ProfileEdit = () => {
     }
 
     const errors = {
-        firstName: 'Invalid First Name',
-        lastName: 'Invalid Last Name',
+        firstName: 'Неправильне ім\'я',
+        lastName: 'Неправильне прізвище',
     }
 
     const handleSave = async (event) => {

@@ -67,13 +67,13 @@ const BirthdayInfoEdit = () => {
                 <WaitModal
                     show={!birthday}
                 />
-                <h1>Edit Birthday Info</h1>
+                <h1>Змінити день народження</h1>
                 <form className={'form'}>
                     <Input
                         type={'text'}
                         name={'firstName'}
                         id={'firstName'}
-                        placeholder={'First Name'}
+                        placeholder={'Ім\'я'}
                         error={renderErrorMessage('firstName')}
                         defaultValue={birthday.firstName}
                     />
@@ -81,7 +81,7 @@ const BirthdayInfoEdit = () => {
                         type={'text'}
                         name={'lastName'}
                         id={'lastName'}
-                        placeholder={'Last Name'}
+                        placeholder={'Прізвище'}
                         error={renderErrorMessage('lastName')}
                         defaultValue={birthday.lastName}
                     />
@@ -89,7 +89,7 @@ const BirthdayInfoEdit = () => {
                         type={'text'}
                         name={'email'}
                         id={'email'}
-                        placeholder={'Email'}
+                        placeholder={'Електронна адреса'}
                         error={renderErrorMessage('email')}
                         defaultValue={birthday.email}
                     />
@@ -104,13 +104,13 @@ const BirthdayInfoEdit = () => {
                     />
                 </form>
                 <Button
-                    text={'Save'}
+                    text={'ОК'}
                     onClick={handleSave}
                     IconTag={TfiSave}
                 />
                 <br/>
                 <Button
-                    text={'Cancel'}
+                    text={'Відмінити'}
                     onClick={handleCancel}
                 />
             </>
@@ -118,10 +118,10 @@ const BirthdayInfoEdit = () => {
     }
 
     const errors = {
-        firstName: 'Invalid First Name',
-        lastName: 'Invalid Last Name',
-        email: 'Invalid Email',
-        dateOfBirth: 'Invalid Date Of Birth',
+        firstName: 'Неправильне ім\'я',
+        lastName: 'Неправильне прізвище',
+        email: 'Неправильна електронна адреса',
+        dateOfBirth: 'Неправильна дата народження',
     }
 
     const handleSave = async (event) => {

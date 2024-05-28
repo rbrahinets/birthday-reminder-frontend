@@ -89,16 +89,16 @@ const BirthdayInfo = () => {
     const renderBirthdayInfo = () => {
         return (
             <>
-                <h1>Birthday Info</h1>
+                <h1>День народження</h1>
                 {getBirthdayInfo()}
                 <Button
-                    text={'Edit'}
+                    text={'Змінити'}
                     onClick={handleEdit}
                     IconTag={FaRegEdit}
                 />
                 <br/>
                 <Button
-                    text={'Delete'}
+                    text={'Видалити'}
                     onClick={handleDelete}
                     IconTag={TiUserDelete}
                 />

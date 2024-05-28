@@ -13,7 +13,7 @@ const Footer = () => (
             <div>Copyright &copy; 2023 All Rights Reserved</div>
         </div>
         <div>
-            <h3>Contacts</h3>
+            <h3>Контакти</h3>
             <Link
                 to={'https://www.linkedin.com/in/rbrahinets'}
                 target={'_blank'}
@@ -41,7 +41,7 @@ const Footer = () => (
             </Link>
         </div>
         <div>
-            <h3>Info</h3>
+            <h3>Інформація</h3>
             <Link
                 to={'https://github.com/rbrahinets/birthday-reminder-frontend'}
                 target={'_blank'}
@@ -69,7 +69,7 @@ const Footer = () => (
             </Link>
         </div>
         <div>
-            <h3>Follow us</h3>
+            <h3>Слідкуйте за нами</h3>
             <Link
                 to={'https://instagram.com/rbrahinets'}
                 target={'_blank'}

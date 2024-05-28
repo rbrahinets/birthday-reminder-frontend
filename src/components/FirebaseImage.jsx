@@ -53,13 +53,13 @@ const FirebaseImage = ({defaultImageUrl, object, state, service, resetObject}) =
                 {state.previewFirebaseImage && (
                     <>
                         <Button
-                            text={'Save'}
+                            text={'ОК'}
                             onClick={handleSave}
                             IconTag={TfiSave}
                         />
                         <br/>
                         <Button
-                            text={'Cancel'}
+                            text={'Відмінити'}
                             onClick={handleCancel}
                         />
                     </>

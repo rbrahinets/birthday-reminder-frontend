@@ -24,13 +24,13 @@ const Header = () => {
                 onClick={() => setIsVisibleSignInModal(true)}
                 className={'link'}
             >
-                Birthdays
+                Дні народження
             </div>
             <div
                 onClick={() => setIsVisibleSignInModal(true)}
                 className={'link icon-container'}
             >
-                <span>My profile</span>
+                <span>Профіль</span>
                 <img
                     src={process.env.PUBLIC_URL + '/profile-icon.png'}
                     alt={'profile-icon'}
@@ -46,13 +46,13 @@ const Header = () => {
                 to={`/birthdays`}
                 className={'link'}
             >
-                Birthdays
+                Дні народження
             </Link>
             <Link
                 to={`/profile`}
                 className={'link icon-container'}
             >
-                <span>My profile</span>
+                <span>Профіль</span>
                 <img
                     src={process.env.PUBLIC_URL + '/profile-icon.png'}
                     alt={'profile-icon'}
@@ -87,7 +87,7 @@ const Header = () => {
                         href={'#footer'}
                         className={'link'}
                     >
-                        Contacts
+                        Контакти
                     </a>
                 </div>
             </>

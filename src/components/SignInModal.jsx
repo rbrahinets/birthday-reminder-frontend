@@ -36,22 +36,22 @@ const SignInModal = ({
                 type={'text'}
                 name={'email'}
                 id={'email'}
-                placeholder={'Email'}
+                placeholder={'Електронна адреса'}
                 error={renderErrorMessage('email')}
             />
             <Input
                 type={'password'}
                 name={'password'}
                 id={'password'}
-                placeholder={'Password'}
+                placeholder={'Пароль'}
                 error={renderErrorMessage('password')}
             />
         </form>
     );
 
     const errors = {
-        email: 'Invalid Email',
-        password: 'Invalid Password',
+        email: 'Неправильна електронна адреса',
+        password: 'Неправильний пароль',
     }
 
     const isValidEmail = (email) => {
@@ -125,10 +125,10 @@ const SignInModal = ({
                 X
             </div>
             <div className={'center'}>
-                <h1>Sign in</h1>
+                <h1>Вхід</h1>
                 {renderForm}
                 <Button
-                    text={'Sign in'}
+                    text={'Увійти'}
                     onClick={handleSignIn}
                 />
                 <hr className={'separator'}/>
@@ -136,7 +136,7 @@ const SignInModal = ({
                     onClick={handleSignUp}
                     className={'modal-link'}
                 >
-                    Sign Up
+                    Зареєструватися
                 </div>
             </div>
         </Modal>

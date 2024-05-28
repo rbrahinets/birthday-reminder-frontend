@@ -36,27 +36,27 @@ const BirthdayNew = () => {
 
         return (
             <>
-                <h1>New Birthday</h1>
+                <h1>Новий день народження</h1>
                 <form className={'form'}>
                     <Input
                         type={'text'}
                         name={'firstName'}
                         id={'firstName'}
-                        placeholder={'First Name'}
+                        placeholder={'Ім\'я'}
                         error={renderErrorMessage('firstName')}
                     />
                     <Input
                         type={'text'}
                         name={'lastName'}
                         id={'lastName'}
-                        placeholder={'Last Name'}
+                        placeholder={'Прізвище'}
                         error={renderErrorMessage('lastName')}
                     />
                     <Input
                         type={'text'}
                         name={'email'}
                         id={'email'}
-                        placeholder={'Email'}
+                        placeholder={'Електронна адреса'}
                         error={renderErrorMessage('email')}
                     />
                     <Input
@@ -70,13 +70,13 @@ const BirthdayNew = () => {
                     />
                 </form>
                 <Button
-                    text={'Add'}
+                    text={'ОК'}
                     onClick={handleAdd}
                     IconTag={TiUserAdd}
                 />
                 <br/>
                 <Button
-                    text={'Cancel'}
+                    text={'Відмінити'}
                     onClick={handleCancel}
                 />
             </>
@@ -84,10 +84,10 @@ const BirthdayNew = () => {
     }
 
     const errors = {
-        firstName: 'Invalid First Name',
-        lastName: 'Invalid Last Name',
-        email: 'Invalid Email',
-        dateOfBirth: 'Invalid Date Of Birth',
+        firstName: 'Неправильне ім\'я',
+        lastName: 'Неправильне прізвище',
+        email: 'Неправильна електронна адреса',
+        dateOfBirth: 'Неправильна дата народження',
     }
 
     const handleAdd = async (event) => {

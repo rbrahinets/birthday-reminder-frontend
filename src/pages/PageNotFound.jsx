@@ -15,8 +15,8 @@ const PageNotFound = () => {
         <div className={'container center'}>
             <Header/>
             <main>
-                <h1>Oops...</h1>
-                <h2>Page Not Found</h2>
+                <h1>Ооой...</h1>
+                <h2>Сторінку не знайдено</h2>
                 <Button text={'Main'} onClick={handleMainClick}/>
             </main>
             <Footer/>

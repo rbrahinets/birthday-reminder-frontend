@@ -77,16 +77,16 @@ const Profile = () => {
     const renderProfile = () => {
         return (
             <>
-                <h1>Profile</h1>
+                <h1>Профіль</h1>
                 {getProfileInfo()}
                 <Button
-                    text={'Edit'}
+                    text={'Змінити'}
                     onClick={handleEdit}
                     IconTag={FaRegEdit}
                 />
                 <hr/>
                 <Button
-                    text={'Sign Out'}
+                    text={'Вийти'}
                     onClick={handleSignOut}
                     IconTag={VscSignOut}
                 />

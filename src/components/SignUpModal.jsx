@@ -35,46 +35,46 @@ const SignUpModal = ({
                 type={'text'}
                 name={'firstName'}
                 id={'firstName'}
-                placeholder={'First Name'}
+                placeholder={'Ім\'я'}
                 error={renderErrorMessage('firstName')}
             />
             <Input
                 type={'text'}
                 name={'lastName'}
                 id={'lastName'}
-                placeholder={'Last Name'}
+                placeholder={'Прізвище'}
                 error={renderErrorMessage('lastName')}
             />
             <Input
                 type={'text'}
                 name={'email'}
                 id={'email'}
-                placeholder={'Email'}
+                placeholder={'Електронна адреса'}
                 error={renderErrorMessage('email')}
             />
             <Input
                 type={'password'}
                 name={'password'}
                 id={'password'}
-                placeholder={'Password'}
+                placeholder={'Пароль'}
                 error={renderErrorMessage('password')}
             />
             <Input
                 type={'password'}
                 name={'confirmPassword'}
                 id={'confirmPassword'}
-                placeholder={'Confirm Password'}
+                placeholder={'Підтвердити пароль'}
                 error={renderErrorMessage('confirmPassword')}
             />
         </form>
     );
 
     const errors = {
-        firstName: 'Invalid First Name',
-        lastName: 'Invalid Last Name',
-        email: 'Invalid Email',
-        password: 'Invalid Password',
-        confirmPassword: 'Invalid Confirm Password',
+        firstName: 'Неправильне ім\'я',
+        lastName: 'Неправильне прізвище',
+        email: 'Неправильна електронна адреса',
+        password: 'Неправильний пароль',
+        confirmPassword: 'Неправильний пароль',
     }
 
     const isValidEmail = (email) => {
@@ -167,10 +167,10 @@ const SignUpModal = ({
                 X
             </div>
             <div className={'center'}>
-                <h1>Sign up</h1>
+                <h1>Реєстрація</h1>
                 {renderForm}
                 <Button
-                    text={'Sign up'}
+                    text={'Зареєструватися'}
                     onClick={handleSignUp}
                 />
                 <hr className={'separator'}/>
@@ -178,7 +178,7 @@ const SignUpModal = ({
                     onClick={handleSignIn}
                     className={'modal-link'}
                 >
-                    Sign in
+                    Вхід
                 </div>
             </div>
         </Modal>
