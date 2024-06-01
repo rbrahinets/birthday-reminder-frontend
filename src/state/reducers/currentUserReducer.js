@@ -1,21 +1,21 @@
 import {ActionType} from '../action-types';
 
 const initialState = {
-    currentUser: {},
+  currentUser: {},
 };
 
 const reducer = (
-    state = initialState,
-    action
+  state = initialState,
+  action
 ) => {
-    if (action.type === ActionType.SET_CURRENT_USER) {
-        return {
-            ...state,
-            currentUser: action.payload
-        };
-    } else {
-        return state;
-    }
+  if (action.type === ActionType.SET_CURRENT_USER) {
+    return {
+      ...state,
+      currentUser: action.payload
+    };
+  } else {
+    return state;
+  }
 };
 
 export default reducer;

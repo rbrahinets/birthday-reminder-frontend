@@ -14,19 +14,19 @@ import birthdayImageReducer from './birthdayImageReducer';
 import previewBirthdayImageReducer from './previewBirthdayImageReducer';
 
 const reducers = combineReducers({
-    isVisibleSignInModal: isVisibleSignInModalReducer,
-    isVisibleSignUpModal: isVisibleSignUpModalReducer,
-    isVisibleWaitModal: isVisibleWaitModalReducer,
-    errorMessages: errorMessagesReducer,
-    isAuthenticated: isAuthenticatedReducer,
-    birthdays: birthdaysReducer,
-    loading: loadingReducer,
-    currentUser: currentUserReducer,
-    birthday: birthdayReducer,
-    profileImage: profileImageReducer,
-    previewProfileImage: previewProfileImageReducer,
-    birthdayImage: birthdayImageReducer,
-    previewBirthdayImage: previewBirthdayImageReducer,
+  isVisibleSignInModal: isVisibleSignInModalReducer,
+  isVisibleSignUpModal: isVisibleSignUpModalReducer,
+  isVisibleWaitModal: isVisibleWaitModalReducer,
+  errorMessages: errorMessagesReducer,
+  isAuthenticated: isAuthenticatedReducer,
+  birthdays: birthdaysReducer,
+  loading: loadingReducer,
+  currentUser: currentUserReducer,
+  birthday: birthdayReducer,
+  profileImage: profileImageReducer,
+  previewProfileImage: previewProfileImageReducer,
+  birthdayImage: birthdayImageReducer,
+  previewBirthdayImage: previewBirthdayImageReducer,
 });
 
 export default reducers;

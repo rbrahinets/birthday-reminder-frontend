@@ -12,20 +12,20 @@ import PageNotFound from './pages/PageNotFound';
 const url = '/birthday-reminder-frontend';
 
 const App = () => {
-    return (
-        <Router basename={url}>
-            <Routes>
-                <Route path={`/`} element={<Main/>}/>
-                <Route path={`/birthdays`} element={<Birthdays/>}/>
-                <Route path={`/birthdays/birthday`} element={<BirthdayInfo/>}/>
-                <Route path={`/birthdays/birthday/edit`} element={<BirthdayInfoEdit/>}/>
-                <Route path={`/new-birthday`} element={<BirthdayNew/>}/>
-                <Route path={`/profile`} element={<Profile/>}/>
-                <Route path={`/profile/edit`} element={<ProfileEdit/>}/>
-                <Route path="*" element={<PageNotFound/>}/>
-            </Routes>
-        </Router>
-    );
+  return (
+    <Router basename={url}>
+      <Routes>
+        <Route path={`/`} element={<Main/>}/>
+        <Route path={`/birthdays`} element={<Birthdays/>}/>
+        <Route path={`/birthdays/birthday`} element={<BirthdayInfo/>}/>
+        <Route path={`/birthdays/birthday/edit`} element={<BirthdayInfoEdit/>}/>
+        <Route path={`/new-birthday`} element={<BirthdayNew/>}/>
+        <Route path={`/profile`} element={<Profile/>}/>
+        <Route path={`/profile/edit`} element={<ProfileEdit/>}/>
+        <Route path="*" element={<PageNotFound/>}/>
+      </Routes>
+    </Router>
+  );
 }
 
 export default App;

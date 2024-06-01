@@ -1,18 +1,18 @@
 .button-delete {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    cursor: pointer;
-    background-color: #ffffff;
-    border-radius: 50%;
-    color: #ff0000;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  background-color: #ffffff;
+  border-radius: 50%;
+  color: #ff0000;
 }
 
 .photo-container {
-    position: relative;
-    display: inline-block;
+  position: relative;
+  display: inline-block;
 }
 
 .invisible {
-    display: none;
+  display: none;
 }

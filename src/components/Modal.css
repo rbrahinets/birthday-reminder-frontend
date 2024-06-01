@@ -1,56 +1,56 @@
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .close {
-    width: 0;
-    margin-left: auto;
-    cursor: pointer;
-    text-align: center;
+  width: 0;
+  margin-left: auto;
+  cursor: pointer;
+  text-align: center;
 }
 
 .loading {
-    width: 90%;
+  width: 90%;
 }
 
 .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(3px);
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(3px);
 }
 
 .modal-link {
-    font-size: 18pt;
-    cursor: pointer;
+  font-size: 18pt;
+  cursor: pointer;
 }
 
 .modal-sign-in, .modal-sign-up {
-    position: fixed;
-    top: 50%;
-    right: 0;
-    transform: translate(-40%, -50%);
-    background-color: #ff71ff;
-    color: #0d20c9;
-    padding: 10px 40px 20px 40px;
+  position: fixed;
+  top: 50%;
+  right: 0;
+  transform: translate(-40%, -50%);
+  background-color: #ff71ff;
+  color: #0d20c9;
+  padding: 10px 40px 20px 40px;
 }
 
 .modal-wait {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    align-items: center;
-    justify-content: center;
-    background-color: #ffffff;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
 }
 
 .separator {
-    border-color: #0d20c9;
-    margin-top: 13%;
+  border-color: #0d20c9;
+  margin-top: 13%;
 }
