@@ -7,6 +7,10 @@ img {
   display: inline-block;
 }
 
+.birthday-container:hover, .add-new-birthday:hover {
+  transform: scale(1.1);
+}
+
 .birthday-link {
   position: relative;
   display: inline-block;
