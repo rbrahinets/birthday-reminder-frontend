@@ -3,4 +3,5 @@
   border-radius: 50%;
   cursor: pointer;
   margin: 10px;
+  border: #000000 5px solid;
 }
