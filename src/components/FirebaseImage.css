@@ -13,6 +13,10 @@
   display: inline-block;
 }
 
+.photo-container:hover {
+  transform: scale(1.1);
+}
+
 .invisible {
   display: none;
 }
