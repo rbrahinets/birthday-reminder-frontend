@@ -6,10 +6,13 @@
   padding: 5px 10px;
   font-size: 22px;
   text-align: center;
-  color: #0d20c9;
   border: none;
 }
 
 .form input {
   border: #000000 1px solid;
+}
+
+input:focus {
+  transform: scale(1.1);
 }
