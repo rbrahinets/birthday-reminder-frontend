@@ -29,6 +29,11 @@ const SignUpModal = ({
       <div className={'error'}>{errorMessages.message}</div>
     );
 
+  const closeModalWindowSignUp = () => {
+    setErrorMessages({});
+    onHide();
+  }
+
   const renderForm = (
     <form>
       <Input
@@ -37,6 +42,7 @@ const SignUpModal = ({
         id={'firstName'}
         placeholder={'First Name'}
         error={renderErrorMessage('firstName')}
+        onClick={closeModalWindowSignUp}
       />
       <Input
         type={'text'}
@@ -44,6 +50,7 @@ const SignUpModal = ({
         id={'lastName'}
         placeholder={'Last Name'}
         error={renderErrorMessage('lastName')}
+        onClick={closeModalWindowSignUp}
       />
       <Input
         type={'text'}
@@ -51,6 +58,7 @@ const SignUpModal = ({
         id={'email'}
         placeholder={'Email'}
         error={renderErrorMessage('email')}
+        onClick={closeModalWindowSignUp}
       />
       <Input
         type={'password'}
@@ -58,6 +66,7 @@ const SignUpModal = ({
         id={'password'}
         placeholder={'Password'}
         error={renderErrorMessage('password')}
+        onClick={closeModalWindowSignUp}
       />
       <Input
         type={'password'}
@@ -65,6 +74,7 @@ const SignUpModal = ({
         id={'confirmPassword'}
         placeholder={'Confirm Password'}
         error={renderErrorMessage('confirmPassword')}
+        onClick={closeModalWindowSignUp}
       />
     </form>
   );
@@ -146,10 +156,12 @@ const SignUpModal = ({
   }
 
   const handleClose = () => {
+    closeModalWindowSignUp();
     onHide();
   }
 
   const handleSignIn = () => {
+    closeModalWindowSignUp();
     onHide();
     onShowSignInModal();
   }
@@ -157,7 +169,7 @@ const SignUpModal = ({
   return (
     <Modal
       show={show}
-      onHide={onHide}
+      onHide={closeModalWindowSignUp}
       dialogClassName={'modal-sign-up'}
     >
       <div

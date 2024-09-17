@@ -30,6 +30,11 @@ const SignInModal = ({
       <div className={'error'}>{errorMessages.message}</div>
     );
 
+  const closeModalWindowSignIn = () => {
+    setErrorMessages({});
+    onHide();
+  }
+
   const renderForm = (
     <form>
       <Input
@@ -38,6 +43,7 @@ const SignInModal = ({
         id={'email'}
         placeholder={'Email'}
         error={renderErrorMessage('email')}
+        onClick={closeModalWindowSignIn}
       />
       <Input
         type={'password'}
@@ -45,6 +51,7 @@ const SignInModal = ({
         id={'password'}
         placeholder={'Password'}
         error={renderErrorMessage('password')}
+        onClick={closeModalWindowSignIn}
       />
     </form>
   );
@@ -104,10 +111,12 @@ const SignInModal = ({
   }
 
   const handleClose = () => {
+    closeModalWindowSignIn();
     onHide();
   }
 
   const handleSignUp = () => {
+    closeModalWindowSignIn();
     onHide();
     onShowSignUpModal();
   }
@@ -115,7 +124,7 @@ const SignInModal = ({
   return (
     <Modal
       show={show}
-      onHide={onHide}
+      onHide={closeModalWindowSignIn}
       dialogClassName={'modal-sign-in'}
     >
       <div

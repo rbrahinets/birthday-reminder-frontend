@@ -1,7 +1,17 @@
 import React from 'react';
 import './Input.css';
 
-const Input = ({type, name, id, placeholder, error, defaultValue, min, max}) => (
+const Input = ({
+                 type,
+                 name,
+                 id,
+                 placeholder,
+                 error,
+                 defaultValue,
+                 min,
+                 max,
+                 // onClick
+               }) => (
   <div className={'formcontrol'}>
     <input
       type={type}
@@ -11,6 +21,7 @@ const Input = ({type, name, id, placeholder, error, defaultValue, min, max}) => 
       defaultValue={defaultValue}
       min={min}
       max={max}
+      // onClick={onClick}
       required
     />
     {error}
