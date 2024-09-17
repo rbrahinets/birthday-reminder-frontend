@@ -20,12 +20,16 @@ header {
 
 .link {
   display: flex;
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   font-size: 18pt;
   margin: 20px;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+  padding: 5px 7px 0 7px;
+  background-color: #ffffff;
 }
 
 .link-container {
@@ -34,13 +38,10 @@ header {
 
 .link:hover {
   transform: scale(1.1);
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  padding: 5px 5px 5px 5px;
 }
 
 .profile-icon {
-  color: #ffffff;
+  color: #000000;
   width: 36px;
   height: 36px;
   margin-left: 5px;
