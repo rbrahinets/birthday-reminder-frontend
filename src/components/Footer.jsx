@@ -12,7 +12,7 @@ const Footer = () => (
       />&emsp;&copy; 2023 Rostyslav Brahinets
     </div>
     <div>
-      <h3>Follow us</h3>
+      <h3>Contacts</h3>
       <Link
         to={'https://instagram.com/rbrahinets'}
         target={'_blank'}
