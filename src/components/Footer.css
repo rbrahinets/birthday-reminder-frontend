@@ -3,8 +3,7 @@ footer {
   justify-content: space-between;
   text-align: left;
   padding: 0 15px 25px 15px;
-  background-color: #202020;
-  color: #ffffff;
+  border-top: 1px solid #dddddd;
 }
 
 .footer-logo {
@@ -12,17 +11,11 @@ footer {
 }
 
 .footer-link {
-  color: #ffffff;
+  color: #000000;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
   margin-bottom: -10px;
-}
-
-.footer-link:hover {
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
-  border-radius: 20px;
-  padding: 1px 1px 1px 1px;
 }
 
 .footer-link-logo-container {
