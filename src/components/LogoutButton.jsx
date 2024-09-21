@@ -1,4 +1,5 @@
 import React from 'react';
+import {VscSignOut} from 'react-icons/vsc';
 import {useAuth0} from '@auth0/auth0-react';
 
 const LogoutButton = () => {
@@ -12,7 +13,10 @@ const LogoutButton = () => {
       }
     })}
   >
-    Log Out
+    <span>
+      Log Out
+    </span>
+    <VscSignOut size={20}/>
   </button>)
 }
 
