@@ -1,14 +1,12 @@
 import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import Authentication from '../components/Authentication';
 import './Main.css';
 
 const Main = () => {
-  return (
-    <div className={'container center'}>
-      <Header/>
-      <main>
+  const renderPage = () => {
+    return (
+      <>
         <img
           src={process.env.PUBLIC_URL + '/main_image.png'}
           alt={'main-image'}
@@ -21,7 +19,15 @@ const Main = () => {
           allowFullScreen
           title={'Manual'}>
         </iframe>
-        <Authentication/>
+      </>
+    );
+  }
+
+  return (
+    <div className={'container center'}>
+      <Header/>
+      <main>
+        {renderPage()}
       </main>
       <Footer/>
     </div>
