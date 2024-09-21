@@ -7,11 +7,15 @@ const LogoutButton = () => {
 
   return (<button
     className="logout-button"
-    onClick={() => logout({
-      logoutParams: {
-        returnTo: process.env.REACT_APP_AUTH_REDIRECT_URI,
-      }
-    })}
+    onClick={() => {
+      localStorage.removeItem('isSavedUser');
+      localStorage.removeItem('currentUserEmail');
+      logout({
+        logoutParams: {
+          returnTo: process.env.REACT_APP_AUTH_REDIRECT_URI,
+        }
+      }).then()
+    }}
   >
     <span>
       Log Out
