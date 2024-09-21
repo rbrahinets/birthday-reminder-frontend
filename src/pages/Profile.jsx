@@ -1,12 +1,12 @@
 import React, {useEffect} from 'react';
 import {FaRegEdit} from 'react-icons/fa';
-import {VscSignOut} from 'react-icons/vsc';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Button from '../components/Button';
+import LogoutButton from '../components/LogoutButton';
 import WaitModal from '../components/WaitModal';
 import FirebaseImage from '../components/FirebaseImage';
 import Footer from '../components/Footer';
@@ -23,7 +23,6 @@ const Profile = () => {
   const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
 
   const {
-    setIsAuthenticated,
     setCurrentUser,
     setLoading,
     setProfileImage,
@@ -74,7 +73,7 @@ const Profile = () => {
     )
   }
 
-  const renderProfile = () => {
+  const renderPage = () => {
     return (
       <>
         <h1>Profile</h1>
@@ -85,24 +84,13 @@ const Profile = () => {
           IconTag={FaRegEdit}
         />
         <br/>
-        <Button
-          text={'Sign Out'}
-          onClick={handleSignOut}
-          IconTag={VscSignOut}
-        />
+        <LogoutButton/>
       </>
     );
   }
 
   const handleEdit = () => {
     navigate(`/profile/edit`);
-  }
-
-  const handleSignOut = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('currentUserEmail');
-    setIsAuthenticated(false);
-    navigate(`/`);
   }
 
   useEffect(() => {
@@ -117,7 +105,7 @@ const Profile = () => {
       />
       <Header/>
       <main>
-        {renderProfile()}
+        {renderPage()}
       </main>
       <Footer/>
     </div>
