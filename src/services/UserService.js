@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://api-birthday-reminder-5xlo.onrender.com/api/v1/users',
+  baseURL: `${process.env.REACT_APP_BASE_API_URI}/users`,
 });
 
 class UserService {
