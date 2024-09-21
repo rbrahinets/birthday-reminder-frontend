@@ -132,7 +132,7 @@ const ProfileEdit = () => {
 
   useEffect(() => {
     setInfoAboutCurrentUser().then();
-  }, []);
+  }, [setInfoAboutCurrentUser]);
 
   return (
     <div className={'container center'}>
