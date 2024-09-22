@@ -60,7 +60,7 @@ const Birthdays = () => {
     return process.env.PUBLIC_URL + '/homer-simpson.png';
   }
 
-  const renderBirthdays = () => {
+  const renderPage = () => {
     return (
       <>
         <h1>Birthdays</h1>
@@ -101,7 +101,7 @@ const Birthdays = () => {
       />
       <Header/>
       <main>
-        {renderBirthdays()}
+        {renderPage()}
       </main>
       <Footer/>
     </div>
