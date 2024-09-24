@@ -8,25 +8,21 @@ import Header from '../components/Header';
 import Button from '../components/Button';
 import LogoutButton from '../components/LogoutButton';
 import WaitModal from '../components/WaitModal';
-import FirebaseImage from '../components/FirebaseImage';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './../components/Button.css';
+import ProfileInfo from "../components/ProfileInfo";
 
 const Profile = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const {currentUser} = useSelector((state) => state.currentUser);
   const {loading} = useSelector((state) => state.loading);
-  const {profileImage} = useSelector((state) => state.profileImage);
-  const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
 
   const {
     setCurrentUser,
     setLoading,
     setProfileImage,
-    setPreviewProfileImage,
   } = bindActionCreators(
     actionCreators,
     dispatch
@@ -52,32 +48,11 @@ const Profile = () => {
     }
   }
 
-  const getProfileInfo = () => {
-    return (
-      <div className={'info-container'}>
-        <FirebaseImage
-          defaultImageUrl={`${process.env.PUBLIC_URL}/add.png`}
-          object={currentUser}
-          state={{
-            firebaseImage: profileImage,
-            previewFirebaseImage: previewProfileImage,
-            setFirebaseImage: setProfileImage,
-            setPreviewFirebaseImage: setPreviewProfileImage,
-          }}
-          service={userService}
-          resetObject={fetchCurrentUserData}
-        />
-        <div>{currentUser.firstName} {currentUser.lastName}</div>
-        <div>{currentUser.email}</div>
-      </div>
-    )
-  }
-
   const renderPage = () => {
     return (
       <>
         <h1>Profile</h1>
-        {getProfileInfo()}
+        <ProfileInfo data={fetchCurrentUserData()}/>
         <Button
           text={'Edit'}
           onClick={handleEdit}
