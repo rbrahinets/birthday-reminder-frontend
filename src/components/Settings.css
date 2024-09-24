@@ -1,0 +1,16 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 100px;
+}
+
+.language {
+  display: flex;
+  flex-direction: row;
+}
+
+.mode {
+  display: flex;
+  flex-direction: row;
+}
