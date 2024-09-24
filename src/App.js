@@ -6,7 +6,6 @@ import BirthdayInfo from './pages/BirthdayInfo';
 import BirthdayInfoEdit from './pages/BirthdayInfoEdit';
 import BirthdayNew from './pages/BirthdayNew';
 import Profile from './pages/Profile';
-import ProfileEdit from './pages/ProfileEdit';
 import PageNotFound from './pages/PageNotFound';
 
 const url = '/birthday-reminder-frontend';
@@ -20,8 +19,7 @@ const App = () => {
         <Route path={`/birthdays/birthday`} element={<BirthdayInfo/>}/>
         <Route path={`/birthdays/birthday/edit`} element={<BirthdayInfoEdit/>}/>
         <Route path={`/new-birthday`} element={<BirthdayNew/>}/>
-        <Route path={`/profile`} element={<Profile/>}/>
-        <Route path={`/profile/edit`} element={<ProfileEdit/>}/>
+        <Route path={`/profile`} element={<Profile/>}/>0
         <Route path="*" element={<PageNotFound/>}/>
       </Routes>
     </Router>
