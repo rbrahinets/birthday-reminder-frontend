@@ -13,6 +13,7 @@ import previewProfileImageReducer from './previewProfileImageReducer';
 import birthdayImageReducer from './birthdayImageReducer';
 import previewBirthdayImageReducer from './previewBirthdayImageReducer';
 import isProfileInfoModeReducer from './isProfileInfoModeReducer';
+import isDarkModeReducer from './isDarkModeReducer';
 
 const reducers = combineReducers({
   isVisibleSignInModal: isVisibleSignInModalReducer,
@@ -29,6 +30,7 @@ const reducers = combineReducers({
   birthdayImage: birthdayImageReducer,
   previewBirthdayImage: previewBirthdayImageReducer,
   isProfileInfoMode: isProfileInfoModeReducer,
+  isDarkMode: isDarkModeReducer,
 });
 
 export default reducers;

@@ -125,3 +125,12 @@ export const setIsProfileInfoMode = (isProfileInfoMode) => {
     });
   };
 };
+
+export const setIsDarkMode = (isDarkMode) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.IS_DARK_MODE,
+      payload: isDarkMode,
+    });
+  };
+};

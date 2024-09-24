@@ -13,4 +13,5 @@ export const ActionType = {
   SET_BIRTHDAY_IMAGE: 'setBirthdayImage',
   SET_PREVIEW_BIRTHDAY_IMAGE: 'setPreviewBirthdayImage',
   SET_IS_PROFILE_INFO_MODE: 'setIsProfileInfoMode',
+  IS_DARK_MODE: 'setIsDarkMode',
 }
