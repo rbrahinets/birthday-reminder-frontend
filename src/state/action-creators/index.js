@@ -116,3 +116,12 @@ export const setPreviewBirthdayImage = (previewBirthdayImage) => {
     });
   };
 };
+
+export const setIsProfileInfoMode = (isProfileInfoMode) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.SET_IS_PROFILE_INFO_MODE,
+      payload: isProfileInfoMode,
+    });
+  };
+};
