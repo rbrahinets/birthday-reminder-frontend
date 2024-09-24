@@ -6,6 +6,7 @@ import {actionCreators} from '../state';
 import Header from '../components/Header';
 import ProfileInfo from '../components/ProfileInfo';
 import ProfileEdit from '../components/ProfileEdit';
+import FirebaseImage from '../components/FirebaseImage';
 import Button from '../components/Button';
 import LogoutButton from '../components/LogoutButton';
 import WaitModal from '../components/WaitModal';
@@ -18,11 +19,15 @@ const Profile = () => {
 
   const {loading} = useSelector((state) => state.loading);
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
+  const {currentUser} = useSelector((state) => state.currentUser);
+  const {profileImage} = useSelector((state) => state.profileImage);
+  const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
 
   const {
     setCurrentUser,
     setLoading,
     setProfileImage,
+    setPreviewProfileImage,
     setIsProfileInfoMode,
   } = bindActionCreators(
     actionCreators,
@@ -53,9 +58,21 @@ const Profile = () => {
     return (
       <>
         <h1>Profile</h1>
+        <FirebaseImage
+          defaultImageUrl={`${process.env.PUBLIC_URL}/add.png`}
+          object={currentUser}
+          state={{
+            firebaseImage: profileImage,
+            previewFirebaseImage: previewProfileImage,
+            setFirebaseImage: setProfileImage,
+            setPreviewFirebaseImage: setPreviewProfileImage,
+          }}
+          service={userService}
+          resetObject={fetchCurrentUserData}
+        />
         {
           isProfileInfoMode ?
-            <ProfileInfo data={fetchCurrentUserData()}/> :
+            <ProfileInfo data={fetchCurrentUserData}/> :
             <ProfileEdit/>
         }
         {isProfileInfoMode &&
