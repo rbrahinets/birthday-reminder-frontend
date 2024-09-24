@@ -1,0 +1,38 @@
+.language-selector {
+  width: 200px;
+  margin: 20px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  padding: 10px;
+  position: relative;
+  background-color: #f9f9f9;
+}
+
+.selected-language {
+  display: flex;
+  justify-content: space-between;
+}
+
+.language-options {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+  position: absolute;
+  background: white;
+  width: 100%;
+  border: 1px solid #ccc;
+  z-index: 100;
+}
+
+.language-options li {
+  padding: 8px 12px;
+  background-color: #fff;
+}
+
+.language-options li:hover {
+  background-color: #f1f1f1;
+}
+
+.arrow {
+  font-size: 12px;
+}
