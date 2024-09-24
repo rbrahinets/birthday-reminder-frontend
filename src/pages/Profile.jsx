@@ -72,7 +72,7 @@ const Profile = () => {
         />
         {
           isProfileInfoMode ?
-            <ProfileInfo data={fetchCurrentUserData}/> :
+            <ProfileInfo updateProfileInfo={fetchCurrentUserData}/> :
             <ProfileEdit/>
         }
         {isProfileInfoMode &&
