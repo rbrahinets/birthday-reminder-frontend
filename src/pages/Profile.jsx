@@ -8,8 +8,8 @@ import ProfileInfo from '../components/ProfileInfo';
 import ProfileEdit from '../components/ProfileEdit';
 import FirebaseImage from '../components/FirebaseImage';
 import Button from '../components/Button';
-import LogoutButton from '../components/LogoutButton';
 import WaitModal from '../components/WaitModal';
+import Settings from '../components/Settings';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './../components/Button.css';
@@ -58,6 +58,7 @@ const Profile = () => {
     return (
       <>
         <h1>Profile</h1>
+        <h1>Info</h1>
         <FirebaseImage
           defaultImageUrl={`${process.env.PUBLIC_URL}/add.png`}
           object={currentUser}
@@ -82,8 +83,7 @@ const Profile = () => {
             IconTag={FaRegEdit}
           />
         }
-        <br/>
-        <LogoutButton/>
+        <Settings/>
       </>
     );
   }
