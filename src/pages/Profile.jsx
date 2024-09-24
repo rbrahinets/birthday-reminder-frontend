@@ -1,28 +1,29 @@
 import React, {useEffect} from 'react';
 import {FaRegEdit} from 'react-icons/fa';
-import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
+import ProfileInfo from '../components/ProfileInfo';
+import ProfileEdit from '../components/ProfileEdit';
 import Button from '../components/Button';
 import LogoutButton from '../components/LogoutButton';
 import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './../components/Button.css';
-import ProfileInfo from "../components/ProfileInfo";
 
 const Profile = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const {loading} = useSelector((state) => state.loading);
+  const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
 
   const {
     setCurrentUser,
     setLoading,
     setProfileImage,
+    setIsProfileInfoMode,
   } = bindActionCreators(
     actionCreators,
     dispatch
@@ -52,12 +53,18 @@ const Profile = () => {
     return (
       <>
         <h1>Profile</h1>
-        <ProfileInfo data={fetchCurrentUserData()}/>
-        <Button
-          text={'Edit'}
-          onClick={handleEdit}
-          IconTag={FaRegEdit}
-        />
+        {
+          isProfileInfoMode ?
+            <ProfileInfo data={fetchCurrentUserData()}/> :
+            <ProfileEdit/>
+        }
+        {isProfileInfoMode &&
+          <Button
+            text={'Edit'}
+            onClick={handleEdit}
+            IconTag={FaRegEdit}
+          />
+        }
         <br/>
         <LogoutButton/>
       </>
@@ -65,7 +72,7 @@ const Profile = () => {
   }
 
   const handleEdit = () => {
-    navigate(`/profile/edit`);
+    setIsProfileInfoMode(false);
   }
 
   useEffect(() => {
