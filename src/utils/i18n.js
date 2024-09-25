@@ -1,0 +1,81 @@
+import i18next from 'i18next';
+import {initReactI18next} from 'react-i18next';
+import LanguageDetector from 'i18next-browser-languagedetector';
+
+i18next
+  .use(initReactI18next)
+  .use(LanguageDetector)
+  .init({
+    fallbackLng: 'en',
+    resources: {
+      en: {
+        translation: {
+          birthdays: 'Birthdays',
+          profile: 'Profile',
+          contacts: 'Contacts',
+          info: 'Info',
+          settings: 'Settings',
+          dark_mode: 'Dark Mode',
+          language: 'Language',
+          english: 'English',
+          ukrainian: 'Ukrainian',
+          log_out: 'Log Out',
+          save: 'Save',
+          add: 'Add',
+          edit: 'Edit',
+          cancel: 'Cancel',
+          delete: 'Delete',
+          new_birthday: 'New Birthday',
+          birthday_info: 'Birthday Info',
+          edit_birthday_info: 'Edit Birthday Info',
+          first_name: 'First Name',
+          last_name: 'Last Name',
+          email: 'Email',
+          invalid_first_name: 'Invalid First Name',
+          invalid_last_name: 'Invalid Last Name',
+          invalid_email: 'Invalid Email',
+          invalid_date_of_birth: 'Invalid Date Of Birth',
+          adding_new_birthday_failed: 'Adding New Birthday Failed. The e-mail you entered already exist!',
+          updating_birthday_info_failed: 'Updating Birthday Info Failed.',
+          oops: 'Oops...',
+          page_not_found: 'Page Not Found!',
+          main: 'Main',
+        },
+      },
+      uk: {
+        translation: {
+          birthdays: 'Дні народження',
+          profile: 'Профіль',
+          contacts: 'Контакти',
+          info: 'Інформація',
+          settings: 'Налаштування',
+          dark_mode: 'Темний режим',
+          language: 'Мова',
+          english: 'Англійська',
+          ukrainian: 'Українська',
+          log_out: 'Вийти',
+          save: 'Зберегти',
+          add: 'Додати',
+          edit: 'Редагувати',
+          cancel: 'Скасувати',
+          delete: 'Видалити',
+          new_birthday: 'Новий день народження',
+          birthday_info: 'Інформація про день народження',
+          edit_birthday_info: 'Редагувати інформацію про день народження',
+          first_name: 'Ім\'я',
+          last_name: 'Прізвище',
+          email: 'Електронна адреса',
+          invalid_first_name: 'Некоректне ім\'я',
+          invalid_last_name: 'Некоректне прізвище',
+          invalid_email: 'Некоректна електронна адреса',
+          invalid_date_of_birth: 'Некоректна дата народження',
+          adding_new_birthday_failed: 'Неуспішне додавання нового дня народження! Електронна адреса вже існує!',
+          updating_birthday_info_failed: 'Неуспішне оновленні інформації про день народження.',
+          oops: 'Ооой...',
+          page_not_found: 'Сторінку не знайдено!',
+          main: 'На головну',
+        },
+      },
+    },
+  })
+  .then();
