@@ -1,9 +1,11 @@
 import React from 'react';
 import {VscSignOut} from 'react-icons/vsc';
 import {useAuth0} from '@auth0/auth0-react';
+import {useTranslation} from 'react-i18next';
 
 const LogoutButton = () => {
   const {logout} = useAuth0();
+  const {t} = useTranslation();
 
   return (<button
     className="logout-button"
@@ -18,7 +20,7 @@ const LogoutButton = () => {
     }}
   >
     <span>
-      Log Out
+      {t('log_out')}
     </span>
     <VscSignOut size={20}/>
   </button>)

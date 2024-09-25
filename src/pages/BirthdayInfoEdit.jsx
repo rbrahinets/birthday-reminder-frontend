@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {TfiSave} from 'react-icons/tfi';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
@@ -16,6 +17,7 @@ const BirthdayInfoEdit = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {search} = useLocation();
+  const {t} = useTranslation();
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
 
@@ -67,13 +69,13 @@ const BirthdayInfoEdit = () => {
         <WaitModal
           show={!birthday}
         />
-        <h1>Edit Birthday Info</h1>
+        <h1>{t('edit_birthday_info')}</h1>
         <form className={'form'}>
           <Input
             type={'text'}
             name={'firstName'}
             id={'firstName'}
-            placeholder={'First Name'}
+            placeholder={t('first_name')}
             error={renderErrorMessage('firstName')}
             defaultValue={birthday.firstName}
           />
@@ -81,7 +83,7 @@ const BirthdayInfoEdit = () => {
             type={'text'}
             name={'lastName'}
             id={'lastName'}
-            placeholder={'Last Name'}
+            placeholder={t('last_name')}
             error={renderErrorMessage('lastName')}
             defaultValue={birthday.lastName}
           />
@@ -89,7 +91,7 @@ const BirthdayInfoEdit = () => {
             type={'text'}
             name={'email'}
             id={'email'}
-            placeholder={'Email'}
+            placeholder={t('email')}
             error={renderErrorMessage('email')}
             defaultValue={birthday.email}
           />
@@ -104,13 +106,13 @@ const BirthdayInfoEdit = () => {
           />
         </form>
         <Button
-          text={'Save'}
+          text={t('save')}
           onClick={handleSave}
           IconTag={TfiSave}
         />
         <br/>
         <Button
-          text={'Cancel'}
+          text={t('cancel')}
           onClick={handleCancel}
         />
       </>
@@ -118,10 +120,10 @@ const BirthdayInfoEdit = () => {
   }
 
   const errors = {
-    firstName: 'Invalid First Name',
-    lastName: 'Invalid Last Name',
-    email: 'Invalid Email',
-    dateOfBirth: 'Invalid Date Of Birth',
+    firstName: t('invalid_first_name'),
+    lastName: t('invalid_last_name'),
+    email: t('invalid_email'),
+    dateOfBirth: t('invalid_date_of_birth'),
   }
 
   const handleSave = async (event) => {
@@ -185,7 +187,7 @@ const BirthdayInfoEdit = () => {
         navigate(`/birthdays/birthday?birthdayId=${birthdayId}`);
       } catch (error) {
         console.error('Updating Birthday Info Failed', error);
-        alert('Updating Birthday Info Failed.');
+        alert(t('updating_birthday_info_failed'));
       }
     }
   }

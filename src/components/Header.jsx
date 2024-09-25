@@ -3,16 +3,19 @@ import {Link} from 'react-router-dom';
 import {CgProfile} from 'react-icons/cg';
 import LinkButton from './LinkButton';
 import './Header.css';
+import {useTranslation} from "react-i18next";
 
 const Header = () => {
+  const {t} = useTranslation();
+
   const renderLinks = () => (
     <>
       <LinkButton
-        text={'Birthdays'}
+        text={t('birthdays')}
         uri={'/birthdays'}
       />
       <LinkButton
-        text={'Profile'}
+        text={t('profile')}
         uri={'/profile'}
         Icon={CgProfile}
       />
@@ -20,7 +23,7 @@ const Header = () => {
         href={'#footer'}
         className={'link'}
       >
-        Contacts
+        {t('contacts')}
       </a>
     </>
   );

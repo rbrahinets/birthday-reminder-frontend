@@ -9,9 +9,11 @@ import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
 import './Birthdays.css';
+import {useTranslation} from "react-i18next";
 
 const Birthdays = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   const {loading} = useSelector((state) => state.loading);
   const {birthdays} = useSelector((state) => state.birthdays);
@@ -63,7 +65,7 @@ const Birthdays = () => {
   const renderPage = () => {
     return (
       <>
-        <h1>Birthdays</h1>
+        <h1>{t('birthdays')}</h1>
         <div className={'birthdays-list'}>
           {getBirthdays()}
           <Link

@@ -13,9 +13,11 @@ import Settings from '../components/Settings';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './../components/Button.css';
+import {useTranslation} from "react-i18next";
 
 const Profile = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   const {loading} = useSelector((state) => state.loading);
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
@@ -57,8 +59,8 @@ const Profile = () => {
   const renderPage = () => {
     return (
       <>
-        <h1>Profile</h1>
-        <h1>Info</h1>
+        <h1>{t('profile')}</h1>
+        <h1>{t('info')}</h1>
         <FirebaseImage
           defaultImageUrl={`${process.env.PUBLIC_URL}/add.png`}
           object={currentUser}
@@ -78,7 +80,7 @@ const Profile = () => {
         }
         {isProfileInfoMode &&
           <Button
-            text={'Edit'}
+            text={t('edit')}
             onClick={handleEdit}
             IconTag={FaRegEdit}
           />

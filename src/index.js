@@ -5,6 +5,7 @@ import {Auth0Provider} from '@auth0/auth0-react';
 import './index.css';
 import {store} from './state';
 import App from './App';
+import './utils/i18n';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

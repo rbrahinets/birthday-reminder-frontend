@@ -1,5 +1,6 @@
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {TfiSave} from 'react-icons/tfi';
 import {actionCreators} from '../state';
@@ -9,6 +10,7 @@ import userService from '../services/UserService';
 
 const ProfileEdit = () => {
   const dispatch = useDispatch();
+  const {t} = useTranslation();
 
   const {currentUser} = useSelector((state) => state.currentUser);
   const {errorMessages} = useSelector((state) => state.errorMessages);
@@ -22,8 +24,8 @@ const ProfileEdit = () => {
   );
 
   const errors = {
-    firstName: 'Invalid First Name',
-    lastName: 'Invalid Last Name',
+    firstName: t('invalid_first_name'),
+    lastName: t('invalid_last_name'),
   }
 
   const renderErrorMessage = (name) =>
@@ -91,7 +93,7 @@ const ProfileEdit = () => {
           type={'text'}
           name={'firstName'}
           id={'firstName'}
-          placeholder={'First Name'}
+          placeholder={t('first_name')}
           error={renderErrorMessage('firstName')}
           onClick={resetErrorMessages}
           defaultValue={currentUser.firstName}
@@ -100,20 +102,20 @@ const ProfileEdit = () => {
           type={'text'}
           name={'lastName'}
           id={'lastName'}
-          placeholder={'Last Name'}
+          placeholder={t('last_name')}
           error={renderErrorMessage('lastName')}
           onClick={resetErrorMessages}
           defaultValue={currentUser.lastName}
         />
       </form>
       <Button
-        text={'Save'}
+        text={t('save')}
         onClick={handleSave}
         IconTag={TfiSave}
       />
       <br/>
       <Button
-        text={'Cancel'}
+        text={t('cancel')}
         onClick={handleCancel}
       />
     </div>

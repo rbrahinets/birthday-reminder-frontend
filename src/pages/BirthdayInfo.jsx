@@ -3,6 +3,7 @@ import {FaRegEdit} from 'react-icons/fa';
 import {TiUserDelete} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
@@ -17,6 +18,7 @@ const BirthdayInfo = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {search} = useLocation();
+  const {t} = useTranslation();
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -89,16 +91,16 @@ const BirthdayInfo = () => {
   const renderBirthdayInfo = () => {
     return (
       <>
-        <h1>Birthday Info</h1>
+        <h1>{t('birthday_info')}</h1>
         {getBirthdayInfo()}
         <Button
-          text={'Edit'}
+          text={t('edit')}
           onClick={handleEdit}
           IconTag={FaRegEdit}
         />
         <br/>
         <Button
-          text={'Delete'}
+          text={t('delete')}
           onClick={handleDelete}
           IconTag={TiUserDelete}
         />

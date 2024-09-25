@@ -2,6 +2,7 @@ import React from 'react';
 import {TiUserAdd} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useNavigate} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
@@ -14,6 +15,7 @@ import '../components/Input.css';
 const BirthdayNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
 
@@ -36,27 +38,27 @@ const BirthdayNew = () => {
 
     return (
       <>
-        <h1>New Birthday</h1>
+        <h1>{t('new_birthday')}</h1>
         <form className={'form'}>
           <Input
             type={'text'}
             name={'firstName'}
             id={'firstName'}
-            placeholder={'First Name'}
+            placeholder={t('first_name')}
             error={renderErrorMessage('firstName')}
           />
           <Input
             type={'text'}
             name={'lastName'}
             id={'lastName'}
-            placeholder={'Last Name'}
+            placeholder={t('last_name')}
             error={renderErrorMessage('lastName')}
           />
           <Input
             type={'text'}
             name={'email'}
             id={'email'}
-            placeholder={'Email'}
+            placeholder={t('email')}
             error={renderErrorMessage('email')}
           />
           <Input
@@ -70,13 +72,13 @@ const BirthdayNew = () => {
           />
         </form>
         <Button
-          text={'Add'}
+          text={t('add')}
           onClick={handleAdd}
           IconTag={TiUserAdd}
         />
         <br/>
         <Button
-          text={'Cancel'}
+          text={t('cancel')}
           onClick={handleCancel}
         />
       </>
@@ -84,10 +86,10 @@ const BirthdayNew = () => {
   }
 
   const errors = {
-    firstName: 'Invalid First Name',
-    lastName: 'Invalid Last Name',
-    email: 'Invalid Email',
-    dateOfBirth: 'Invalid Date Of Birth',
+    firstName: t('invalid_first_name'),
+    lastName: t('invalid_last_name'),
+    email: t('invalid_email'),
+    dateOfBirth: t('invalid_date_of_birth'),
   }
 
   const handleAdd = async (event) => {
@@ -147,7 +149,7 @@ const BirthdayNew = () => {
         navigate(`/birthdays`);
       } catch (error) {
         console.error('Adding New Birthday Failed', error);
-        alert('Adding New Birthday Failed. The e-mail you entered already exist!');
+        alert(t('adding_new_birthday_failed'));
       }
     }
   }

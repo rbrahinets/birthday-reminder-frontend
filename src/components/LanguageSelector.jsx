@@ -1,44 +1,47 @@
 import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {actionCreators} from '../state';
+import {useTranslation} from 'react-i18next';
 import './LanguageSelector.css';
 
 const LanguageSelector = () => {
-  const dispatch = useDispatch();
+  const {i18n} = useTranslation();
+  const {t} = useTranslation();
 
-  const {language} = useSelector((state) => state.language);
+  const currentLanguage = localStorage.getItem('i18nextLng');
+  const languages = {
+    en: t('english'),
+    uk: t('ukrainian'),
+  }
 
   const [expanded, setExpanded] = useState(false);
-
-  const {
-    setLanguage,
-  } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
 
   const toggleList = () => {
     setExpanded(!expanded);
   };
 
-  const selectLanguage = (language) => {
-    setLanguage(language);
+  const handleSelectLanguage = (languageCode) => {
     setExpanded(false);
-    localStorage.setItem('language', language);
-  };
+    i18n.changeLanguage(languageCode).then();
+  }
 
   return (
     <div className="language-selector">
       <div className="selected-language" onClick={toggleList}>
-        {language}
+        {languages[currentLanguage]}
         <span className="arrow">{expanded ? '▲' : '▼'}</span>
       </div>
 
       {expanded && (
         <ul className="language-options">
-          <li onClick={() => selectLanguage('English')}>English</li>
-          <li onClick={() => selectLanguage('Ukrainian')}>Ukrainian</li>
+          <li
+            onClick={() => handleSelectLanguage('en')
+            }>
+            {languages['en']}
+          </li>
+          <li
+            onClick={() => handleSelectLanguage('uk')}
+          >
+            {languages['uk']}
+          </li>
         </ul>
       )}
     </div>
