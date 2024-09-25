@@ -1,9 +1,9 @@
 import React from 'react';
 import {useTranslation} from 'react-i18next';
 import LanguageSelector from './LanguageSelector';
+import DarkModeSlideButton from './DarkModeSlideButton';
 import LogoutButton from './LogoutButton';
 import './Settings.css';
-import DarkModeSlideButton from "./DarkModeSlideButton";
 
 const Settings = () => {
   const {t} = useTranslation();
