@@ -27,6 +27,7 @@ const BirthdayInfo = () => {
   const {birthday} = useSelector((state) => state.birthday);
   const {birthdayImage} = useSelector((state) => state.birthdayImage);
   const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {
     setLoading,
@@ -132,7 +133,7 @@ const BirthdayInfo = () => {
         show={loading}
       />
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderBirthdayInfo()}
       </main>
       <Footer/>

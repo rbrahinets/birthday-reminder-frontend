@@ -1,13 +1,18 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import './Footer.css'
 
 const Footer = () => {
   const {t} = useTranslation();
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   return (
-    <footer id={'footer'}>
+    <footer
+      className={`background-${isDarkMode ? 'dark' : 'light'}`}
+      id={'footer'}
+    >
       <div className={'footer-link-logo-container'}>
         <img
           src={process.env.PUBLIC_URL + '/logo.png'}
@@ -20,7 +25,7 @@ const Footer = () => {
         <Link
           to={'https://instagram.com/rbrahinets'}
           target={'_blank'}
-          className={'footer-link icon-container'}
+          className={`footer-link icon-container footer-link-${isDarkMode ? 'dark' : 'light'}`}
         >
           <img
             src={process.env.PUBLIC_URL + '/instagram.png'}
@@ -33,7 +38,7 @@ const Footer = () => {
         <Link
           to={'https://www.linkedin.com/in/rbrahinets'}
           target={'_blank'}
-          className={'footer-link icon-container'}
+          className={`footer-link icon-container footer-link-${isDarkMode ? 'dark' : 'light'}`}
         >
           <img
             src={process.env.PUBLIC_URL + '/linkedin.png'}
@@ -46,7 +51,7 @@ const Footer = () => {
         <Link
           to={'https://instagram.com/yana_tkalych'}
           target={'_blank'}
-          className={'footer-link icon-container'}
+          className={`footer-link icon-container footer-link-${isDarkMode ? 'dark' : 'light'}`}
         >
           <img
             src={process.env.PUBLIC_URL + '/instagram.png'}
@@ -59,7 +64,7 @@ const Footer = () => {
         <Link
           to={'https://www.linkedin.com/in/%D1%8F%D0%BD%D0%B0-%D1%82%D0%BA%D0%B0%D0%BB%D0%B8%D1%87-6a332528b/'}
           target={'_blank'}
-          className={'footer-link icon-container'}
+          className={`footer-link icon-container footer-link-${isDarkMode ? 'dark' : 'light'}`}
         >
           <img
             src={process.env.PUBLIC_URL + '/linkedin.png'}

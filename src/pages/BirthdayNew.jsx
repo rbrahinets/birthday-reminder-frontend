@@ -18,6 +18,7 @@ const BirthdayNew = () => {
   const {t} = useTranslation();
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {setErrorMessages} = bindActionCreators(
     actionCreators,
@@ -165,7 +166,7 @@ const BirthdayNew = () => {
   return (
     <div className={'container center'}>
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderNewBirthday()}
       </main>
       <Footer/>

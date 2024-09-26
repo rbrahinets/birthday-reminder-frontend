@@ -24,6 +24,7 @@ const Profile = () => {
   const {currentUser} = useSelector((state) => state.currentUser);
   const {profileImage} = useSelector((state) => state.profileImage);
   const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {
     setCurrentUser,
@@ -105,7 +106,7 @@ const Profile = () => {
         show={loading}
       />
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderPage()}
       </main>
       <Footer/>

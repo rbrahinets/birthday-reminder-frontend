@@ -1,10 +1,12 @@
 import React, {useState} from 'react';
+import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import './LanguageSelector.css';
 
 const LanguageSelector = () => {
   const {i18n} = useTranslation();
   const {t} = useTranslation();
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const currentLanguage = localStorage.getItem('i18nextLng');
   const languages = {
@@ -24,14 +26,18 @@ const LanguageSelector = () => {
   }
 
   return (
-    <div className="language-selector">
-      <div className="selected-language" onClick={toggleList}>
+    <div
+      className={`language-selector background-${isDarkMode ? 'dark' : 'light'} border-${isDarkMode ? 'dark' : 'light'}`}
+    >
+      <div className={'selected-language'} onClick={toggleList}>
         {languages[currentLanguage]}
-        <span className="arrow">{expanded ? '▲' : '▼'}</span>
+        <span className={'arrow'}>{expanded ? '▲' : '▼'}</span>
       </div>
 
       {expanded && (
-        <ul className="language-options">
+        <ul
+          className={`language-options background-${isDarkMode ? 'dark' : 'light'} border-${isDarkMode ? 'dark' : 'light'}`}
+        >
           {Object.entries(languages).map(([key, language]) => (
             <li
               key={key}

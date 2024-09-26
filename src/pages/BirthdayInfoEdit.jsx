@@ -23,6 +23,7 @@ const BirthdayInfoEdit = () => {
 
   const {birthday} = useSelector((state) => state.birthday);
   const {errorMessages} = useSelector((state) => state.errorMessages);
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {
     setBirthday,
@@ -207,7 +208,7 @@ const BirthdayInfoEdit = () => {
   return (
     <div className={'container center'}>
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderBirthdayInfoEdit()}
       </main>
       <Footer/>

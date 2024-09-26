@@ -17,6 +17,7 @@ const Birthdays = () => {
 
   const {loading} = useSelector((state) => state.loading);
   const {birthdays} = useSelector((state) => state.birthdays);
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {
     setBirthdays,
@@ -40,7 +41,9 @@ const Birthdays = () => {
                     src={getSourceOfPhoto(birthday.imageUrl)}
                     alt={'birthday'}
                   />
-                  <div className={'title-container'}>
+                  <div
+                    className={`title-container background-${isDarkMode ? 'dark' : 'light'}`}
+                  >
                     {birthday.firstName}
                     <br/>
                     {birthday.lastName}
@@ -102,7 +105,7 @@ const Birthdays = () => {
         show={loading}
       />
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderPage()}
       </main>
       <Footer/>

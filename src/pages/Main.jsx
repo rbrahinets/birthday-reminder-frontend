@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {useAuth0} from '@auth0/auth0-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -7,6 +8,7 @@ import './Main.css';
 
 const Main = () => {
   const {user, isAuthenticated, isLoading} = useAuth0();
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const renderPage = () => {
     return (
@@ -65,7 +67,7 @@ const Main = () => {
   return (
     <div className={'container center'}>
       <Header/>
-      <main>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderPage()}
       </main>
       <Footer/>

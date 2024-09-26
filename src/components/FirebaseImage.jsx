@@ -3,7 +3,7 @@ import {useLocation} from 'react-router-dom';
 import {MdDelete} from 'react-icons/md';
 import {TfiSave} from 'react-icons/tfi';
 import {useTranslation} from 'react-i18next';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {deleteObject, getDownloadURL, ref, uploadBytes} from 'firebase/storage';
 import {v4} from 'uuid';
@@ -24,6 +24,7 @@ const FirebaseImage = ({
   const location = useLocation();
   const fileInputRef = useRef(null);
   const {t} = useTranslation();
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
   const [imageFile, setImageFile] = useState(null);
 
   const {
@@ -36,7 +37,9 @@ const FirebaseImage = ({
   const getImage = () => {
     return (
       <>
-        <div className={'photo-container'}>
+        <div
+          className={`photo-container background-${isDarkMode ? 'dark' : 'light'}`}
+        >
           <Photo
             src={state.previewFirebaseImage || state.firebaseImage}
             alt={'image'}

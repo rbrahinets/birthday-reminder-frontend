@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {CgProfile} from 'react-icons/cg';
 import LinkButton from './LinkButton';
@@ -7,6 +8,8 @@ import {useTranslation} from "react-i18next";
 
 const Header = () => {
   const {t} = useTranslation();
+
+  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const renderLinks = () => (
     <>
@@ -21,7 +24,7 @@ const Header = () => {
       />
       <a
         href={'#footer'}
-        className={'link'}
+        className={`link link-${isDarkMode ? 'dark' : 'light'}`}
       >
         {t('contacts')}
       </a>
@@ -50,7 +53,7 @@ const Header = () => {
   }
 
   return (
-    <header>
+    <header className={`${isDarkMode ? 'dark' : 'light'}-header`}>
       {renderHeader()}
     </header>
   );
