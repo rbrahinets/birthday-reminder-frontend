@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import {FaRegEdit} from 'react-icons/fa';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {useTranslation} from 'react-i18next';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import ProfileInfo from '../components/ProfileInfo';
@@ -13,7 +14,6 @@ import Settings from '../components/Settings';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
 import './../components/Button.css';
-import {useTranslation} from "react-i18next";
 
 const Profile = () => {
   const dispatch = useDispatch();
