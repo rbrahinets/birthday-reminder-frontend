@@ -16,7 +16,7 @@ const LanguageSelector = () => {
 
   const toggleList = () => {
     setExpanded(!expanded);
-  };
+  }
 
   const handleSelectLanguage = (languageCode) => {
     setExpanded(false);
@@ -32,16 +32,14 @@ const LanguageSelector = () => {
 
       {expanded && (
         <ul className="language-options">
-          <li
-            onClick={() => handleSelectLanguage('en')
-            }>
-            {languages['en']}
-          </li>
-          <li
-            onClick={() => handleSelectLanguage('uk')}
-          >
-            {languages['uk']}
-          </li>
+          {Object.entries(languages).map(([key, language]) => (
+            <li
+              key={key}
+              onClick={() => handleSelectLanguage(key)}
+            >
+              {language}
+            </li>
+          ))}
         </ul>
       )}
     </div>
