@@ -11,11 +11,18 @@ footer {
 }
 
 .footer-link {
-  color: #000000;
   text-decoration: none;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
   margin-bottom: -10px;
+}
+
+.footer-link-light {
+  color: #000000;
+}
+
+.footer-link-dark {
+  color: #ffffff;
 }
 
 .footer-link-logo-container {

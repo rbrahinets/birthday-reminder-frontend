@@ -1,15 +1,24 @@
 .link {
   display: flex;
-  color: #000000;
   text-decoration: none;
   font-size: 18pt;
   margin: 20px;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.5);
   border-radius: 20px;
   padding: 5px 7px 0 7px;
-  background-color: #ffffff;
+}
+
+.link-light {
+  color: #ffffff;
+  background-color: #28e045;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.link-dark {
+  color: #cfcfcf;
+  background-color: #3e4042;
+  box-shadow: 0 4px 8px rgba(127, 127, 127, 0.5);
 }
 
 .link:hover {
@@ -17,8 +26,15 @@
 }
 
 .profile-icon {
-  color: #000000;
   width: 36px;
   height: 36px;
   margin-left: 5px;
+}
+
+.profile-icon-light {
+  color: #ffffff;
+}
+
+.profile-icon-dark {
+  color: #cfcfcf;
 }

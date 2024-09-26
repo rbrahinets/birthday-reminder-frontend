@@ -17,6 +17,16 @@ main {
   padding: 20px;
 }
 
+.background-light {
+  color: #000000;
+  background-color: #ffffff;
+}
+
+.background-dark {
+  color: #ffffff;
+  background-color: #404040;
+}
+
 .container {
   display: flex;
   flex-direction: column;

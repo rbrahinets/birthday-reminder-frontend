@@ -17,6 +17,18 @@ button:hover {
   transform: scale(1.1);
 }
 
+.button-light {
+  color: #ffffff;
+  background-color: #28a745;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+.button-dark {
+  color: #ffffff;
+  background-color: #000000;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+}
+
 @media (max-width: 700px) {
   button {
     width: 150px;
