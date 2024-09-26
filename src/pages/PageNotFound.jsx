@@ -3,7 +3,8 @@ import {useNavigate} from 'react-router-dom';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import {useTranslation} from "react-i18next";
+import {useTranslation} from 'react-i18next';
+import './PageNotFound.css';
 
 const PageNotFound = () => {
   const navigate = useNavigate();
@@ -17,8 +18,12 @@ const PageNotFound = () => {
     <div className={'container center'}>
       <Header/>
       <main>
-        <h1>{t('oops')}</h1>
-        <h2>{t('page_not_found')}</h2>
+        <img
+          src={process.env.PUBLIC_URL + '/page_not_found.png'}
+          alt={'Page Not Found'}
+          className={'page-not-found'}
+        />
+        <br/>
         <Button text={t('main')} onClick={handleMainClick}/>
       </main>
       <Footer/>
