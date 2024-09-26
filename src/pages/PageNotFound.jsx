@@ -21,7 +21,7 @@ const PageNotFound = () => {
       <Header/>
       <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         <img
-          src={process.env.PUBLIC_URL + '/page_not_found.png'}
+          src={`${process.env.PUBLIC_URL}/page-not-found-${isDarkMode ? 'dark' : 'light'}.png`}
           alt={'Page Not Found'}
           className={'page-not-found'}
         />
