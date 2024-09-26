@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import {useAuth0} from '@auth0/auth0-react';
 import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Main from './pages/Main';
@@ -14,8 +13,6 @@ import PageNotFound from './pages/PageNotFound';
 const url = '/birthday-reminder-frontend';
 
 const App = () => {
-  const {isAuthenticated} = useAuth0();
-
   const getRoutes = () => {
     return (
       <Routes>
