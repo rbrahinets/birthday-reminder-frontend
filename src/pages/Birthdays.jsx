@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
@@ -9,7 +10,6 @@ import WaitModal from '../components/WaitModal';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
 import './Birthdays.css';
-import {useTranslation} from "react-i18next";
 
 const Birthdays = () => {
   const dispatch = useDispatch();
