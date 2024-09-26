@@ -1,10 +1,11 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {useTranslation} from 'react-i18next';
 import {CgProfile} from 'react-icons/cg';
 import LinkButton from './LinkButton';
 import './Header.css';
-import {useTranslation} from "react-i18next";
+import './LanguageSelector.css'
 
 const Header = () => {
   const {t} = useTranslation();
