@@ -1,10 +1,10 @@
 import React from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useSelector} from 'react-redux';
+import {useTranslation} from 'react-i18next';
 import Header from '../components/Header';
 import Button from '../components/Button';
 import Footer from '../components/Footer';
-import {useTranslation} from 'react-i18next';
 import './PageNotFound.css';
 
 const PageNotFound = () => {
