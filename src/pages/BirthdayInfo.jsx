@@ -49,7 +49,7 @@ const BirthdayInfo = () => {
       ) {
         setBirthdayImage(response.data.imageUrl);
       } else {
-        setBirthdayImage(process.env.PUBLIC_URL + '/homer-simpson.png');
+        setBirthdayImage(process.env.PUBLIC_URL + '/no-avatar.png');
       }
     } catch (error) {
       console.error('Error fetching birthday data:', error);
@@ -70,7 +70,7 @@ const BirthdayInfo = () => {
     return (
       <div className={'info-container'}>
         <FirebaseImage
-          defaultImageUrl={`${process.env.PUBLIC_URL}/homer-simpson.png`}
+          defaultImageUrl={`${process.env.PUBLIC_URL}/no-avatar.png`}
           object={birthday}
           state={{
             firebaseImage: birthdayImage,

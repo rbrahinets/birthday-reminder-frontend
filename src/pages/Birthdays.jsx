@@ -59,7 +59,7 @@ const Birthdays = () => {
       return url;
     }
 
-    return process.env.PUBLIC_URL + '/homer-simpson.png';
+    return process.env.PUBLIC_URL + '/no-avatar.png';
   }
 
   const renderPage = () => {
