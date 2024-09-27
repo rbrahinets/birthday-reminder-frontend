@@ -97,6 +97,7 @@ const Profile = () => {
 
   useEffect(() => {
     setLoading(true);
+    setIsProfileInfoMode(true);
     fetchCurrentUserData().then(() => setLoading(false));
   }, []);
 
