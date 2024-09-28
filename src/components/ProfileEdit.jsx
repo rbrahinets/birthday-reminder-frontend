@@ -40,8 +40,7 @@ const ProfileEdit = () => {
   const handleSave = async (event) => {
     event.preventDefault();
 
-    let {firstName, lastName} =
-      document.forms[0];
+    let {firstName, lastName} = document.forms[0];
     let isValidInputtedData = false;
 
     if (
