@@ -96,7 +96,13 @@ const Birthdays = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchBirthdaysData(localStorage.getItem('currentUserEmail')).then(() => setLoading(false));
+    fetchBirthdaysData(localStorage.getItem('currentUserEmail'))
+      .then(
+        () => {
+          setLoading(false);
+          window.scrollTo(0, 0);
+        }
+      );
   }, []);
 
   return (

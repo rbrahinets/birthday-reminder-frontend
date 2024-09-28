@@ -124,7 +124,13 @@ const BirthdayInfo = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetchBirthdayData().then(() => setLoading(false));
+    fetchBirthdayData()
+      .then(
+        () => {
+          setLoading(false);
+          window.scrollTo(0, 0);
+        }
+      );
   }, []);
 
   return (

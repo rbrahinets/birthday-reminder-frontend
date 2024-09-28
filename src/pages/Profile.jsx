@@ -98,7 +98,13 @@ const Profile = () => {
   useEffect(() => {
     setLoading(true);
     setIsProfileInfoMode(true);
-    fetchCurrentUserData().then(() => setLoading(false));
+    fetchCurrentUserData()
+      .then(
+        () => {
+          setLoading(false);
+          window.scrollTo(0, 0);
+        }
+      );
   }, []);
 
   return (

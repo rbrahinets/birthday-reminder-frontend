@@ -17,7 +17,13 @@ const ProfileInfo = ({updateProfileInfo}) => {
 
   useEffect(() => {
     setLoading(true);
-    updateProfileInfo().then(() => setLoading(false));
+    updateProfileInfo()
+      .then(
+        () => {
+          setLoading(false);
+          window.scrollTo(0, 0);
+        }
+      );
   }, []);
 
   return (

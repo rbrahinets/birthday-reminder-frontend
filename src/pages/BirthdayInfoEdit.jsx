@@ -202,7 +202,10 @@ const BirthdayInfoEdit = () => {
   }
 
   useEffect(() => {
-    setInfoAboutBirthday().then();
+    setInfoAboutBirthday()
+      .then(
+        () => window.scrollTo(0, 0)
+      );
   }, []);
 
   return (
