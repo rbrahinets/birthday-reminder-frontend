@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-import {FaRegEdit} from 'react-icons/fa';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {useTranslation} from 'react-i18next';
@@ -8,7 +7,6 @@ import Header from '../components/Header';
 import ProfileInfo from '../components/ProfileInfo';
 import ProfileEdit from '../components/ProfileEdit';
 import FirebaseImage from '../components/FirebaseImage';
-import Button from '../components/Button';
 import WaitModal from '../components/WaitModal';
 import Settings from '../components/Settings';
 import Footer from '../components/Footer';
@@ -79,20 +77,9 @@ const Profile = () => {
             <ProfileInfo updateProfileInfo={fetchCurrentUserData}/> :
             <ProfileEdit/>
         }
-        {isProfileInfoMode &&
-          <Button
-            text={t('edit')}
-            onClick={handleEdit}
-            IconTag={FaRegEdit}
-          />
-        }
         <Settings/>
       </>
     );
-  }
-
-  const handleEdit = () => {
-    setIsProfileInfoMode(false);
   }
 
   useEffect(() => {
