@@ -81,7 +81,7 @@ const ProfileEdit = () => {
   }
 
   const handleCancel = async () => {
-    setErrorMessages({});
+    resetErrorMessages();
     setIsProfileInfoMode(true);
   }
 
