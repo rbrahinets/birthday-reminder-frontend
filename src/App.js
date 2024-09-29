@@ -4,8 +4,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Birthdays from './pages/Birthdays';
-import BirthdayInfo from './pages/BirthdayInfo';
-import BirthdayInfoEdit from './pages/BirthdayInfoEdit';
+import Birthday from './pages/Birthday';
 import BirthdayNew from './pages/BirthdayNew';
 import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
@@ -30,11 +29,7 @@ const App = () => {
         />
         <Route
           path={'/birthdays/birthday'}
-          element={<ProtectedRoute><BirthdayInfo/></ProtectedRoute>}
-        />
-        <Route
-          path={'/birthdays/birthday/edit'}
-          element={<ProtectedRoute><BirthdayInfoEdit/></ProtectedRoute>}
+          element={<ProtectedRoute><Birthday/></ProtectedRoute>}
         />
         <Route
           path={'/new-birthday'}

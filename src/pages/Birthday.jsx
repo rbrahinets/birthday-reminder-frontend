@@ -1,22 +1,19 @@
 import React, {useEffect} from 'react';
-import {FaRegEdit} from 'react-icons/fa';
-import {TiUserDelete} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
-import {useLocation, useNavigate} from 'react-router-dom';
+import {useLocation} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import Header from '../components/Header';
 import WaitModal from '../components/WaitModal';
-import Button from '../components/Button';
-import FirebaseImage, {deleteOldImage} from '../components/FirebaseImage';
+import FirebaseImage from '../components/FirebaseImage';
+import BirthdayInfo from '../components/BirthdayInfo';
+import BirthdayEdit from '../components/BirthdayEdit';
 import Footer from '../components/Footer';
 import birthdayService from '../services/BirthdayService';
-import '../components/Input.css';
 
-const BirthdayInfo = () => {
+const Birthday = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {search} = useLocation();
   const {t} = useTranslation();
 
@@ -24,6 +21,7 @@ const BirthdayInfo = () => {
   const birthdayId = queryParams.get('birthdayId');
 
   const {loading} = useSelector((state) => state.loading);
+  const {isBirthdayInfoMode} = useSelector((state) => state.isBirthdayInfoMode);
   const {birthday} = useSelector((state) => state.birthday);
   const {birthdayImage} = useSelector((state) => state.birthdayImage);
   const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
@@ -34,6 +32,7 @@ const BirthdayInfo = () => {
     setBirthday,
     setBirthdayImage,
     setPreviewBirthdayImage,
+    setIsBirthdayInfoMode,
   } = bindActionCreators(
     actionCreators,
     dispatch
@@ -57,19 +56,10 @@ const BirthdayInfo = () => {
     }
   }
 
-  const getBirthdayInfo = () => {
-    if (!birthday) {
-      return;
-    }
-
-    const originalDate = new Date(birthday.dateOfBirth);
-    const day = originalDate.getUTCDate().toString().padStart(2, '0');
-    const month = (originalDate.getUTCMonth() + 1).toString().padStart(2, '0');
-    const year = originalDate.getUTCFullYear();
-    const formattedDate = `${day}/${month}/${year}`;
-
+  const renderPage = () => {
     return (
-      <div className={'info-container'}>
+      <>
+        <h1>{t('birthday_info')}</h1>
         <FirebaseImage
           defaultImageUrl={`${process.env.PUBLIC_URL}/no-avatar.png`}
           object={birthday}
@@ -82,48 +72,18 @@ const BirthdayInfo = () => {
           service={birthdayService}
           resetObject={fetchBirthdayData}
         />
-        <div>{birthday.firstName} {birthday.lastName}</div>
-        <div>{birthday.email}</div>
-        <div>{formattedDate}</div>
-      </div>
-    );
-  }
-
-  const renderBirthdayInfo = () => {
-    return (
-      <>
-        <h1>{t('birthday_info')}</h1>
-        {getBirthdayInfo()}
-        <Button
-          text={t('edit')}
-          onClick={handleEdit}
-          IconTag={FaRegEdit}
-        />
-        <br/>
-        <Button
-          text={t('delete')}
-          onClick={handleDelete}
-          IconTag={TiUserDelete}
-        />
+        {
+          isBirthdayInfoMode ?
+            <BirthdayInfo updateBirthdayInfo={fetchBirthdayData}/> :
+            <BirthdayEdit/>
+        }
       </>
-    );
-  }
-
-  const handleEdit = () => {
-    navigate(`/birthdays/birthday/edit?birthdayId=${birthdayId}`);
-  }
-
-  const handleDelete = () => {
-    deleteBirthday().then(() => navigate(`/birthdays`));
-  }
-
-  const deleteBirthday = async () => {
-    await deleteOldImage(birthday.imageUrl);
-    await birthdayService.delete(birthdayId);
+    )
   }
 
   useEffect(() => {
     setLoading(true);
+    setIsBirthdayInfoMode(true);
     fetchBirthdayData()
       .then(
         () => {
@@ -140,11 +100,11 @@ const BirthdayInfo = () => {
       />
       <Header/>
       <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
-        {renderBirthdayInfo()}
+        {renderPage()}
       </main>
       <Footer/>
     </div>
   );
 }
 
-export default BirthdayInfo;
+export default Birthday;
