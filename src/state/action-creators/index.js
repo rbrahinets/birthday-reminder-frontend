@@ -126,6 +126,15 @@ export const setIsProfileInfoMode = (isProfileInfoMode) => {
   };
 };
 
+export const setIsBirthdayInfoMode = (isBirthdayInfoMode) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.SET_IS_BIRTHDAY_INFO_MODE,
+      payload: isBirthdayInfoMode,
+    });
+  };
+};
+
 export const setIsDarkMode = (isDarkMode) => {
   return (dispatch) => {
     dispatch({
