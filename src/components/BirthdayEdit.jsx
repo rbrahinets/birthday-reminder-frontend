@@ -1,51 +1,49 @@
-import React, {useEffect} from 'react';
-import {TfiSave} from 'react-icons/tfi';
+import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {useLocation, useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
+import {TfiSave} from 'react-icons/tfi';
 import {actionCreators} from '../state';
-import Header from '../components/Header';
-import Button from '../components/Button';
-import Input from '../components/Input';
-import WaitModal from '../components/WaitModal';
-import Footer from '../components/Footer';
-import birthdayService from '../services/BirthdayService';
-import '../components/Input.css';
+import Input from './Input';
+import Button from './Button';
+import {useLocation} from "react-router-dom";
+import birthdayService from "../services/BirthdayService";
+import WaitModal from "./WaitModal";
 
-const BirthdayInfoEdit = () => {
+const BirthdayEdit = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const {search} = useLocation();
   const {t} = useTranslation();
+
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
 
   const {birthday} = useSelector((state) => state.birthday);
   const {errorMessages} = useSelector((state) => state.errorMessages);
-  const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const {
-    setBirthday,
     setErrorMessages,
+    setIsBirthdayInfoMode,
   } = bindActionCreators(
     actionCreators,
     dispatch
   );
 
-  const setInfoAboutBirthday = async () => {
-    try {
-      const response = await birthdayService.findById(birthdayId);
-      setBirthday(response.data);
-    } catch (error) {
-      console.error('Error fetching birthday data:', error);
-    }
+  const errors = {
+    firstName: t('invalid_first_name'),
+    lastName: t('invalid_last_name'),
+    email: t('invalid_email'),
+    dateOfBirth: t('invalid_date_of_birth'),
   }
 
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
       <div className={'error'}>{errorMessages.message}</div>
     );
+
+  const resetErrorMessages = () => {
+    setErrorMessages({});
+  }
 
   const renderBirthdayInfoEdit = () => {
     if (!birthday) {
@@ -78,6 +76,7 @@ const BirthdayInfoEdit = () => {
             id={'firstName'}
             placeholder={t('first_name')}
             error={renderErrorMessage('firstName')}
+            onClick={resetErrorMessages}
             defaultValue={birthday.firstName}
           />
           <Input
@@ -86,6 +85,7 @@ const BirthdayInfoEdit = () => {
             id={'lastName'}
             placeholder={t('last_name')}
             error={renderErrorMessage('lastName')}
+            onClick={resetErrorMessages}
             defaultValue={birthday.lastName}
           />
           <Input
@@ -94,6 +94,7 @@ const BirthdayInfoEdit = () => {
             id={'email'}
             placeholder={t('email')}
             error={renderErrorMessage('email')}
+            onClick={resetErrorMessages}
             defaultValue={birthday.email}
           />
           <Input
@@ -101,6 +102,7 @@ const BirthdayInfoEdit = () => {
             name={'dateOfBirth'}
             id={'dateOfBirth'}
             error={renderErrorMessage('dateOfBirth')}
+            onClick={resetErrorMessages}
             defaultValue={formattedDateOfBirth}
             min={'1900-01-01'}
             max={formattedCurrentDate}
@@ -120,18 +122,10 @@ const BirthdayInfoEdit = () => {
     );
   }
 
-  const errors = {
-    firstName: t('invalid_first_name'),
-    lastName: t('invalid_last_name'),
-    email: t('invalid_email'),
-    dateOfBirth: t('invalid_date_of_birth'),
-  }
-
   const handleSave = async (event) => {
     event.preventDefault();
 
-    let {firstName, lastName, email, dateOfBirth} =
-      document.forms[0];
+    let {firstName, lastName, email, dateOfBirth} = document.forms[0];
     let isValidInputtedData = false;
 
     if (
@@ -185,7 +179,7 @@ const BirthdayInfoEdit = () => {
           }
         );
 
-        navigate(`/birthdays/birthday?birthdayId=${birthdayId}`);
+        setIsBirthdayInfoMode(true);
       } catch (error) {
         console.error('Updating Birthday Info Failed', error);
         alert(t('updating_birthday_info_failed'));
@@ -198,25 +192,15 @@ const BirthdayInfoEdit = () => {
   }
 
   const handleCancel = async () => {
-    navigate(`/birthdays/birthday?birthdayId=${birthdayId}`);
+    resetErrorMessages();
+    setIsBirthdayInfoMode(true);
   }
 
-  useEffect(() => {
-    setInfoAboutBirthday()
-      .then(
-        () => window.scrollTo(0, 0)
-      );
-  }, []);
-
   return (
-    <div className={'container center'}>
-      <Header/>
-      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
-        {renderBirthdayInfoEdit()}
-      </main>
-      <Footer/>
+    <div>
+      {renderBirthdayInfoEdit()}
     </div>
   );
 }
 
-export default BirthdayInfoEdit;
+export default BirthdayEdit;
