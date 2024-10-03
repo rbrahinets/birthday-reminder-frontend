@@ -14,7 +14,7 @@ const Main = () => {
     return (
       <>
         <img
-          src={process.env.PUBLIC_URL + '/main_image.png'}
+          src={process.env.PUBLIC_URL + '/main-image.png'}
           alt={'main-image'}
           className={'main-image'}
         />
