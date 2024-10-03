@@ -7,7 +7,7 @@ import userService from '../services/UserService';
 import './Main.css';
 
 const Main = () => {
-  const {user, isAuthenticated, isLoading} = useAuth0();
+  const {user, isAuthenticated} = useAuth0();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   const renderPage = () => {
