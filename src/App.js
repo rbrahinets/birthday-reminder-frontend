@@ -9,8 +9,6 @@ import BirthdayNew from './pages/BirthdayNew';
 import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
 
-const url = '/birthday-reminder-frontend';
-
 const App = () => {
   const getRoutes = () => {
     return (
@@ -48,7 +46,7 @@ const App = () => {
   }
 
   return (
-    <Router basename={url}>
+    <Router basename={''}>
       {getRoutes()}
     </Router>
   );
