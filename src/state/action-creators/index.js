@@ -143,3 +143,12 @@ export const setIsDarkMode = (isDarkMode) => {
     });
   };
 };
+
+export const setQuery = (query) => {
+  return (dispatch) => {
+    dispatch({
+      type: ActionType.SET_QUERY,
+      payload: query,
+    });
+  };
+};

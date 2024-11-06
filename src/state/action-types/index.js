@@ -15,4 +15,5 @@ export const ActionType = {
   SET_IS_PROFILE_INFO_MODE: 'setIsProfileInfoMode',
   SET_IS_BIRTHDAY_INFO_MODE: 'setIsBirthdayInfoMode',
   IS_DARK_MODE: 'setIsDarkMode',
+  SET_QUERY: 'setQuery',
 }
