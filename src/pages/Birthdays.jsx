@@ -24,6 +24,7 @@ const Birthdays = () => {
   const {
     setBirthdays,
     setLoading,
+    setQuery,
   } = bindActionCreators(
     actionCreators,
     dispatch
@@ -118,6 +119,7 @@ const Birthdays = () => {
 
   useEffect(() => {
     setLoading(true);
+    setQuery('');
     fetchBirthdaysData(localStorage.getItem('currentUserEmail'))
       .then(
         () => {
