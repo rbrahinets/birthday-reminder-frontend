@@ -1,7 +1,7 @@
 import {ActionType} from '../action-types';
 
 const initialState = {
-  currentUser: {},
+  birthday: {},
 };
 
 const reducer = (
