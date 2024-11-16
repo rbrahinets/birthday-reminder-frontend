@@ -14,10 +14,7 @@ class BirthdayService {
   }
 
   async save(birthday) {
-    return await API.post('/', {
-      ...birthday,
-      userEmail: localStorage.get('currentUserEmail')
-    });
+    return await API.post('/', birthday);
   }
 
   async update(id, birthday) {
