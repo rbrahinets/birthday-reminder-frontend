@@ -1,11 +1,8 @@
 import axios from 'axios';
-import {useSelector} from 'react-redux';
 
 const API = axios.create({
   baseURL: `${process.env.REACT_APP_BASE_API_URI}/birthdays`,
 });
-
-const {currentUser} = useSelector((state) => state.currentUser);
 
 class BirthdayService {
   async getAll() {
@@ -17,7 +14,10 @@ class BirthdayService {
   }
 
   async save(birthday) {
-    return await API.post('/', {...birthday, userEmail: currentUser});
+    return await API.post('/', {
+      ...birthday,
+      userEmail: localStorage.get('currentUserEmail')
+    });
   }
 
   async update(id, birthday) {
