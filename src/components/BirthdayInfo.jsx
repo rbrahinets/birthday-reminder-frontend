@@ -1,49 +1,47 @@
-import React, {useEffect} from 'react';
-import {useLocation, useNavigate} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import {useTranslation} from 'react-i18next';
-import {TiUserDelete} from 'react-icons/ti';
-import {FaRegEdit} from 'react-icons/fa';
-import {actionCreators} from '../state';
-import Button from './Button';
-import {deleteOldImage} from './FirebaseImage';
-import birthdayService from '../services/BirthdayService';
+import React, { useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { useTranslation } from 'react-i18next'
+import { TiUserDelete } from 'react-icons/ti'
+import { FaRegEdit } from 'react-icons/fa'
+import { actionCreators } from '../state'
+import Button from './Button'
+import { deleteOldImage } from './FirebaseImage'
+import birthdayService from '../services/BirthdayService'
 
 
-const BirthdayInfo = ({updateBirthdayInfo}) => {
-  const dispatch = useDispatch();
+const BirthdayInfo = ({ updateBirthdayInfo }) => {
+  const dispatch = useDispatch()
 
-  const navigate = useNavigate();
-  const {search} = useLocation();
-  const {t} = useTranslation();
+  const navigate = useNavigate()
+  const { search } = useLocation()
+  const { t } = useTranslation()
 
-  const queryParams = new URLSearchParams(search);
-  const birthdayId = queryParams.get('birthdayId');
+  const queryParams = new URLSearchParams(search)
+  const birthdayId = queryParams.get('birthdayId')
 
-  const {isBirthdayInfoMode} = useSelector((state) => state.isBirthdayInfoMode);
-  const {birthday} = useSelector((state) => state.birthday);
+  const { isBirthdayInfoMode } = useSelector((state) => state.isBirthdayInfoMode)
+  const { birthday } = useSelector((state) => state.birthday)
 
   const {
     setLoading,
     setIsBirthdayInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
-  );
+    dispatch,
+  )
 
   const getBirthdayInfo = () => {
     if (!birthday) {
-      return;
+      return
     }
 
-    console.log(birthday);
-
-    const originalDate = new Date(birthday.dateOfBirth);
-    const day = originalDate.getUTCDate().toString().padStart(2, '0');
-    const month = (originalDate.getUTCMonth() + 1).toString().padStart(2, '0');
-    const year = originalDate.getUTCFullYear();
-    const formattedDate = `${day}/${month}/${year}`;
+    const originalDate = new Date(birthday.dateOfBirth)
+    const day = originalDate.getUTCDate().toString().padStart(2, '0')
+    const month = (originalDate.getUTCMonth() + 1).toString().padStart(2, '0')
+    const year = originalDate.getUTCFullYear()
+    const formattedDate = `${day}/${month}/${year}`
 
     return (
       <div className={'info-container'}>
@@ -51,33 +49,33 @@ const BirthdayInfo = ({updateBirthdayInfo}) => {
         <div>{birthday.email}</div>
         <div>{formattedDate}</div>
       </div>
-    );
+    )
   }
 
   const handleEdit = () => {
-    setIsBirthdayInfoMode(false);
+    setIsBirthdayInfoMode(false)
   }
 
   const handleDelete = () => {
-    deleteBirthday().then(() => navigate(`/birthdays`));
+    deleteBirthday().then(() => navigate(`/birthdays`))
   }
 
   const deleteBirthday = async () => {
-    await deleteOldImage(birthday.imageUrl);
-    await birthdayService.delete(birthdayId);
+    await deleteOldImage(birthday.imageUrl)
+    await birthdayService.delete(birthdayId)
   }
 
   useEffect(() => {
-    setLoading(true);
-    setIsBirthdayInfoMode(true);
+    setLoading(true)
+    setIsBirthdayInfoMode(true)
     updateBirthdayInfo()
       .then(
         () => {
-          setLoading(false);
-          window.scrollTo(0, 0);
-        }
-      );
-  }, []);
+          setLoading(false)
+          window.scrollTo(0, 0)
+        },
+      )
+  }, [])
 
   return (
     <div className={'info-container'}>
@@ -95,7 +93,7 @@ const BirthdayInfo = ({updateBirthdayInfo}) => {
         IconTag={TiUserDelete}
       />
     </div>
-  );
+  )
 }
 
-export default BirthdayInfo;
+export default BirthdayInfo
