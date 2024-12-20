@@ -1,19 +1,20 @@
 .formcontrol {
-  margin: 5px 0;
+  margin: 20px 0 20px 0;
 }
 
 .formcontrol input {
-  padding: 5px 10px;
+  padding: 10px;
+  margin: 0;
   font-size: 22px;
   text-align: center;
-  border: none;
-}
-
-.form input {
-  border: #000000 1px solid;
+  border: 1px solid #cccccc;
+  border-radius: 5px;
   width: 50%;
+  transition: border 0.3s, box-shadow 0.3s;
+  background-color: #ffffff;
 }
 
-input:focus {
-  transform: scale(1.1);
+.formcontrol input:focus {
+  border-color: #2196F3;
+  box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }

@@ -10,7 +10,7 @@ const Input = ({
                  defaultValue,
                  min,
                  max,
-                 onClick
+                 onClick,
                }) => (
   <div className={'formcontrol'}>
     <input
