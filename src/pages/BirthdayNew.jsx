@@ -22,7 +22,7 @@ const BirthdayNew = () => {
 
   const {setErrorMessages} = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const renderErrorMessage = (name) =>
@@ -32,10 +32,7 @@ const BirthdayNew = () => {
 
   const renderNewBirthday = () => {
     const currentDate = new Date();
-    const year = currentDate.getUTCFullYear();
-    const month = (currentDate.getUTCMonth() + 1).toString().padStart(2, '0');
-    const day = currentDate.getUTCDate().toString().padStart(2, '0');
-    const formattedDate = `${year}-${month}-${day}`;
+    const formattedDate = currentDate.toISOString().split('T')[0];
 
     return (
       <>
@@ -84,57 +81,36 @@ const BirthdayNew = () => {
         />
       </>
     );
-  }
+  };
 
   const errors = {
     firstName: t('invalid_first_name'),
     lastName: t('invalid_last_name'),
     email: t('invalid_email'),
     dateOfBirth: t('invalid_date_of_birth'),
-  }
+  };
+
+  const validateField = (field, errorMessage) => {
+    if (!field.value || !field.value.trim().length) {
+      setErrorMessages({
+        name: field.name,
+        message: errorMessage,
+      });
+      return false;
+    }
+    return true;
+  };
 
   const handleAdd = async (event) => {
     event.preventDefault();
 
-    let {firstName, lastName, email, dateOfBirth} =
-      document.forms[0];
-    let isValidInputtedData = false;
+    let {firstName, lastName, email, dateOfBirth} = document.forms[0];
+    let isValidInputtedData = true;
 
-    if (
-      !firstName.value ||
-      !firstName.value.trim().length
-    ) {
-      setErrorMessages({
-        name: 'firstName',
-        message: errors.firstName,
-      });
-    } else if (
-      !lastName.value ||
-      !lastName.value.trim().length
-    ) {
-      setErrorMessages({
-        name: 'lastName',
-        message: errors.lastName,
-      });
-    } else if (
-      !email.value ||
-      !email.value.trim().length ||
-      !isValidEmail(email.value)
-    ) {
-      setErrorMessages({
-        name: 'email',
-        message: errors.email,
-      });
-    } else if (
-      !dateOfBirth.value
-    ) {
-      setErrorMessages({
-        name: 'dateOfBirth',
-        message: errors.dateOfBirth,
-      });
-    } else {
-      isValidInputtedData = true;
-    }
+    isValidInputtedData &= validateField(firstName, errors.firstName);
+    isValidInputtedData &= validateField(lastName, errors.lastName);
+    isValidInputtedData &= validateField(email, errors.email) && isValidEmail(email.value);
+    isValidInputtedData &= validateField(dateOfBirth, errors.dateOfBirth);
 
     if (isValidInputtedData) {
       try {
@@ -147,21 +123,23 @@ const BirthdayNew = () => {
           dateOfBirth: dateOfBirth.value,
           emailOfUser: emailOfUser,
         });
+
         navigate(`/birthdays`);
       } catch (error) {
         console.error('Adding New Birthday Failed', error);
         alert(t('adding_new_birthday_failed'));
       }
     }
-  }
+  };
 
   const isValidEmail = (email) => {
-    return email.includes('@') && !email.endsWith('@');
-  }
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
 
   const handleCancel = async () => {
     navigate(`/birthdays`);
-  }
+  };
 
   return (
     <div className={'container center'}>
@@ -172,6 +150,6 @@ const BirthdayNew = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default BirthdayNew;

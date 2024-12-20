@@ -43,14 +43,11 @@ const Birthday = () => {
       const response = await birthdayService.findById(birthdayId);
       setBirthday(response.data);
 
-      if (
-        response.data.imageUrl &&
-        response.data.imageUrl.trim().length > 0
-      ) {
-        setBirthdayImage(response.data.imageUrl);
-      } else {
-        setBirthdayImage(process.env.PUBLIC_URL + '/no-avatar.png');
-      }
+      const imageUrl = response.data.imageUrl && response.data.imageUrl.trim()
+        ? response.data.imageUrl
+        : `${process.env.PUBLIC_URL}/no-avatar.png`;
+
+      setBirthdayImage(imageUrl);
     } catch (error) {
       console.error('Error fetching birthday data:', error);
     }

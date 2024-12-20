@@ -42,14 +42,13 @@ const Profile = () => {
       );
       setCurrentUser(response.data);
 
-      if (
-        response.data.imageUrl &&
-        response.data.imageUrl.trim().length > 0
-      ) {
-        setProfileImage(response.data.imageUrl);
-      } else {
-        setProfileImage(process.env.PUBLIC_URL + '/add.png');
-      }
+      const getProfileImage = (imageUrl) => {
+        return imageUrl && imageUrl.trim().length > 0
+          ? imageUrl
+          : `${process.env.PUBLIC_URL}/add.png`;
+      };
+
+      setProfileImage(getProfileImage(response.data.imageUrl));
     } catch (error) {
       console.error('Error fetching current user data:', error);
     }
