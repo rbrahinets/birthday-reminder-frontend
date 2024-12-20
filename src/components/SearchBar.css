@@ -32,9 +32,18 @@ input {
 
 input:focus {
   outline: none;
-  margin-left: 30px;
 }
 
 #search-icon {
-  color: royalblue;
+  color: #4169E1;
+}
+
+@media (max-width: 800px) {
+  .search-bar-container {
+    width: 90%;
+  }
+
+  .input-wrapper {
+    padding: 10px;
+  }
 }

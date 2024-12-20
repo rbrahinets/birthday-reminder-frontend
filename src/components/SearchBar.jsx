@@ -12,16 +12,11 @@ const SearchBar = () => {
 
   const {query} = useSelector((state) => state.query);
 
-  const {
-    setQuery,
-  } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const {setQuery} = bindActionCreators(actionCreators, dispatch);
 
   const handleInput = (value) => {
     setQuery(value);
-  }
+  };
 
   return (
     <div className={'search-bar-container'}>
@@ -35,6 +30,6 @@ const SearchBar = () => {
       </div>
     </div>
   );
-}
+};
 
 export default SearchBar;
