@@ -6,9 +6,9 @@ import {TfiSave} from 'react-icons/tfi';
 import {actionCreators} from '../state';
 import Input from './Input';
 import Button from './Button';
-import {useLocation} from "react-router-dom";
-import birthdayService from "../services/BirthdayService";
-import WaitModal from "./WaitModal";
+import {useLocation} from 'react-router-dom';
+import birthdayService from '../services/BirthdayService';
+import WaitModal from './WaitModal';
 
 const BirthdayEdit = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const BirthdayEdit = () => {
     setIsBirthdayInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const errors = {
@@ -34,7 +34,7 @@ const BirthdayEdit = () => {
     lastName: t('invalid_last_name'),
     email: t('invalid_email'),
     dateOfBirth: t('invalid_date_of_birth'),
-  }
+  };
 
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
@@ -43,7 +43,7 @@ const BirthdayEdit = () => {
 
   const resetErrorMessages = () => {
     setErrorMessages({});
-  }
+  };
 
   const renderBirthdayInfoEdit = () => {
     if (!birthday) {
@@ -69,58 +69,60 @@ const BirthdayEdit = () => {
           show={!birthday}
         />
         <h1>{t('edit_birthday_info')}</h1>
-        <form className={'form'}>
-          <Input
-            type={'text'}
-            name={'firstName'}
-            id={'firstName'}
-            placeholder={t('first_name')}
-            error={renderErrorMessage('firstName')}
-            onClick={resetErrorMessages}
-            defaultValue={birthday.firstName}
+        <div className={'edit-container'}>
+          <form className={'form'}>
+            <Input
+              type={'text'}
+              name={'firstName'}
+              id={'firstName'}
+              placeholder={t('first_name')}
+              error={renderErrorMessage('firstName')}
+              onClick={resetErrorMessages}
+              defaultValue={birthday.firstName}
+            />
+            <Input
+              type={'text'}
+              name={'lastName'}
+              id={'lastName'}
+              placeholder={t('last_name')}
+              error={renderErrorMessage('lastName')}
+              onClick={resetErrorMessages}
+              defaultValue={birthday.lastName}
+            />
+            <Input
+              type={'text'}
+              name={'email'}
+              id={'email'}
+              placeholder={t('email')}
+              error={renderErrorMessage('email')}
+              onClick={resetErrorMessages}
+              defaultValue={birthday.email}
+            />
+            <Input
+              type={'date'}
+              name={'dateOfBirth'}
+              id={'dateOfBirth'}
+              error={renderErrorMessage('dateOfBirth')}
+              onClick={resetErrorMessages}
+              defaultValue={formattedDateOfBirth}
+              min={'1900-01-01'}
+              max={formattedCurrentDate}
+            />
+          </form>
+          <Button
+            text={t('save')}
+            onClick={handleSave}
+            IconTag={TfiSave}
           />
-          <Input
-            type={'text'}
-            name={'lastName'}
-            id={'lastName'}
-            placeholder={t('last_name')}
-            error={renderErrorMessage('lastName')}
-            onClick={resetErrorMessages}
-            defaultValue={birthday.lastName}
+          <br/>
+          <Button
+            text={t('cancel')}
+            onClick={handleCancel}
           />
-          <Input
-            type={'text'}
-            name={'email'}
-            id={'email'}
-            placeholder={t('email')}
-            error={renderErrorMessage('email')}
-            onClick={resetErrorMessages}
-            defaultValue={birthday.email}
-          />
-          <Input
-            type={'date'}
-            name={'dateOfBirth'}
-            id={'dateOfBirth'}
-            error={renderErrorMessage('dateOfBirth')}
-            onClick={resetErrorMessages}
-            defaultValue={formattedDateOfBirth}
-            min={'1900-01-01'}
-            max={formattedCurrentDate}
-          />
-        </form>
-        <Button
-          text={t('save')}
-          onClick={handleSave}
-          IconTag={TfiSave}
-        />
-        <br/>
-        <Button
-          text={t('cancel')}
-          onClick={handleCancel}
-        />
+        </div>
       </>
     );
-  }
+  };
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -176,7 +178,7 @@ const BirthdayEdit = () => {
             email: email.value,
             dateOfBirth: dateOfBirth.value,
             emailOfUser: emailOfUser,
-          }
+          },
         );
 
         setIsBirthdayInfoMode(true);
@@ -185,22 +187,22 @@ const BirthdayEdit = () => {
         alert(t('updating_birthday_info_failed'));
       }
     }
-  }
+  };
 
   const isValidEmail = (email) => {
     return email.includes('@') && !email.endsWith('@');
-  }
+  };
 
   const handleCancel = async () => {
     resetErrorMessages();
     setIsBirthdayInfoMode(true);
-  }
+  };
 
   return (
     <div>
       {renderBirthdayInfoEdit()}
     </div>
   );
-}
+};
 
 export default BirthdayEdit;

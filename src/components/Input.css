@@ -9,7 +9,6 @@
   text-align: center;
   border: 1px solid #cccccc;
   border-radius: 5px;
-  width: 50%;
   transition: border 0.3s, box-shadow 0.3s;
   background-color: #ffffff;
 }

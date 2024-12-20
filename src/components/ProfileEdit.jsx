@@ -20,13 +20,13 @@ const ProfileEdit = () => {
     setIsProfileInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const errors = {
     firstName: t('invalid_first_name'),
     lastName: t('invalid_last_name'),
-  }
+  };
 
   const renderErrorMessage = (name) =>
     name === errorMessages.name && (
@@ -35,7 +35,7 @@ const ProfileEdit = () => {
 
   const resetErrorMessages = () => {
     setErrorMessages({});
-  }
+  };
 
   const handleSave = async (event) => {
     event.preventDefault();
@@ -70,7 +70,7 @@ const ProfileEdit = () => {
           {
             firstName: firstName.value,
             lastName: lastName.value,
-          }
+          },
         );
 
         setIsProfileInfoMode(true);
@@ -78,15 +78,15 @@ const ProfileEdit = () => {
         console.error('Updating Profile Failed', error);
       }
     }
-  }
+  };
 
   const handleCancel = async () => {
     resetErrorMessages();
     setIsProfileInfoMode(true);
-  }
+  };
 
   return (
-    <div>
+    <div className={'edit-container'}>
       <form className={'form'}>
         <Input
           type={'text'}
@@ -119,6 +119,6 @@ const ProfileEdit = () => {
       />
     </div>
   );
-}
+};
 
 export default ProfileEdit;

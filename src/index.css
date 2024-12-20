@@ -5,6 +5,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 450px;
 }
 
 code {
@@ -58,11 +59,28 @@ main {
 }
 
 .info-container {
-  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10px;
 }
 
 .info-container div {
   margin: 10px;
   font-size: 20pt;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.edit-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit-container button {
+  margin-left: 1%;
+}
+
+.edit-container div {
+  margin-right: 6%;
 }
