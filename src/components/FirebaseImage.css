@@ -10,13 +10,17 @@
 .photo-container {
   position: relative;
   display: inline-block;
-  z-index: 1;
+  transition: transform 0.3s ease;
 }
 
 .photo-container:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
 }
 
 .invisible {
   display: none;
+}
+
+.background-light, .background-dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
