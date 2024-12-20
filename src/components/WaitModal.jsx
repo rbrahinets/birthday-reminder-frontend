@@ -19,6 +19,6 @@ const WaitModal = ({show}) => {
       />
     </Modal>
   );
-}
+};
 
 export default WaitModal;
