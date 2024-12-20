@@ -1,7 +1,21 @@
 .photo {
   height: 200px;
+  width: 200px;
   border-radius: 50%;
   cursor: pointer;
   margin: 10px;
-  border: #000000 5px solid;
+  border: 5px solid #000000;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.photo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 800px) {
+  .photo {
+    height: 150px;
+    width: 150px;
+  }
 }
