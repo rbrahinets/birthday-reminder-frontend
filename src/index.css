@@ -17,6 +17,10 @@ main {
   padding: 20px;
 }
 
+.background-light, .background-dark {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
 .background-light {
   color: #000000;
   background-color: #ffffff;
@@ -44,11 +48,13 @@ main {
 
 .icon-container {
   display: flex;
+  justify-content: center;
 }
 
 .error {
   color: #ff0000;
-  font-size: 12pt;
+  font-size: 14pt;
+  font-weight: bold;
 }
 
 .info-container {

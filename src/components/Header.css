@@ -13,7 +13,9 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  min-width: 570px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .menu-toggle {
@@ -29,28 +31,41 @@
 @media (max-width: 800px) {
   .menu-toggle {
     display: block;
-    margin-right: 10px;
   }
 
   .link-container {
     display: none;
     flex-direction: column;
     align-items: flex-end;
-    width: fit-content;
+    width: 100%;
     padding: 0;
   }
 
   .link-container.open {
     display: flex;
     position: absolute;
-    top: 70px;
+    top: 100%;
     right: 0;
-    background-color: inherit;
+    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     align-items: center;
+    width: 100%;
+    z-index: 2;
   }
 
   .logo {
     width: 150px;
+  }
+
+  .link-container a, .link-container div {
+    padding: 10px;
+    text-align: center;
+    width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo img {
+    width: 120px;
   }
 }
