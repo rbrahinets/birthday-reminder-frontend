@@ -22,6 +22,6 @@ const Settings = () => {
       <LogoutButton/>
     </div>
   );
-}
+};
 
 export default Settings;
