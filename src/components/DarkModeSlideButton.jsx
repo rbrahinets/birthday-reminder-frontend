@@ -4,18 +4,11 @@ import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
 import './DarkModeSlideButton.css';
 
-
 const DarkModeSlideButton = () => {
   const dispatch = useDispatch();
-
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
-  const {
-    setIsDarkMode,
-  } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const {setIsDarkMode} = bindActionCreators(actionCreators, dispatch);
 
   const toggleMode = () => {
     setIsDarkMode(!isDarkMode);
