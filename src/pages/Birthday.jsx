@@ -35,7 +35,7 @@ const Birthday = () => {
     setIsBirthdayInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const fetchBirthdayData = async () => {
@@ -54,7 +54,7 @@ const Birthday = () => {
     } catch (error) {
       console.error('Error fetching birthday data:', error);
     }
-  }
+  };
 
   const renderPage = () => {
     return (
@@ -78,18 +78,19 @@ const Birthday = () => {
             <BirthdayEdit/>
         }
       </>
-    )
-  }
+    );
+  };
 
   useEffect(() => {
+    if (loading) return;
     setLoading(true);
     setIsBirthdayInfoMode(true);
     fetchBirthdayData()
       .then(
         () => {
-          setLoading(false);
           window.scrollTo(0, 0);
-        }
+          setLoading(false);
+        },
       );
   }, []);
 
@@ -105,6 +106,6 @@ const Birthday = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default Birthday;

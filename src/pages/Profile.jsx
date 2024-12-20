@@ -32,13 +32,13 @@ const Profile = () => {
     setIsProfileInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const fetchCurrentUserData = async () => {
     try {
       const response = await userService.findByEmail(
-        localStorage.getItem('currentUserEmail')
+        localStorage.getItem('currentUserEmail'),
       );
       setCurrentUser(response.data);
 
@@ -53,7 +53,7 @@ const Profile = () => {
     } catch (error) {
       console.error('Error fetching current user data:', error);
     }
-  }
+  };
 
   const renderPage = () => {
     return (
@@ -80,17 +80,18 @@ const Profile = () => {
         <Settings/>
       </>
     );
-  }
+  };
 
   useEffect(() => {
+    if (loading) return;
     setLoading(true);
     setIsProfileInfoMode(true);
     fetchCurrentUserData()
       .then(
         () => {
-          setLoading(false);
           window.scrollTo(0, 0);
-        }
+          setLoading(false);
+        },
       );
   }, []);
 
@@ -106,6 +107,6 @@ const Profile = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default Profile;

@@ -27,7 +27,7 @@ const Birthdays = () => {
     setQuery,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const renderPage = () => {
@@ -49,7 +49,7 @@ const Birthdays = () => {
         </div>
       </>
     );
-  }
+  };
 
   const getBirthdays = () => {
     const filteredBirthdays = getFilteredBirthdays(query, birthdays);
@@ -79,8 +79,8 @@ const Birthdays = () => {
           </div>
         ))}
       </>
-    )
-  }
+    );
+  };
 
   const getSourceOfPhoto = (url) => {
     if (url && url.length > 0) {
@@ -88,7 +88,7 @@ const Birthdays = () => {
     }
 
     return process.env.PUBLIC_URL + '/no-avatar.png';
-  }
+  };
 
   const fetchBirthdaysData = async (email) => {
     try {
@@ -97,7 +97,7 @@ const Birthdays = () => {
     } catch (error) {
       console.error('Error fetching birthdays data:', error);
     }
-  }
+  };
 
   const getFilteredBirthdays = (query, birthdays) => {
     if (!query) {
@@ -107,25 +107,26 @@ const Birthdays = () => {
     const birthdayNames = birthdays.map(birthday => {
         return {
           ...birthday,
-          name: `${birthday.firstName} ${birthday.lastName}`.toLowerCase()
-        }
-      }
+          name: `${birthday.firstName} ${birthday.lastName}`.toLowerCase(),
+        };
+      },
     );
 
     return birthdayNames.filter(
-      (birthdayName) => birthdayName.name.includes(query.toLowerCase())
+      (birthdayName) => birthdayName.name.includes(query.toLowerCase()),
     );
-  }
+  };
 
   useEffect(() => {
+    if (loading) return;
     setLoading(true);
     setQuery('');
     fetchBirthdaysData(localStorage.getItem('currentUserEmail'))
       .then(
         () => {
-          setLoading(false);
           window.scrollTo(0, 0);
-        }
+          setLoading(false);
+        },
       );
   }, []);
 
@@ -141,6 +142,6 @@ const Birthdays = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default Birthdays;

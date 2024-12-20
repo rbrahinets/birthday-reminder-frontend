@@ -8,7 +8,7 @@ const ProtectedRoute = ({children}) => {
   const {isAuthenticated} = useAuth0();
 
   if (!isAuthenticated) {
-    navigate('/login')
+    navigate('/login');
   }
 
   return isAuthenticated ? children : <WaitModal show={true}/>;
