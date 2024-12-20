@@ -11,11 +11,9 @@ const Button = ({text, onClick, IconTag}) => {
       onClick={onClick}
     >
       <span>{text}</span>
-      {IconTag && <IconTag
-        size={20}
-      />}
+      {IconTag && <IconTag size={20}/>}
     </button>
   );
-}
+};
 
 export default Button;
