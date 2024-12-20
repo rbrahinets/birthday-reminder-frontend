@@ -2,11 +2,12 @@
   display: flex;
   text-decoration: none;
   font-size: 18pt;
-  margin: 20px;
+  margin: 10px;
   cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
   border-radius: 20px;
   padding: 5px 7px 0 7px;
+  transition: transform 0.2s ease-in-out, box-shadow 0.3s ease;
 }
 
 .link-light {
@@ -22,7 +23,8 @@
 }
 
 .link:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.8);
 }
 
 .profile-icon {
