@@ -4,6 +4,8 @@ footer {
   text-align: left;
   padding: 0 15px 25px 15px;
   border-top: 1px solid #dddddd;
+  min-width: fit-content;
+  flex: 1;
 }
 
 .footer-logo {

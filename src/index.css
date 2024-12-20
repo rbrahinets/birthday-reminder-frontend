@@ -33,6 +33,11 @@ main {
   min-height: 100vh;
 }
 
+.container > * {
+  min-width: fit-content;
+  flex: 1;
+}
+
 .center {
   text-align: center;
 }

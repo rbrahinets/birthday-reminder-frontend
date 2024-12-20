@@ -20,6 +20,7 @@ img {
 .birthdays-list {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .title-container {

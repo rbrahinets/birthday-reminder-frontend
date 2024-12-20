@@ -11,6 +11,7 @@
 
 .form input {
   border: #000000 1px solid;
+  width: 50%;
 }
 
 input:focus {
