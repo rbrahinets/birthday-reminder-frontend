@@ -46,11 +46,18 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background-color: #ffffff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     align-items: center;
     width: 100%;
     z-index: 2;
+  }
+
+  .link-container.open.light {
+    background-color: #ffffff;
+  }
+
+  .link-container.open.dark {
+    background-color: #404040;
   }
 
   .logo {
@@ -59,8 +66,10 @@
 
   .link-container a, .link-container div {
     padding: 10px;
-    text-align: center;
-    width: 90%;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    transition: all 0.3s ease;
   }
 }
 

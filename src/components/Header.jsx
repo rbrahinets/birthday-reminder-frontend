@@ -41,7 +41,7 @@ const Header = () => {
   }, [menuRef, toggleRef]);
 
   const renderLinks = () => (
-    <div className={`link-container ${isMenuOpen ? 'open' : ''}`} ref={menuRef}>
+    <div className={`link-container ${isMenuOpen ? 'open' : ''} ${isDarkMode ? 'dark' : 'light'}`} ref={menuRef}>
       <LinkButton
         text={t('birthdays')}
         uri={'/birthdays'}
