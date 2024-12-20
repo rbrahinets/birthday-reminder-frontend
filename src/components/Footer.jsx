@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
-import './Footer.css'
+import './Footer.css';
 
 const Footer = () => {
   const {t} = useTranslation();
@@ -10,7 +10,7 @@ const Footer = () => {
 
   return (
     <footer
-      className={`background-${isDarkMode ? 'dark' : 'light'}`}
+      className={`background-${isDarkMode ? 'dark' : 'light'} footer-container`}
       id={'footer'}
     >
       <div className={'footer-link-logo-container'}>
@@ -76,6 +76,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;
