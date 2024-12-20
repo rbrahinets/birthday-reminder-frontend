@@ -35,7 +35,7 @@ const BirthdayNew = () => {
     const formattedDate = currentDate.toISOString().split('T')[0];
 
     return (
-      <>
+      <div className={'edit-container'}>
         <h1>{t('new_birthday')}</h1>
         <form className={'form'}>
           <Input
@@ -79,7 +79,7 @@ const BirthdayNew = () => {
           text={t('cancel')}
           onClick={handleCancel}
         />
-      </>
+      </div>
     );
   };
 
