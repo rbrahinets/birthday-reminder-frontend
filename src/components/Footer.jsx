@@ -20,7 +20,7 @@ const Footer = () => {
           className={'footer-logo'}
         />&emsp;&copy; 2023 Rostyslav Brahinets
       </div>
-      <div>
+      <div className={'footer-links'}>
         <h3>{t('contacts')}</h3>
         <Link
           to={'https://instagram.com/rbrahinets'}
