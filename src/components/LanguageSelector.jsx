@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import './LanguageSelector.css';
@@ -12,21 +12,36 @@ const LanguageSelector = () => {
   const languages = {
     en: t('english'),
     uk: t('ukrainian'),
-  }
+  };
 
   const [expanded, setExpanded] = useState(false);
+  const selectorRef = useRef(null);
 
   const toggleList = () => {
     setExpanded(!expanded);
-  }
+  };
 
   const handleSelectLanguage = (languageCode) => {
     setExpanded(false);
     i18n.changeLanguage(languageCode).then();
-  }
+  };
+
+  const handleClickOutside = (event) => {
+    if (selectorRef.current && !selectorRef.current.contains(event.target)) {
+      setExpanded(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
 
   return (
     <div
+      ref={selectorRef}
       className={`language-selector background-${isDarkMode ? 'dark' : 'light'} border-${isDarkMode ? 'dark' : 'light'}`}
     >
       <div className={'selected-language'} onClick={toggleList}>
@@ -42,6 +57,7 @@ const LanguageSelector = () => {
             <li
               key={key}
               onClick={() => handleSelectLanguage(key)}
+              className={currentLanguage === key ? 'active' : ''}
             >
               {language}
             </li>
