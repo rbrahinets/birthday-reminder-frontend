@@ -3,12 +3,12 @@ import {useSelector} from 'react-redux';
 import {Modal} from 'react-bootstrap';
 import './WaitModal.css';
 
-const WaitModal = ({show}) => {
+const WaitModal = () => {
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
   return (
     <Modal
-      show={show}
+      show={true}
       dialogClassName={`modal-wait background-${isDarkMode ? 'dark' : 'light'}`}
       className={'center'}
     >

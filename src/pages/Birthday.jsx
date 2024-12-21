@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
@@ -22,15 +22,15 @@ const Birthday = () => {
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
 
-  const {loading} = useSelector((state) => state.loading);
   const {isBirthdayInfoMode} = useSelector((state) => state.isBirthdayInfoMode);
   const {birthday} = useSelector((state) => state.birthday);
   const {birthdayImage} = useSelector((state) => state.birthdayImage);
   const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
+  const [loading, setLoading] = useState(true);
+
   const {
-    setLoading,
     setBirthday,
     setBirthdayImage,
     setPreviewBirthdayImage,
@@ -85,30 +85,27 @@ const Birthday = () => {
       navigate('/login');
     }
 
-    if (loading) return;
-    setLoading(true);
-    setIsBirthdayInfoMode(true);
     fetchBirthdayData()
       .then(
         () => {
           window.scrollTo(0, 0);
+          setIsBirthdayInfoMode(true);
           setLoading(false);
         },
       );
   }, []);
 
-  return (
-    <div className={'container center'}>
-      <WaitModal
-        show={loading}
-      />
-      <Header/>
-      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
-        {renderPage()}
-      </main>
-      <Footer/>
-    </div>
-  );
+  return (<>
+    {loading ?
+      <WaitModal/>
+      : <div className={'container center'}>
+        <Header/>
+        <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
+          {renderPage()}
+        </main>
+        <Footer/>
+      </div>}
+  </>);
 };
 
 export default Birthday;

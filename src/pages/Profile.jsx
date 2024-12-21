@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -20,16 +20,16 @@ const Profile = () => {
   const navigate = useNavigate();
   const currentUserEmail = localStorage.getItem('currentUserEmail');
 
-  const {loading} = useSelector((state) => state.loading);
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
   const {currentUser} = useSelector((state) => state.currentUser);
   const {profileImage} = useSelector((state) => state.profileImage);
   const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
+  const [loading, setLoading] = useState(true);
+
   const {
     setCurrentUser,
-    setLoading,
     setProfileImage,
     setPreviewProfileImage,
     setIsProfileInfoMode,
@@ -87,30 +87,27 @@ const Profile = () => {
       navigate('/login');
     }
 
-    if (loading) return;
-    setLoading(true);
-    setIsProfileInfoMode(true);
     fetchCurrentUserData()
       .then(
         () => {
           window.scrollTo(0, 0);
+          setIsProfileInfoMode(true);
           setLoading(false);
         },
       );
   }, []);
 
-  return (
-    <div className={'container center'}>
-      <WaitModal
-        show={loading}
-      />
-      <Header/>
-      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
-        {renderPage()}
-      </main>
-      <Footer/>
-    </div>
-  );
+  return (<>
+    {loading ?
+      <WaitModal/>
+      : <div className={'container center'}>
+        <Header/>
+        <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
+          {renderPage()}
+        </main>
+        <Footer/>
+      </div>}
+  </>);
 };
 
 export default Profile;
