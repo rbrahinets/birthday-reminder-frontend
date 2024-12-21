@@ -14,16 +14,16 @@ const PageNotFound = () => {
 
   const handleMainClick = () => {
     navigate(`/`);
-  }
+  };
 
   return (
     <div className={'container center'}>
       <Header/>
-      <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
+      <main className={`background-${isDarkMode ? 'dark' : 'light'} page-not-found`}>
         <img
           src={`${process.env.PUBLIC_URL}/page-not-found-${isDarkMode ? 'dark' : 'light'}.png`}
           alt={'Page Not Found'}
-          className={'page-not-found'}
+          className={'page-not-found-image'}
         />
         <br/>
         <Button text={t('main')} onClick={handleMainClick}/>
@@ -31,6 +31,6 @@ const PageNotFound = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default PageNotFound;
