@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 import {useAuth0} from '@auth0/auth0-react';
+import MainClickEffect from '../components/effects/MainClickEffect';
+import MainImageEffect from '../components/effects/MainImageEffect';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import userService from '../services/UserService';
@@ -27,7 +29,7 @@ const Main = () => {
         </iframe>
       </>
     );
-  }
+  };
 
   const getUserByEmail = async () => {
     if (isAuthenticated) {
@@ -39,7 +41,7 @@ const Main = () => {
         return undefined;
       }
     }
-  }
+  };
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -59,13 +61,15 @@ const Main = () => {
       } catch (error) {
         console.error(error);
       }
-    }
+    };
 
     fetchUserData().then();
   }, [user, isAuthenticated]);
 
   return (
     <div className={'container center'}>
+      <MainClickEffect/>
+      <MainImageEffect/>
       <Header/>
       <main className={`background-${isDarkMode ? 'dark' : 'light'}`}>
         {renderPage()}
@@ -73,6 +77,6 @@ const Main = () => {
       <Footer/>
     </div>
   );
-}
+};
 
 export default Main;

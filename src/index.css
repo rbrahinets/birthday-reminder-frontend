@@ -18,6 +18,10 @@ main {
   padding: 20px;
 }
 
+img, iframe {
+  user-select: none;
+}
+
 .background-light, .background-dark {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
