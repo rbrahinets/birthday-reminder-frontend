@@ -5,7 +5,6 @@ export const ActionType = {
   SET_SET_ERROR_MESSAGES: 'setErrorMessages',
   SET_IS_AUTHENTICATED: 'setIsAuthenticated',
   SET_BIRTHDAYS: 'setBirthdays',
-  SET_LOADING: 'setLoading',
   SET_CURRENT_USER: 'setCurrentUser',
   SET_BIRTHDAY: 'setBirthday',
   SET_PROFILE_IMAGE: 'setProfileImage',
@@ -16,4 +15,4 @@ export const ActionType = {
   SET_IS_BIRTHDAY_INFO_MODE: 'setIsBirthdayInfoMode',
   IS_DARK_MODE: 'setIsDarkMode',
   SET_QUERY: 'setQuery',
-}
+};

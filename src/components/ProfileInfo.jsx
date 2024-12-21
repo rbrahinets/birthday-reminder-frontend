@@ -13,26 +13,18 @@ const ProfileInfo = ({updateProfileInfo}) => {
   const {currentUser} = useSelector((state) => state.currentUser);
 
   const {
-    setLoading,
     setIsProfileInfoMode,
   } = bindActionCreators(
     actionCreators,
-    dispatch
+    dispatch,
   );
 
   const handleEdit = () => {
     setIsProfileInfoMode(false);
-  }
+  };
 
   useEffect(() => {
-    setLoading(true);
-    updateProfileInfo()
-      .then(
-        () => {
-          setLoading(false);
-          window.scrollTo(0, 0);
-        }
-      );
+    updateProfileInfo().then(() => window.scrollTo(0, 0));
   }, []);
 
   return (
@@ -46,6 +38,6 @@ const ProfileInfo = ({updateProfileInfo}) => {
       />
     </div>
   );
-}
+};
 
 export default ProfileInfo;

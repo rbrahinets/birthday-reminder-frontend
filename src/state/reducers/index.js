@@ -2,10 +2,9 @@ import {combineReducers} from 'redux';
 import isVisibleSignInModalReducer from './isVisibleSignInModalReducer';
 import isVisibleSignUpModalReducer from './isVisibleSignUpModalReducer';
 import isVisibleWaitModalReducer from './isVisibleWaitModalReducer';
-import errorMessagesReducer from './errorMessagesReducer'
-import isAuthenticatedReducer from './isAuthenticatedReducer'
-import birthdaysReducer from './birthdaysReducer'
-import loadingReducer from './loadingReducer';
+import errorMessagesReducer from './errorMessagesReducer';
+import isAuthenticatedReducer from './isAuthenticatedReducer';
+import birthdaysReducer from './birthdaysReducer';
 import currentUserReducer from './currentUserReducer';
 import birthdayReducer from './birthdayReducer';
 import profileImageReducer from './profileImageReducer';
@@ -24,7 +23,6 @@ const reducers = combineReducers({
   errorMessages: errorMessagesReducer,
   isAuthenticated: isAuthenticatedReducer,
   birthdays: birthdaysReducer,
-  loading: loadingReducer,
   currentUser: currentUserReducer,
   birthday: birthdayReducer,
   profileImage: profileImageReducer,

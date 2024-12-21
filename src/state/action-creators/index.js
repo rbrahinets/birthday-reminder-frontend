@@ -54,15 +54,6 @@ export const setBirthdays = (birthdays) => {
   };
 };
 
-export const setLoading = (loading) => {
-  return (dispatch) => {
-    dispatch({
-      type: ActionType.SET_LOADING,
-      payload: loading,
-    });
-  };
-};
-
 export const setCurrentUser = (currentUser) => {
   return (dispatch) => {
     dispatch({
