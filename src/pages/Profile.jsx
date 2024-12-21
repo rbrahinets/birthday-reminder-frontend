@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {useTranslation} from 'react-i18next';
@@ -16,6 +17,8 @@ import './../components/Button.css';
 const Profile = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
+  const navigate = useNavigate();
+  const currentUserEmail = localStorage.getItem('currentUserEmail');
 
   const {loading} = useSelector((state) => state.loading);
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
@@ -37,9 +40,7 @@ const Profile = () => {
 
   const fetchCurrentUserData = async () => {
     try {
-      const response = await userService.findByEmail(
-        localStorage.getItem('currentUserEmail'),
-      );
+      const response = await userService.findByEmail(currentUserEmail);
       setCurrentUser(response.data);
 
       const getProfileImage = (imageUrl) => {
@@ -50,7 +51,7 @@ const Profile = () => {
 
       setProfileImage(getProfileImage(response.data.imageUrl));
     } catch (error) {
-      console.error('Error fetching current user data:', error);
+      console.error('Error fetching current currentUserEmail data:', error);
     }
   };
 
@@ -82,6 +83,10 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    if (!currentUserEmail) {
+      navigate('/login');
+    }
+
     if (loading) return;
     setLoading(true);
     setIsProfileInfoMode(true);

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {TiUserAdd} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
@@ -16,6 +16,7 @@ const BirthdayNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {t} = useTranslation();
+  const currentUserEmail = localStorage.getItem('currentUserEmail');
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
@@ -140,6 +141,12 @@ const BirthdayNew = () => {
   const handleCancel = async () => {
     navigate(`/birthdays`);
   };
+
+  useEffect(() => {
+    if (!currentUserEmail) {
+      navigate('/login');
+    }
+  });
 
   return (
     <div className={'container center'}>

@@ -1,6 +1,5 @@
 import React from 'react';
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
-import ProtectedRoute from './components/ProtectedRoute';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import Birthdays from './pages/Birthdays';
@@ -23,33 +22,33 @@ const App = () => {
         />
         <Route
           path={'/birthdays'}
-          element={<ProtectedRoute><Birthdays/></ProtectedRoute>}
+          element={<Birthdays/>}
         />
         <Route
           path={'/birthdays/birthday'}
-          element={<ProtectedRoute><Birthday/></ProtectedRoute>}
+          element={<Birthday/>}
         />
         <Route
           path={'/new-birthday'}
-          element={<ProtectedRoute><BirthdayNew/></ProtectedRoute>}
+          element={<BirthdayNew/>}
         />
         <Route
           path={'/profile'}
-          element={<ProtectedRoute><Profile/></ProtectedRoute>}
+          element={<Profile/>}
         />
         <Route
-          path='*'
+          path="*"
           element={<PageNotFound/>}
         />
       </Routes>
     );
-  }
+  };
 
   return (
     <Router basename={''}>
       {getRoutes()}
     </Router>
   );
-}
+};
 
 export default App;

@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
+import {useLocation, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {useLocation} from 'react-router-dom';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
 import {actionCreators} from '../state';
@@ -16,6 +16,8 @@ const Birthday = () => {
   const dispatch = useDispatch();
   const {search} = useLocation();
   const {t} = useTranslation();
+  const navigate = useNavigate();
+  const currentUserEmail = localStorage.getItem('currentUserEmail');
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -79,6 +81,10 @@ const Birthday = () => {
   };
 
   useEffect(() => {
+    if (!currentUserEmail) {
+      navigate('/login');
+    }
+
     if (loading) return;
     setLoading(true);
     setIsBirthdayInfoMode(true);

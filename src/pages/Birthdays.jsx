@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -15,6 +15,8 @@ import './Birthdays.css';
 const Birthdays = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
+  const navigate = useNavigate();
+  const currentUserEmail = localStorage.getItem('currentUserEmail');
 
   const {loading} = useSelector((state) => state.loading);
   const {birthdays} = useSelector((state) => state.birthdays);
@@ -118,6 +120,10 @@ const Birthdays = () => {
   };
 
   useEffect(() => {
+    if (!currentUserEmail) {
+      navigate('/login');
+    }
+
     if (loading) return;
     setLoading(true);
     setQuery('');

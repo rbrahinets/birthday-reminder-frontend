@@ -63,7 +63,9 @@ const Main = () => {
       }
     };
 
-    fetchUserData().then();
+    fetchUserData().then(
+      () => window.scrollTo(0, 0),
+    );
   }, [user, isAuthenticated]);
 
   return (
