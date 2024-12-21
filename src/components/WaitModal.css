@@ -1,3 +1,17 @@
 .loading {
   width: 80%;
 }
+
+.modal-wait {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 100%;
+}
+
+@media (max-width: 800px) {
+  .loading {
+    width: 100%;
+  }
+}
