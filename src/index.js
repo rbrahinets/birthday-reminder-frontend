@@ -8,10 +8,8 @@ import App from './App';
 import './utils/i18n';
 
 window.onload = () => {
-  if (window.devicePixelRatio !== 1) {
-    document.body.style.transform = 'scale(1)';
-    document.body.style.transformOrigin = 'top left';
-  }
+  document.body.style.transform = 'scale(0.8)';
+  document.body.style.transformOrigin = 'top left';
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
