@@ -96,11 +96,6 @@ const Birthdays = () => {
 
   const fetchBirthdaysData = async (email) => {
     const response = await birthdayService.getBirthdaysForUserByEmail(email);
-
-    if (response.data.length === 0) {
-      throw new Error('No birthday found.');
-    }
-
     setBirthdays(response.data);
   };
 
