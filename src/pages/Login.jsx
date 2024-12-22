@@ -42,6 +42,7 @@ const Login = () => {
         provider: 'google',
         options: {
           scope: 'https://www.googleapis.com/auth/calendar',
+          redirectTo: process.env.REACT_APP_BASE_API_URI,
         },
       });
 
