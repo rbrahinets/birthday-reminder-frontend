@@ -1,40 +1,16 @@
 import React from 'react';
-import {useSession, useSupabaseClient} from '@supabase/auth-helpers-react';
+import {useSupabaseClient} from '@supabase/auth-helpers-react';
 import {useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {FcGoogle} from 'react-icons/fc';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
-import userService from '../services/UserService';
 import './Login.css';
 
 const Login = () => {
   const {t} = useTranslation();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
-  const session = useSession();
   const supabase = useSupabaseClient();
-
-  const getUserByEmail = async (email) => {
-    return await userService.findByEmail(email);
-  };
-
-  const createUser = async () => {
-    const user = session?.user;
-    if (!user) return;
-
-    const savedUser = await getUserByEmail(user.email);
-    if (savedUser) return;
-
-    const fullName = user.user_metadata.full_name.split(' ');
-    const imageUrl = user.user_metadata.avatar_url;
-
-    await userService.save({
-      firstName: fullName[0],
-      lastName: fullName[1],
-      email: user.email,
-      imageUrl: imageUrl,
-    });
-  };
 
   const handleSignIn = async () => {
     try {
@@ -49,8 +25,6 @@ const Login = () => {
           redirectTo: redirectUri,
         },
       });
-
-      await createUser();
     } catch (error) {
       console.log(error);
     }

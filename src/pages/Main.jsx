@@ -6,6 +6,7 @@ import MainImageEffect from '../components/effects/MainImageEffect';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './Main.css';
+import userService from '../services/UserService';
 
 const Main = () => {
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
@@ -30,10 +31,35 @@ const Main = () => {
     );
   };
 
+  const createUser = async () => {
+    const user = session?.user;
+    if (!user) return;
+
+    let savedUser;
+    try {
+      savedUser = await userService.findByEmail(user.email);
+    } catch (error) {
+    }
+    console.log(savedUser);
+    if (savedUser) return;
+
+    const fullName = user.user_metadata.full_name.split(' ');
+    const imageUrl = user.user_metadata.avatar_url.replace(/=s[^&]+/, '');
+
+    await userService.save({
+      firstName: fullName[0],
+      lastName: fullName[1],
+      email: user.email,
+      imageUrl: imageUrl,
+    });
+  };
+
   useEffect(() => {
     window.scrollTo(0, 0);
     if (session?.user && !localStorage.getItem('isAuthUser')) {
-      localStorage.setItem('isAuthUser', 'true');
+      createUser()
+        .then(() => localStorage.setItem('isAuthUser', 'true'))
+        .catch((error) => console.log(error));
     }
   }, [session]);
 
