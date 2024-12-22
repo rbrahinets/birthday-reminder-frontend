@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useSession} from '@supabase/auth-helpers-react';
 import {useSelector} from 'react-redux';
 import MainClickEffect from '../components/effects/MainClickEffect';
 import MainImageEffect from '../components/effects/MainImageEffect';
@@ -8,6 +9,7 @@ import './Main.css';
 
 const Main = () => {
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
+  const session = useSession();
 
   const renderPage = () => {
     return (
@@ -30,7 +32,10 @@ const Main = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+    if (session?.user && !localStorage.getItem('isAuthUser')) {
+      localStorage.setItem('isAuthUser', 'true');
+    }
+  }, [session]);
 
   return (
     <div className={'container center'}>

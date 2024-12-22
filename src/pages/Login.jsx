@@ -42,12 +42,11 @@ const Login = () => {
         provider: 'google',
         options: {
           scope: 'https://www.googleapis.com/auth/calendar',
-          redirectTo: process.env.REACT_APP_BASE_API_URI,
+          redirectTo: process.env.REACT_APP_SUPABASE_REDIRECT_URI,
         },
       });
 
       await createUser();
-      localStorage.setItem('isAuthUser', 'true');
     } catch (error) {
       console.log(error);
     }
@@ -58,7 +57,7 @@ const Login = () => {
       <div className={'sign-in'}>
         <h1>{t('sign_in')}</h1>
         <button
-          className={`sign-in-button ${isDarkMode ? 'dark' : 'light'}`}
+          className={`sign-in-button ${isDarkMode ? 'dark' : 'light'} ${localStorage.getItem('i18nextLng')}`}
           onClick={handleSignIn}
         >
           {<FcGoogle size={35}/>}
