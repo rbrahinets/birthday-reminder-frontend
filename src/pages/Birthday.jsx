@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
+import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -17,7 +18,7 @@ const Birthday = () => {
   const {search} = useLocation();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const currentUserEmail = localStorage.getItem('currentUserEmail');
+  const session = useSession();
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -28,6 +29,7 @@ const Birthday = () => {
   const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
+  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -41,18 +43,14 @@ const Birthday = () => {
   );
 
   const fetchBirthdayData = async () => {
-    try {
-      const response = await birthdayService.findById(birthdayId);
-      setBirthday(response.data);
+    const response = await birthdayService.findById(birthdayId);
+    setBirthday(response.data);
 
-      const imageUrl = response.data.imageUrl && response.data.imageUrl.trim()
-        ? response.data.imageUrl
-        : `${process.env.PUBLIC_URL}/no-avatar.png`;
+    const imageUrl = response.data.imageUrl && response.data.imageUrl.trim()
+      ? response.data.imageUrl
+      : `${process.env.PUBLIC_URL}/no-avatar.png`;
 
-      setBirthdayImage(imageUrl);
-    } catch (error) {
-      console.error('Error fetching birthday data:', error);
-    }
+    setBirthdayImage(imageUrl);
   };
 
   const renderPage = () => {
@@ -81,8 +79,13 @@ const Birthday = () => {
   };
 
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!localStorage.getItem('isAuthUser')) {
       navigate('/login');
+      return;
+    }
+
+    if (!session?.user) {
+      return;
     }
 
     fetchBirthdayData()
@@ -92,11 +95,16 @@ const Birthday = () => {
           setIsBirthdayInfoMode(true);
           setLoading(false);
         },
+      )
+      .catch(
+        (e) => {
+          console.error('There was an error while fetching birthday data:', e);
+        },
       );
-  }, []);
+  }, [session]);
 
   return (<>
-    {loading ?
+    {(isLoading || loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>

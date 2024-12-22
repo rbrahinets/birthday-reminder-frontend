@@ -1,27 +1,28 @@
 import React from 'react';
+import {useSupabaseClient} from '@supabase/auth-helpers-react';
 import {useSelector} from 'react-redux';
-import {useAuth0} from '@auth0/auth0-react';
 import {useTranslation} from 'react-i18next';
 import {VscSignOut} from 'react-icons/vsc';
 import './Button.css';
+import {useNavigate} from 'react-router-dom';
 
 const LogoutButton = () => {
-  const {logout} = useAuth0();
   const {t} = useTranslation();
+  const navigate = useNavigate();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
+  const supabase = useSupabaseClient();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    localStorage.removeItem('isAuthUser');
+    navigate('/');
+  };
+
 
   return (
     <button
       className={`button-${isDarkMode ? 'dark' : 'light'}`}
-      onClick={() => {
-        localStorage.removeItem('isSavedUser');
-        localStorage.removeItem('currentUserEmail');
-        logout({
-          logoutParams: {
-            returnTo: process.env.REACT_APP_AUTH_REDIRECT_URI,
-          }
-        }).then()
-      }}
+      onClick={handleSignOut}
     >
     <span>
       {t('log_out')}
@@ -29,6 +30,6 @@ const LogoutButton = () => {
       <VscSignOut size={20}/>
     </button>
   );
-}
+};
 
 export default LogoutButton;

@@ -1,25 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {Provider} from 'react-redux';
-import {Auth0Provider} from '@auth0/auth0-react';
-import './index.css';
+import {createClient} from '@supabase/supabase-js';
+import {SessionContextProvider} from '@supabase/auth-helpers-react';
 import {store} from './state';
 import App from './App';
 import './utils/i18n';
+import './index.css';
+
+const supabase = createClient(
+  process.env.REACT_APP_SUPABASE_URL,
+  process.env.REACT_APP_SUPABASE_KEY,
+);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Auth0Provider
-      domain={process.env.REACT_APP_AUTH_DOMAIN}
-      clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
-      authorizationParams={{
-        redirect_uri: process.env.REACT_APP_AUTH_REDIRECT_URI,
-      }}
-    >
-      <Provider store={store}>
+    <Provider store={store}>
+      <SessionContextProvider supabaseClient={supabase}>
         <App/>
-      </Provider>
-    </Auth0Provider>
+      </SessionContextProvider>
+    </Provider>
   </React.StrictMode>,
 );

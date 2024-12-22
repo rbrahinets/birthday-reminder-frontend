@@ -1,4 +1,5 @@
 import React from 'react';
+import {useSession} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -14,6 +15,7 @@ const BirthdayEdit = () => {
   const dispatch = useDispatch();
   const {search} = useLocation();
   const {t} = useTranslation();
+  const session = useSession();
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -127,6 +129,8 @@ const BirthdayEdit = () => {
   const handleSave = async (event) => {
     event.preventDefault();
 
+    const currentUserEmail = session?.user.email;
+
     let {firstName, lastName, email, dateOfBirth} = document.forms[0];
     let isValidInputtedData = false;
 
@@ -168,8 +172,6 @@ const BirthdayEdit = () => {
 
     if (isValidInputtedData) {
       try {
-        const emailOfUser = localStorage.getItem('currentUserEmail');
-
         await birthdayService.update(
           birthdayId,
           {
@@ -177,7 +179,7 @@ const BirthdayEdit = () => {
             lastName: lastName.value,
             email: email.value,
             dateOfBirth: dateOfBirth.value,
-            emailOfUser: emailOfUser,
+            emailOfUser: currentUserEmail,
           },
         );
 

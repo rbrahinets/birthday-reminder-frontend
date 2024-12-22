@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
+import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -16,12 +17,13 @@ const Birthdays = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const currentUserEmail = localStorage.getItem('currentUserEmail');
+  const session = useSession();
 
   const {birthdays} = useSelector((state) => state.birthdays);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
   const {query} = useSelector((state) => state.query);
 
+  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -93,12 +95,13 @@ const Birthdays = () => {
   };
 
   const fetchBirthdaysData = async (email) => {
-    try {
-      const response = await birthdayService.getBirthdaysForUserByEmail(email);
-      setBirthdays(response.data);
-    } catch (error) {
-      console.error('Error fetching birthdays data:', error);
+    const response = await birthdayService.getBirthdaysForUserByEmail(email);
+
+    if (response.data.length === 0) {
+      throw new Error('No birthday found.');
     }
+
+    setBirthdays(response.data);
   };
 
   const getFilteredBirthdays = (query, birthdays) => {
@@ -120,22 +123,34 @@ const Birthdays = () => {
   };
 
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!localStorage.getItem('isAuthUser')) {
       navigate('/login');
+      return;
     }
 
-    fetchBirthdaysData(localStorage.getItem('currentUserEmail'))
+    if (!session?.user) {
+      return;
+    }
+
+    const currentUserEmail = session?.user.email;
+
+    fetchBirthdaysData(currentUserEmail)
       .then(
         () => {
           window.scrollTo(0, 0);
           setQuery('');
           setLoading(false);
         },
+      )
+      .catch(
+        (e) => {
+          console.error('There was an error while fetching current user data:', e);
+        },
       );
-  }, []);
+  }, [session]);
 
   return (<>
-    {loading ?
+    {(isLoading || loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>

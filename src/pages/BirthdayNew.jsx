@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
+import {useSession} from '@supabase/auth-helpers-react';
 import {TiUserAdd} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
@@ -16,7 +17,7 @@ const BirthdayNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {t} = useTranslation();
-  const currentUserEmail = localStorage.getItem('currentUserEmail');
+  const session = useSession();
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
@@ -105,6 +106,8 @@ const BirthdayNew = () => {
   const handleAdd = async (event) => {
     event.preventDefault();
 
+    const currentUserEmail = session.user.email;
+
     let {firstName, lastName, email, dateOfBirth} = document.forms[0];
     let isValidInputtedData = true;
 
@@ -115,14 +118,12 @@ const BirthdayNew = () => {
 
     if (isValidInputtedData) {
       try {
-        const emailOfUser = localStorage.getItem('currentUserEmail');
-
         await birthdayService.save({
           firstName: firstName.value,
           lastName: lastName.value,
           email: email.value,
           dateOfBirth: dateOfBirth.value,
-          emailOfUser: emailOfUser,
+          emailOfUser: currentUserEmail,
         });
 
         navigate(`/birthdays`);
@@ -143,10 +144,15 @@ const BirthdayNew = () => {
   };
 
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!localStorage.getItem('isAuthUser')) {
       navigate('/login');
+      return;
     }
-  });
+
+    if (!session?.user) {
+      return;
+    }
+  }, [session]);
 
   return (
     <div className={'container center'}>

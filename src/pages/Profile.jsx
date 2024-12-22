@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {bindActionCreators} from 'redux';
 import {useTranslation} from 'react-i18next';
 import {actionCreators} from '../state';
@@ -18,7 +19,7 @@ const Profile = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const currentUserEmail = localStorage.getItem('currentUserEmail');
+  const session = useSession();
 
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
   const {currentUser} = useSelector((state) => state.currentUser);
@@ -26,6 +27,7 @@ const Profile = () => {
   const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
+  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -39,20 +41,17 @@ const Profile = () => {
   );
 
   const fetchCurrentUserData = async () => {
-    try {
-      const response = await userService.findByEmail(currentUserEmail);
-      setCurrentUser(response.data);
+    const currentUserEmail = session?.user.email;
+    const response = await userService.findByEmail(currentUserEmail);
+    setCurrentUser(response.data);
 
-      const getProfileImage = (imageUrl) => {
-        return imageUrl && imageUrl.trim().length > 0
-          ? imageUrl
-          : `${process.env.PUBLIC_URL}/add.png`;
-      };
+    const getProfileImage = (imageUrl) => {
+      return imageUrl && imageUrl.trim().length > 0
+        ? imageUrl
+        : `${process.env.PUBLIC_URL}/add.png`;
+    };
 
-      setProfileImage(getProfileImage(response.data.imageUrl));
-    } catch (error) {
-      console.error('Error fetching current currentUserEmail data:', error);
-    }
+    setProfileImage(getProfileImage(response.data.imageUrl));
   };
 
   const renderPage = () => {
@@ -83,8 +82,13 @@ const Profile = () => {
   };
 
   useEffect(() => {
-    if (!currentUserEmail) {
+    if (!localStorage.getItem('isAuthUser')) {
       navigate('/login');
+      return;
+    }
+
+    if (!session?.user) {
+      return;
     }
 
     fetchCurrentUserData()
@@ -94,11 +98,16 @@ const Profile = () => {
           setIsProfileInfoMode(true);
           setLoading(false);
         },
+      )
+      .catch(
+        (e) => {
+          console.error('There was an error while fetching current user data:', e);
+        },
       );
-  }, []);
+  }, [session]);
 
   return (<>
-    {loading ?
+    {(isLoading || loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>
