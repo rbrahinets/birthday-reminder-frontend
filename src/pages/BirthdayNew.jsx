@@ -116,7 +116,7 @@ const BirthdayNew = () => {
           emailOfUser: currentUserEmail,
         });
 
-        await createGoogleCalendarEvent(`${firstName.value} ${lastName.value}`);
+        await createGoogleCalendarEvent(`${firstName.value} ${lastName.value}`, dateOfBirth.value);
 
         navigate(`/birthdays`);
       } catch (error) {
@@ -130,31 +130,42 @@ const BirthdayNew = () => {
     navigate(`/birthdays`);
   };
 
-  const createGoogleCalendarEvent = async (name) => {
-    const event = {
-      'summary': 'Birthday',
-      'description': `Don't forget about ${name} birthday`,
-      'start': {
-        'dateTime': '2024-12-27',
-        'timeZone': 'UTC',
-      },
-      'end': {
-        'dateTime': '2024-12-27',
-        'timeZone': 'UTC',
-      },
-    };
+  const createGoogleCalendarEvent = async (name, date) => {
+    const currentYear = new Date().getFullYear();
+    const [year, month, day] = date.split('-');
 
-    await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-      method: 'POST',
-      headers: {
-        'Authorization': `Bearer ${session?.access_token}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(event),
-    }).then((data) => data.json())
-      .then((data) => {
-        console.log(data);
-      });
+    const eventDates = [];
+    for (let i = 0; i < 5; i++) {
+      const newDate = new Date(currentYear + i, month - 1, day);
+      eventDates.push(newDate.toISOString());
+    }
+
+    for (const element of eventDates) {
+      const event = {
+        'summary': t('birthday'),
+        'description': `${t('reminder')} ${name}`,
+        'start': {
+          'dateTime': element,
+          'timeZone': 'UTC',
+        },
+        'end': {
+          'dateTime': element,
+          'timeZone': 'UTC',
+        },
+      };
+
+      await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${session?.access_token}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(event),
+      }).then((data) => data.json())
+        .then((data) => {
+          console.log(data);
+        });
+    }
   };
 
   useEffect(() => {

@@ -43,6 +43,7 @@ i18next
           oops: 'Oops...',
           page_not_found: 'Page Not Found!',
           main: 'Main',
+          reminder: 'Dot\'t forget about birthday of',
         },
       },
       uk: {
@@ -80,6 +81,7 @@ i18next
           oops: 'Ооой...',
           page_not_found: 'Сторінку не знайдено!',
           main: 'На головну',
+          reminder: 'Не забудь про день народження',
         },
       },
     },
