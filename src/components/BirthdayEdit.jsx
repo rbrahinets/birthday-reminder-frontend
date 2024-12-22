@@ -34,7 +34,6 @@ const BirthdayEdit = () => {
   const errors = {
     firstName: t('invalid_first_name'),
     lastName: t('invalid_last_name'),
-    email: t('invalid_email'),
     dateOfBirth: t('invalid_date_of_birth'),
   };
 
@@ -67,9 +66,6 @@ const BirthdayEdit = () => {
 
     return (
       <>
-        <WaitModal
-          show={!birthday}
-        />
         <h1>{t('edit_birthday_info')}</h1>
         <div className={'edit-container'}>
           <form className={'form'}>
@@ -90,15 +86,6 @@ const BirthdayEdit = () => {
               error={renderErrorMessage('lastName')}
               onClick={resetErrorMessages}
               defaultValue={birthday.lastName}
-            />
-            <Input
-              type={'text'}
-              name={'email'}
-              id={'email'}
-              placeholder={t('email')}
-              error={renderErrorMessage('email')}
-              onClick={resetErrorMessages}
-              defaultValue={birthday.email}
             />
             <Input
               type={'date'}
@@ -131,7 +118,7 @@ const BirthdayEdit = () => {
 
     const currentUserEmail = session?.user.email;
 
-    let {firstName, lastName, email, dateOfBirth} = document.forms[0];
+    let {firstName, lastName, dateOfBirth} = document.forms[0];
     let isValidInputtedData = false;
 
     if (
@@ -151,15 +138,6 @@ const BirthdayEdit = () => {
         message: errors.lastName,
       });
     } else if (
-      !email.value ||
-      !email.value.trim().length ||
-      !isValidEmail(email.value)
-    ) {
-      setErrorMessages({
-        name: 'email',
-        message: errors.email,
-      });
-    } else if (
       !dateOfBirth.value
     ) {
       setErrorMessages({
@@ -177,7 +155,6 @@ const BirthdayEdit = () => {
           {
             firstName: firstName.value,
             lastName: lastName.value,
-            email: email.value,
             dateOfBirth: dateOfBirth.value,
             emailOfUser: currentUserEmail,
           },
@@ -189,10 +166,6 @@ const BirthdayEdit = () => {
         alert(t('updating_birthday_info_failed'));
       }
     }
-  };
-
-  const isValidEmail = (email) => {
-    return email.includes('@') && !email.endsWith('@');
   };
 
   const handleCancel = async () => {

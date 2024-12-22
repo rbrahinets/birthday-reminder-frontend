@@ -55,13 +55,6 @@ const BirthdayNew = () => {
             error={renderErrorMessage('lastName')}
           />
           <Input
-            type={'text'}
-            name={'email'}
-            id={'email'}
-            placeholder={t('email')}
-            error={renderErrorMessage('email')}
-          />
-          <Input
             type={'date'}
             name={'dateOfBirth'}
             id={'dateOfBirth'}
@@ -88,7 +81,6 @@ const BirthdayNew = () => {
   const errors = {
     firstName: t('invalid_first_name'),
     lastName: t('invalid_last_name'),
-    email: t('invalid_email'),
     dateOfBirth: t('invalid_date_of_birth'),
   };
 
@@ -108,12 +100,11 @@ const BirthdayNew = () => {
 
     const currentUserEmail = session.user.email;
 
-    let {firstName, lastName, email, dateOfBirth} = document.forms[0];
+    let {firstName, lastName, dateOfBirth} = document.forms[0];
     let isValidInputtedData = true;
 
     isValidInputtedData &= validateField(firstName, errors.firstName);
     isValidInputtedData &= validateField(lastName, errors.lastName);
-    isValidInputtedData &= validateField(email, errors.email) && isValidEmail(email.value);
     isValidInputtedData &= validateField(dateOfBirth, errors.dateOfBirth);
 
     if (isValidInputtedData) {
@@ -121,7 +112,6 @@ const BirthdayNew = () => {
         await birthdayService.save({
           firstName: firstName.value,
           lastName: lastName.value,
-          email: email.value,
           dateOfBirth: dateOfBirth.value,
           emailOfUser: currentUserEmail,
         });
@@ -132,11 +122,6 @@ const BirthdayNew = () => {
         alert(t('adding_new_birthday_failed'));
       }
     }
-  };
-
-  const isValidEmail = (email) => {
-    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailRegex.test(email);
   };
 
   const handleCancel = async () => {
