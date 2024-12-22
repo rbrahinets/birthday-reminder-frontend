@@ -38,10 +38,11 @@ const Login = () => {
 
   const handleSignIn = async () => {
     try {
+      const googleapis = 'https://www.googleapis.com/auth';
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          scope: 'https://www.googleapis.com/auth/calendar',
+          scope: `${googleapis}/calendar ${googleapis}/calendar.events ${googleapis}/calendar.events.owned`,
           redirectTo: process.env.REACT_APP_SUPABASE_REDIRECT_URI,
         },
       });
