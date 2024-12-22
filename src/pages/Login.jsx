@@ -25,25 +25,28 @@ const Login = () => {
     const savedUser = await getUserByEmail(user.email);
     if (savedUser) return;
 
-    const names = user.email.split('@')[0].split('.');
-    const firstName = names[0];
-    const lastName = names.length > 1 ? names[1] : names[0];
+    const fullName = user.user_metadata.full_name.split(' ');
+    const imageUrl = user.user_metadata.avatar_url;
 
     await userService.save({
-      firstName: firstName,
-      lastName: lastName,
+      firstName: fullName[0],
+      lastName: fullName[1],
       email: user.email,
+      imageUrl: imageUrl,
     });
   };
 
   const handleSignIn = async () => {
     try {
       const googleapis = 'https://www.googleapis.com/auth';
+      const scope = `${googleapis}/calendar ${googleapis}/calendar.events ${googleapis}/calendar.events.owned`;
+      const redirectUri = process.env.REACT_APP_SUPABASE_REDIRECT_URI;
+
       await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          scope: `${googleapis}/calendar ${googleapis}/calendar.events ${googleapis}/calendar.events.owned`,
-          redirectTo: process.env.REACT_APP_SUPABASE_REDIRECT_URI,
+          scope: scope,
+          redirectTo: redirectUri,
         },
       });
 
