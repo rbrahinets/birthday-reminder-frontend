@@ -116,6 +116,8 @@ const BirthdayNew = () => {
           emailOfUser: currentUserEmail,
         });
 
+        await createGoogleCalendarEvent(`${firstName.value} ${lastName.value}`);
+
         navigate(`/birthdays`);
       } catch (error) {
         console.error('Adding New Birthday Failed', error);
@@ -126,6 +128,33 @@ const BirthdayNew = () => {
 
   const handleCancel = async () => {
     navigate(`/birthdays`);
+  };
+
+  const createGoogleCalendarEvent = async (name) => {
+    const event = {
+      'summary': 'Birthday',
+      'description': `Don't forget about ${name} birthday`,
+      'start': {
+        'dateTime': '2024-12-27',
+        'timeZone': 'UTC',
+      },
+      'end': {
+        'dateTime': '2024-12-27',
+        'timeZone': 'UTC',
+      },
+    };
+
+    await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${session?.access_token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(event),
+    }).then((data) => data.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
 
   useEffect(() => {
