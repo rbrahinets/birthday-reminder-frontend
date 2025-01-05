@@ -88,10 +88,3 @@ img, iframe {
 .edit-container div {
   margin-right: 6%;
 }
-
-.modal-loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 50%;
-}
