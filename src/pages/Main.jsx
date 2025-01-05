@@ -22,7 +22,7 @@ const Main = () => {
         />
         <br/>
         <iframe
-          src={'https://youtu.be/g4CZDWU7OgE'}
+          src={'https://www.youtube.com/embed/g4CZDWU7OgE'}
           allow={'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'}
           allowFullScreen
           title={'Manual'}>
