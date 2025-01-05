@@ -14,8 +14,7 @@ const Login = () => {
 
   const handleSignIn = async () => {
     try {
-      const googleapis = 'https://www.googleapis.com/auth';
-      const scope = `${googleapis}/calendar ${googleapis}/calendar.events ${googleapis}/calendar.events.owned`;
+      const scope = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
       const redirectUri = process.env.REACT_APP_SUPABASE_REDIRECT_URI;
 
       await supabase.auth.signInWithOAuth({
@@ -26,7 +25,7 @@ const Login = () => {
         },
       });
     } catch (error) {
-      console.log(error);
+      console.error('Error during sign in:', error);
     }
   };
 

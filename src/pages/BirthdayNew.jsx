@@ -137,34 +137,50 @@ const BirthdayNew = () => {
     const eventDates = [];
     for (let i = 0; i < 5; i++) {
       const newDate = new Date(currentYear + i, month - 1, day);
-      eventDates.push(newDate.toISOString());
+      eventDates.push(newDate);
     }
 
-    for (const element of eventDates) {
+    for (const eventDate of eventDates) {
+      const startDateTime = eventDate.toISOString();
+      const endDateTime = new Date(eventDate.getTime() + 60 * 60 * 1000).toISOString();
+      console.log({startDateTime, endDateTime});
+
       const event = {
         'summary': t('birthday'),
         'description': `${t('reminder')} ${name}`,
         'start': {
-          'dateTime': element,
+          'dateTime': startDateTime,
           'timeZone': 'UTC',
         },
         'end': {
-          'dateTime': element,
+          'dateTime': endDateTime,
           'timeZone': 'UTC',
         },
       };
 
-      await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${session?.access_token}`,
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(event),
-      }).then((data) => data.json())
-        .then((data) => {
-          console.log(data);
-        });
+      if (session?.access_token) {
+        await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${session.access_token}`,
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(event),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.error) {
+              console.error('Error creating event:', data.error);
+            } else {
+              console.log('Event created:', data);
+            }
+          })
+          .catch((error) => {
+            console.error('Request failed:', error);
+          });
+      } else {
+        console.error('No access token available');
+      }
     }
   };
 
