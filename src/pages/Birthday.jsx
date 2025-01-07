@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {useLocation, useNavigate} from 'react-router-dom';
-import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -18,7 +17,6 @@ const Birthday = () => {
   const {search} = useLocation();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const session = useSession();
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -29,7 +27,6 @@ const Birthday = () => {
   const {previewBirthdayImage} = useSelector((state) => state.previewBirthdayImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
-  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -84,10 +81,6 @@ const Birthday = () => {
       return;
     }
 
-    if (!session?.user) {
-      return;
-    }
-
     fetchBirthdayData()
       .then(
         () => {
@@ -101,10 +94,10 @@ const Birthday = () => {
           console.error('There was an error while fetching birthday data:', e);
         },
       );
-  }, [session]);
+  }, []);
 
   return (<>
-    {(isLoading || loading) ?
+    {(loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>

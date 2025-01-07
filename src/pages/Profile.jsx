@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
-import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {bindActionCreators} from 'redux';
 import {useTranslation} from 'react-i18next';
 import {actionCreators} from '../state';
@@ -19,7 +18,6 @@ const Profile = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const session = useSession();
 
   const {isProfileInfoMode} = useSelector((state) => state.isProfileInfoMode);
   const {currentUser} = useSelector((state) => state.currentUser);
@@ -27,7 +25,6 @@ const Profile = () => {
   const {previewProfileImage} = useSelector((state) => state.previewProfileImage);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
-  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -41,7 +38,7 @@ const Profile = () => {
   );
 
   const fetchCurrentUserData = async () => {
-    const currentUserEmail = session?.user.email;
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
     const response = await userService.findByEmail(currentUserEmail);
     setCurrentUser(response.data);
 
@@ -87,10 +84,6 @@ const Profile = () => {
       return;
     }
 
-    if (!session?.user) {
-      return;
-    }
-
     fetchCurrentUserData()
       .then(
         () => {
@@ -104,10 +97,10 @@ const Profile = () => {
           console.error('There was an error while fetching current user data:', e);
         },
       );
-  }, [session]);
+  }, []);
 
   return (<>
-    {(isLoading || loading) ?
+    {(loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>

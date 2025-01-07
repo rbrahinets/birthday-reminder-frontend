@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import {useNavigate} from 'react-router-dom';
-import {useSession} from '@supabase/auth-helpers-react';
 import {TiUserAdd} from 'react-icons/ti';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
@@ -17,7 +16,6 @@ const BirthdayNew = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {t} = useTranslation();
-  const session = useSession();
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
@@ -98,7 +96,7 @@ const BirthdayNew = () => {
   const handleAdd = async (event) => {
     event.preventDefault();
 
-    const currentUserEmail = session.user.email;
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
 
     let {firstName, lastName, dateOfBirth} = document.forms[0];
     let isValidInputtedData = true;
@@ -158,11 +156,12 @@ const BirthdayNew = () => {
         },
       };
 
-      if (session?.access_token) {
+      const accessToken = localStorage.getItem('access_token');
+      if (accessToken) {
         await fetch('https://www.googleapis.com/calendar/v3/calendars/primary/events', {
           method: 'POST',
           headers: {
-            'Authorization': `Bearer ${session.access_token}`,
+            'Authorization': `Bearer ${accessToken}`,
             'Content-Type': 'application/json',
           },
           body: JSON.stringify(event),
@@ -187,13 +186,8 @@ const BirthdayNew = () => {
   useEffect(() => {
     if (!localStorage.getItem('isAuthUser')) {
       navigate('/login');
-      return;
     }
-
-    if (!session?.user) {
-      return;
-    }
-  }, [session]);
+  }, []);
 
   return (
     <div className={'container center'}>

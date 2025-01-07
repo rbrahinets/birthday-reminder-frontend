@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useNavigate} from 'react-router-dom';
-import {useSession, useSessionContext} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -17,13 +16,11 @@ const Birthdays = () => {
   const dispatch = useDispatch();
   const {t} = useTranslation();
   const navigate = useNavigate();
-  const session = useSession();
 
   const {birthdays} = useSelector((state) => state.birthdays);
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
   const {query} = useSelector((state) => state.query);
 
-  const {isLoading} = useSessionContext();
   const [loading, setLoading] = useState(true);
 
   const {
@@ -123,11 +120,7 @@ const Birthdays = () => {
       return;
     }
 
-    if (!session?.user) {
-      return;
-    }
-
-    const currentUserEmail = session?.user.email;
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
 
     fetchBirthdaysData(currentUserEmail)
       .then(
@@ -142,10 +135,10 @@ const Birthdays = () => {
           console.error('There was an error while fetching current user data:', e);
         },
       );
-  }, [session]);
+  }, []);
 
   return (<>
-    {(isLoading || loading) ?
+    {(loading) ?
       <WaitModal/>
       : <div className={'container center'}>
         <Header/>

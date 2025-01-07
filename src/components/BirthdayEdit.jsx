@@ -1,5 +1,4 @@
 import React from 'react';
-import {useSession} from '@supabase/auth-helpers-react';
 import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {bindActionCreators} from 'redux';
@@ -9,13 +8,11 @@ import Input from './Input';
 import Button from './Button';
 import {useLocation} from 'react-router-dom';
 import birthdayService from '../services/BirthdayService';
-import WaitModal from './WaitModal';
 
 const BirthdayEdit = () => {
   const dispatch = useDispatch();
   const {search} = useLocation();
   const {t} = useTranslation();
-  const session = useSession();
 
   const queryParams = new URLSearchParams(search);
   const birthdayId = queryParams.get('birthdayId');
@@ -116,7 +113,7 @@ const BirthdayEdit = () => {
   const handleSave = async (event) => {
     event.preventDefault();
 
-    const currentUserEmail = session?.user.email;
+    const currentUserEmail = localStorage.getItem('currentUserEmail');
 
     let {firstName, lastName, dateOfBirth} = document.forms[0];
     let isValidInputtedData = false;
