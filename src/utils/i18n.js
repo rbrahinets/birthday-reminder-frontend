@@ -11,6 +11,7 @@ i18next
       en: {
         translation: {
           birthdays: 'Birthdays',
+          birthday: 'Birthday',
           profile: 'Profile',
           contacts: 'Contacts',
           info: 'Info',
@@ -49,6 +50,7 @@ i18next
       uk: {
         translation: {
           birthdays: 'Дні народження',
+          birthday: 'День народження',
           profile: 'Профіль',
           contacts: 'Контакти',
           info: 'Інформація',
