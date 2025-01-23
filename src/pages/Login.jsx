@@ -1,10 +1,14 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {useTranslation} from 'react-i18next';
 import {FcGoogle} from 'react-icons/fc';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './Login.css';
+import Button from '../components/Button';
+import {bindActionCreators} from 'redux';
+import {actionCreators} from '../state';
+import Authentication from '../components/auth/Authentication';
 
 const Login = () => {
   const {t} = useTranslation();
@@ -33,16 +37,60 @@ const Login = () => {
     // window.location.href = generateGoogleAuthUrl();
   };
 
+  const dispatch = useDispatch();
+
+  const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
+
+  const {
+    setIsVisibleSignInModal,
+    setIsVisibleSignUpModal,
+  } = bindActionCreators(
+    actionCreators,
+    dispatch,
+  );
+
+  const renderMainForUnauthenticatedUser = () => {
+    return (
+      <>
+        <Button
+          text={t('sign_in_button')}
+          onClick={() => setIsVisibleSignInModal(true)}
+        />
+        <br/>
+        <Button
+          text={t('sign_up_button')}
+          onClick={() => setIsVisibleSignUpModal(true)}
+        />
+        <br/>
+        <Authentication/>
+      </>
+    );
+  };
+
+  const renderMainForAuthenticatedUser = () => {
+    return (
+      <>
+        <h1>User is authenticated</h1>
+      </>
+    );
+  };
+
   const renderPage = () => {
     return (
       <div className={'sign-in'}>
         <h1>{t('sign_in')}</h1>
+        {
+          isAuthenticated
+            ? renderMainForAuthenticatedUser()
+            : renderMainForUnauthenticatedUser()
+        }
+        <br/>
         <button
           className={`sign-in-button ${isDarkMode ? 'dark' : 'light'} ${localStorage.getItem('i18nextLng')}`}
           onClick={handleGoogleSignIn}
         >
           {<FcGoogle size={35}/>}
-          <span>{t('sign_in_button')}</span>
+          <span>{t('sign_in_button_google')}</span>
         </button>
       </div>
     );
