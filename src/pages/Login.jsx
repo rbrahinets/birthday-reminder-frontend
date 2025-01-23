@@ -10,26 +10,27 @@ const Login = () => {
   const {t} = useTranslation();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
-  const googleOAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
-  const redirectUri = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
-  const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-  const scope = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
+  // const googleOAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
+  // const redirectUri = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
+  // const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  // const scope = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.events';
 
-  const generateGoogleAuthUrl = () => {
-    const params = new URLSearchParams({
-      client_id: clientId,
-      redirect_uri: redirectUri,
-      response_type: 'code',
-      scope: scope,
-      include_granted_scopes: 'true',
-      access_type: 'offline',
-    });
+  // const generateGoogleAuthUrl = () => {
+  //   const params = new URLSearchParams({
+  //     client_id: clientId,
+  //     redirect_uri: redirectUri,
+  //     response_type: 'code',
+  //     scope: scope,
+  //     include_granted_scopes: 'true',
+  //     access_type: 'offline',
+  //   });
+  //
+  //   return `${googleOAuthUrl}?${params.toString()}`;
+  // };
 
-    return `${googleOAuthUrl}?${params.toString()}`;
-  };
-
-  const handleSignIn = () => {
-    window.location.href = generateGoogleAuthUrl();
+  const handleGoogleSignIn = () => {
+    alert(t('feature_in_development'));
+    // window.location.href = generateGoogleAuthUrl();
   };
 
   const renderPage = () => {
@@ -38,7 +39,7 @@ const Login = () => {
         <h1>{t('sign_in')}</h1>
         <button
           className={`sign-in-button ${isDarkMode ? 'dark' : 'light'} ${localStorage.getItem('i18nextLng')}`}
-          onClick={handleSignIn}
+          onClick={handleGoogleSignIn}
         >
           {<FcGoogle size={35}/>}
           <span>{t('sign_in_button')}</span>

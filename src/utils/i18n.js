@@ -46,6 +46,7 @@ i18next
           page_not_found: 'Page Not Found!',
           main: 'Main',
           reminder: 'Dot\'t forget about birthday of',
+          feature_in_development: 'Sorry! But this feature is in development',
         },
       },
       uk: {
@@ -85,6 +86,7 @@ i18next
           page_not_found: 'Сторінку не знайдено!',
           main: 'На головну',
           reminder: 'Не забудь про день народження',
+          feature_in_development: 'Вибачте! Але ця функція в розробці',
         },
       },
     },
