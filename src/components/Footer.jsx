@@ -13,12 +13,23 @@ const Footer = () => {
       className={`background-${isDarkMode ? 'dark' : 'light'} footer-container`}
       id={'footer'}
     >
-      <div className={'footer-link-logo-container'}>
-        <img
-          src={process.env.PUBLIC_URL + '/logo.png'}
-          alt={'logo'}
-          className={'footer-logo'}
-        />&emsp;&copy; 2023 Rostyslav Brahinets
+      <div>
+        <div className={'footer-link-logo-container'}>
+          <img
+            src={process.env.PUBLIC_URL + '/logo.png'}
+            alt={'logo'}
+            className={'footer-logo'}
+          />&emsp;&copy; 2023 Rostyslav Brahinets
+        </div>
+        <div className={'footer-links privacy-policy'}>
+          <Link
+            to={'https://www.freeprivacypolicy.com/live/6d556e72-577f-4dfd-8fc2-18af0ca2449c'}
+            target={'_blank'}
+            className={`footer-link icon-container footer-link-${isDarkMode ? 'dark' : 'light'}`}
+          >
+            Privacy Policy
+          </Link>
+        </div>
       </div>
       <div className={'footer-links'}>
         <h3>{t('contacts')}</h3>
