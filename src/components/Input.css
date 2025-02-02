@@ -17,3 +17,7 @@
   border-color: #2196F3;
   box-shadow: 0 0 5px rgba(33, 150, 243, 0.5);
 }
+
+.signup, .signin {
+  margin: 3px 0 3px 0;
+}

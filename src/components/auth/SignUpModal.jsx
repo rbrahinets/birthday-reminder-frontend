@@ -37,6 +37,7 @@ const SignUpModal = ({
         id={'firstName'}
         placeholder={'First Name'}
         error={renderErrorMessage('firstName')}
+        style={'signup'}
       />
       <Input
         type={'text'}
@@ -44,6 +45,7 @@ const SignUpModal = ({
         id={'lastName'}
         placeholder={'Last Name'}
         error={renderErrorMessage('lastName')}
+        style={'signup'}
       />
       <Input
         type={'text'}
@@ -51,6 +53,7 @@ const SignUpModal = ({
         id={'email'}
         placeholder={'Email'}
         error={renderErrorMessage('email')}
+        style={'signup'}
       />
       <Input
         type={'password'}
@@ -58,6 +61,7 @@ const SignUpModal = ({
         id={'password'}
         placeholder={'Password'}
         error={renderErrorMessage('password')}
+        style={'signup'}
       />
       <Input
         type={'password'}
@@ -65,6 +69,7 @@ const SignUpModal = ({
         id={'confirmPassword'}
         placeholder={'Confirm Password'}
         error={renderErrorMessage('confirmPassword')}
+        style={'signup'}
       />
     </form>
   );

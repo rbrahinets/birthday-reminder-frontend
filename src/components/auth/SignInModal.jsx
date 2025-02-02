@@ -38,6 +38,7 @@ const SignInModal = ({
         id={'email'}
         placeholder={'Email'}
         error={renderErrorMessage('email')}
+        style={'signin'}
       />
       <Input
         type={'password'}
@@ -45,6 +46,7 @@ const SignInModal = ({
         id={'password'}
         placeholder={'Password'}
         error={renderErrorMessage('password')}
+        style={'signin'}
       />
     </form>
   );
@@ -91,8 +93,9 @@ const SignInModal = ({
           password: password.value,
         });
         const token = response.data.accessToken;
-        localStorage.setItem('token', token);
+        localStorage.setItem('isAuthUser', 'true');
         localStorage.setItem('currentUserEmail', email.value);
+        localStorage.setItem('access_token', token);
         onSignInSuccess();
       } catch (error) {
         console.error('Sign-In Failed', error);

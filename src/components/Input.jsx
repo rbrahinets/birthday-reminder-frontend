@@ -11,8 +11,9 @@ const Input = ({
                  min,
                  max,
                  onClick,
+                 style = '',
                }) => (
-  <div className={'formcontrol'}>
+  <div className={`formcontrol ${style}`}>
     <input
       type={type}
       name={name}

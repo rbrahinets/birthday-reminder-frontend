@@ -33,10 +33,6 @@ button:hover {
   background-color: #333333;
 }
 
-button span {
-  margin-right: 8px;
-}
-
 @media (max-width: 700px) {
   button {
     width: 80%;
