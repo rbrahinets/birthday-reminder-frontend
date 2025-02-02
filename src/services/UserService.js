@@ -28,6 +28,10 @@ class UserService {
   async delete(id) {
     return await API.delete(`/${id}`);
   }
+
+  async signIn(data) {
+    return await API.post(`/sign-in`, data);
+  }
 }
 
 const userService = new UserService();
