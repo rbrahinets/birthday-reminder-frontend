@@ -26,24 +26,24 @@ const Authentication = () => {
   const renderAuthentication = () => {
     return (
       <>
-        <SignInModal
-          show={isVisibleSignInModal}
-          onHide={() => setIsVisibleSignInModal(false)}
-          onShowWaitModal={() => setIsVisibleWaitModal(true)}
-          onHideWaitModal={() => setIsVisibleWaitModal(false)}
-          onShowSignUpModal={() => setIsVisibleSignUpModal(true)}
-          onSignInSuccess={() => setIsAuthenticated(true)}
-        />
-        <SignUpModal
-          show={isVisibleSignUpModal}
-          onHide={() => setIsVisibleSignUpModal(false)}
-          onShowWaitModal={() => setIsVisibleWaitModal(true)}
-          onHideWaitModal={() => setIsVisibleWaitModal(false)}
-          onShowSignInModal={() => setIsVisibleSignInModal(true)}
-        />
-        {/*<WaitModal*/}
-        {/*  show={isVisibleWaitModal}*/}
-        {/*/>*/}
+        {isVisibleWaitModal ? <WaitModal/> :
+          <>
+            <SignInModal
+              show={isVisibleSignInModal}
+              onHide={() => setIsVisibleSignInModal(false)}
+              onShowWaitModal={() => setIsVisibleWaitModal(true)}
+              onHideWaitModal={() => setIsVisibleWaitModal(false)}
+              onShowSignUpModal={() => setIsVisibleSignUpModal(true)}
+              onSignInSuccess={() => setIsAuthenticated(true)}
+            />
+            <SignUpModal
+              show={isVisibleSignUpModal}
+              onHide={() => setIsVisibleSignUpModal(false)}
+              onShowWaitModal={() => setIsVisibleWaitModal(true)}
+              onHideWaitModal={() => setIsVisibleWaitModal(false)}
+              onShowSignInModal={() => setIsVisibleSignInModal(true)}
+            />
+          </>}
       </>
     );
   };
