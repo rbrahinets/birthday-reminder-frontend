@@ -16,6 +16,7 @@ const Login = () => {
 
   const {t} = useTranslation();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
+  const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
 
   // const googleOAuthUrl = 'https://accounts.google.com/o/oauth2/v2/auth';
   // const redirectUri = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
@@ -86,10 +87,10 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (localStorage.getItem('isAuthUser')) {
+    if (localStorage.getItem('isAuthUser') || isAuthenticated) {
       navigate('/');
     }
-  }, []);
+  }, [isAuthenticated]);
 
   return (
     <div className={'container center'}>

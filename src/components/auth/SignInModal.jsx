@@ -20,7 +20,10 @@ const SignInModal = ({
 
   const {errorMessages} = useSelector((state) => state.errorMessages);
 
-  const {setErrorMessages} = bindActionCreators(
+  const {
+    setErrorMessages,
+    setIsAuthenticated,
+  } = bindActionCreators(
     actionCreators,
     dispatch,
   );
@@ -96,6 +99,7 @@ const SignInModal = ({
         localStorage.setItem('isAuthUser', 'true');
         localStorage.setItem('currentUserEmail', email.value);
         localStorage.setItem('access_token', token);
+        setIsAuthenticated(true);
         onSignInSuccess();
       } catch (error) {
         console.error('Sign-In Failed', error);
