@@ -1,16 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import {useNavigate} from 'react-router-dom';
 import {useDispatch, useSelector} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import {useTranslation} from 'react-i18next';
 import {FcGoogle} from 'react-icons/fc';
+import {actionCreators} from '../state';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import './Login.css';
 import Button from '../components/Button';
-import {bindActionCreators} from 'redux';
-import {actionCreators} from '../state';
 import Authentication from '../components/auth/Authentication';
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const {t} = useTranslation();
   const {isDarkMode} = useSelector((state) => state.isDarkMode);
 
@@ -39,8 +42,6 @@ const Login = () => {
 
   const dispatch = useDispatch();
 
-  const {isAuthenticated} = useSelector((state) => state.isAuthenticated);
-
   const {
     setIsVisibleSignInModal,
     setIsVisibleSignUpModal,
@@ -49,7 +50,7 @@ const Login = () => {
     dispatch,
   );
 
-  const renderMainForUnauthenticatedUser = () => {
+  const renderAuthButtons = () => {
     return (
       <>
         <Button
@@ -67,23 +68,11 @@ const Login = () => {
     );
   };
 
-  const renderMainForAuthenticatedUser = () => {
-    return (
-      <>
-        <h1>User is authenticated</h1>
-      </>
-    );
-  };
-
   const renderPage = () => {
     return (
       <div className={'sign-in'}>
         <h1>{t('sign_in')}</h1>
-        {
-          isAuthenticated
-            ? renderMainForAuthenticatedUser()
-            : renderMainForUnauthenticatedUser()
-        }
+        {renderAuthButtons()}
         <br/>
         <button
           className={`sign-in-button ${isDarkMode ? 'dark' : 'light'} ${localStorage.getItem('i18nextLng')}`}
@@ -95,6 +84,12 @@ const Login = () => {
       </div>
     );
   };
+
+  useEffect(() => {
+    if (localStorage.getItem('isAuthUser')) {
+      navigate('/');
+    }
+  }, []);
 
   return (
     <div className={'container center'}>
